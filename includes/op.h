@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:55:39 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/09 16:54:50 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/09 21:23:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define IDX_MOD            (MEM_SIZE / 8)
 # define CHAMP_MAX_SIZE     (MEM_SIZE / 6)
 # define COMMENT_CHAR       '#'
+# define ALT_COMMENT_CHAR   ';'
 # define LABEL_CHAR         ':'
 # define DIRECT_CHAR        '%'
 # define SEPARATOR_CHAR     ','
