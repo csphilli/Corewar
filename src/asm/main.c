@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/25 15:58:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/25 20:25:54 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,10 @@
 
 void	print_list(t_input *input)
 {
-	printf("[%d]: %s\n", input->index, input->line);
+	printf("[%d]: %s", input->index, input->line);
 }
 
-t_input 	*get_data(t_list *list, char **av)
-{
-	int		i;
-	int		fd;
-	char 	*line;
-	t_input *input;
 
-	i = 0;
-	fd = open(av[1], O_RDONLY);
-	while (get_next_line(fd, &line) > 0)
-	{
-		input = ft_memalloc(sizeof(t_input));
-		input->line = ft_strdup(line);
-		input->index = i;
-		append_node(list, input);
-		ft_strdel(&line);
-		i++;
-	}
-	close(fd);
-	return(input);
-}
 
 int		get_index(t_input *i, int j)
 {
@@ -49,24 +29,35 @@ int		get_index(t_input *i, int j)
 		return (1);
 }
 
-void	asm_parser(t_list *list)
+void	asm_parser(t_list *list, t_champ *champ)
 {
+	int	i;
+
+	i = 0;
+	i = get_name(list, champ, i);
 	printf(BBLU"printing list in asm parser\n"RESET);
 	display_list(list, (t_display)(print_list));
+}
+
+void	init_champ(t_champ *champ)
+{
+	champ->magic = 15369203;
 }
 
 int		main(int ac, char **av)
 {
 	t_list 	list;
+	t_champ champ;
 	t_input *data;
-	t_node *node;
+	// t_node *node;
 
 	// data = NULL;
 	if (ac == 2)
 	{
 		init_list(&list);
+		init_champ(&champ);
 		data = get_data(&list, av);
-		asm_parser(&list);
+		asm_parser(&list, &champ);
 	}
 	else
 		ft_handle_error("ERROR. Usage: ./asm [filename.s]\n", 1);
