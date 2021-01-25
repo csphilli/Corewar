@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/10 13:05:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/25 15:58:06 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,12 @@
 # include "op.h"
 #include <stdio.h> // remove before submission
 
-/*
-**	NAME & COMMENT CONVERSION TO BYTE CODE
-*/
+typedef struct 	s_input
+{
+	int			index;
+	char 		*line;
+}				t_input;
 
-void	name_to_byte(char **src, char *name);
-void	comment_to_byte(char **src, char *name_comment);
-
-/*
-**	BYTE CONVERSION TOOLS
-*/
-
-char	*to_hex(int *int_str, int max_len);
-void	str_to_int_str(int **src, char *input, int max_len);
+void	print_hex(char *buf);
+void	print_bytecode(char *bytecode);
 #endif

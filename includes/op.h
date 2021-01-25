@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:55:39 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/09 21:23:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/25 13:34:36 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef char	t_arg_type;
 
 # define PROG_NAME_LENGTH   (128)
 # define COMMENT_LENGTH     (2048)
-# define COREWAR_EXEC_MAGIC 0xea83f3
+# define COREWAR_EXEC_MAGIC 0xea83f3 // dec: 15369203
 
 typedef struct		          header_s
 {
