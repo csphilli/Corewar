@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:44:19 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/25 20:26:35 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/26 09:25:03 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int		name_exists(t_node *node)
 	a = 0;
 	i = 0;
 	j = 0;
-
 	if (ft_strncmp(((t_input*)node->data)->line, ".name", \
 	sizeof(char) * 5) == 0)
 	{
@@ -37,7 +36,7 @@ int		name_exists(t_node *node)
 		}
 	}
 	if (a == 2)
-		return (j);
+		return (j + 1);
 	return (0);
 }
 
@@ -57,12 +56,28 @@ t_node	*get_node_at_index(t_list *list, int index)
 
 int		get_name(t_list *list, t_champ *champ, int i)
 {
-	t_node *node;
-	int j;
+	t_node	*node;
+	int		j;
+	int		x;
 
+	x = 0;
 	node = get_node_at_index(list, i);
-	printf("node: %s", ((t_input*)node->data)->line);
 	if ((j = name_exists(node)) > 0)
-		printf("name exists: %d\n", j);
-	return (j);
+	{
+		while (((t_input*)node->data)->line[j] != '"' && x < PROG_NAME_LENGTH)
+		{
+			champ->prog_name[x] = ((t_input*)node->data)->line[j];
+			x++;
+			j++;
+		}
+		while (x < PROG_NAME_LENGTH)
+		{
+			champ->prog_name[x] = '0';
+			x++;
+		}
+	}
+	else
+		ft_handle_error("ERROR: Name not defined.\n", 1);
+	i++;
+	return (i);
 }
