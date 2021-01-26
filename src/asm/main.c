@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/26 16:27:14 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/26 22:26:22 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	print_list(t_input *input)
 {
 	printf("[%d]: %s", input->index, input->line);
 }
-
-
 
 int		get_index(t_input *i, int j)
 {
@@ -32,15 +30,24 @@ int		get_index(t_input *i, int j)
 void	asm_parser(t_list *list, t_champ *champ)
 {
 	int	i;
+	int	x;
+
+	x = 0;
 
 	i = 0;
 	i = get_name(list, champ, i);
 	i = get_comment(list, champ, i);
-	printf("i: %d\n", i);
-	printf("name: %s\n", champ->prog_name);
-	printf("comment: %s\n", champ->comment);
-	printf(BBLU"printing list in asm parser\n"RESET);
-	display_list(list, (t_display)(print_list));
+	// write(1, &x, 4);
+	bytecode_parsing(champ);
+	// printf("i: %d\n", i);
+	// printf("%s\n", champ->prog_name);
+	// print_name(champ);
+	// print_comment(champ);
+	// write_champ_name(champ, 1);
+	// write_champ_comment(champ, 1);
+	// printf("comment: %s\n", champ->comment);
+	// printf(BBLU"printing list in asm parser\n"RESET);
+	// display_list(list, (t_display)(print_list));
 }
 
 void	init_champ(t_champ *champ)
@@ -71,6 +78,6 @@ int		main(int ac, char **av)
 	// node = get_node(&list, (int (*)(void*, void*))get_index, data);
 	// printf("node: %s\n", ((t_input*)node->data)->line);
 
-	system("leaks asm");
+	// system("leaks asm");
 	return (0);
 }

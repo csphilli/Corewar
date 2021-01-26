@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/25 19:24:05 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/26 22:25:33 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,7 @@ typedef struct		s_champ
 
 t_input 	*get_data(t_list *list, char **av);
 int			get_name(t_list *list, t_champ *champ, int i);
+int			get_comment(t_list *list, t_champ *champ, int i);
+t_node		*get_node_at_index(t_list *list, int index);
+void		bytecode_parsing(t_champ *champ);
 #endif
