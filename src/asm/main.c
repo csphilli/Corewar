@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/25 20:25:54 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/26 16:27:14 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,10 @@ void	asm_parser(t_list *list, t_champ *champ)
 
 	i = 0;
 	i = get_name(list, champ, i);
+	i = get_comment(list, champ, i);
+	printf("i: %d\n", i);
+	printf("name: %s\n", champ->prog_name);
+	printf("comment: %s\n", champ->comment);
 	printf(BBLU"printing list in asm parser\n"RESET);
 	display_list(list, (t_display)(print_list));
 }
