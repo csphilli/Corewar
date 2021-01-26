@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:32:36 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/25 20:25:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/26 09:25:52 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 char	*capture(char *input)
 {
-	int		i;
+	int		len;
 	char	*ret;
 
-	i = 0;
-	while (*(input + i) != '\n')
-		i++;
-	ret = ft_strnew(i + 1);
-	ft_strncpy(ret, input, i);
+	len = ft_strlen(input);
+	ret = ft_strnew(len + 1);
+	ft_strncpy(ret, input, len);
 	ft_strcat(ret, "\n");
 	return (ret);
 }
