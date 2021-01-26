@@ -6,7 +6,7 @@
 /*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:44:19 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/26 09:25:03 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/26 16:24:34 by cphillip         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,7 @@ int		name_exists(t_node *node)
 	return (0);
 }
 
-t_node	*get_node_at_index(t_list *list, int index)
-{
-	t_node *tmp;
 
-	tmp = list->head;
-	while (tmp)
-	{
-		if (((t_input*)tmp->data)->index == index)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	return (NULL);
-}
 
 int		get_name(t_list *list, t_champ *champ, int i)
 {
@@ -75,6 +63,7 @@ int		get_name(t_list *list, t_champ *champ, int i)
 			champ->prog_name[x] = '0';
 			x++;
 		}
+		champ->prog_name[x] = '\0';
 	}
 	else
 		ft_handle_error("ERROR: Name not defined.\n", 1);
