@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/26 22:25:33 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/29 18:25:25 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,14 @@ typedef struct 		s_input
 
 typedef struct		s_champ
 {
-	char			prog_name[PROG_NAME_LENGTH + 1];
-	unsigned int	prog_size;
-	char			comment[COMMENT_LENGTH + 1];
+	char			*champ_name;
+	unsigned int	champ_size;
+	char			*comment;
 	unsigned int	magic;
 }					t_champ;
 
-t_input 	*get_data(t_list *list, char **av);
-int			get_name(t_list *list, t_champ *champ, int i);
-int			get_comment(t_list *list, t_champ *champ, int i);
+void	 	get_data(t_list *list, t_champ *champ, int fd, char **av);
+void		get_name_comment(char **ret, char *line, int fd);
 t_node		*get_node_at_index(t_list *list, int index);
-void		bytecode_parsing(t_champ *champ);
+
 #endif

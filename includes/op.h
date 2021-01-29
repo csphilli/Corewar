@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:55:39 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/25 13:34:36 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/29 10:02:37 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@
 # define SEPARATOR_CHAR     ','
 # define LABEL_CHARS        "abcdefghijklmnopqrstuvwxyz_0123456789"
 # define NAME_CMD_STRING    ".name"
+# define NAME_CMD_LEN		5
 # define COMMENT_CMD_STRING ".comment"
+# define COMMENT_CMD_LEN	8
 # define REG_NUMBER         16
 # define CYCLE_TO_DIE       1536
 # define CYCLE_DELTA        50

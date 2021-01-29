@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/26 22:26:22 by cphillip         ###   ########.fr       */
+/*   Updated: 2021/01/29 18:26:37 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,53 +27,39 @@ int		get_index(t_input *i, int j)
 		return (1);
 }
 
-void	asm_parser(t_list *list, t_champ *champ)
-{
-	int	i;
-	int	x;
-
-	x = 0;
-
-	i = 0;
-	i = get_name(list, champ, i);
-	i = get_comment(list, champ, i);
-	// write(1, &x, 4);
-	bytecode_parsing(champ);
-	// printf("i: %d\n", i);
-	// printf("%s\n", champ->prog_name);
-	// print_name(champ);
-	// print_comment(champ);
-	// write_champ_name(champ, 1);
-	// write_champ_comment(champ, 1);
-	// printf("comment: %s\n", champ->comment);
-	// printf(BBLU"printing list in asm parser\n"RESET);
-	// display_list(list, (t_display)(print_list));
-}
 
 void	init_champ(t_champ *champ)
 {
+	// if (!(champ = (t_champ*)ft_memalloc(sizeof(t_champ))))
+	// 	ft_error("ERROR: Failed to allocate memory for champ struct.\n");
+	champ->champ_name = NULL;
+	champ->comment = NULL;
 	champ->magic = 15369203;
+	
 }
 
 int		main(int ac, char **av)
 {
 	t_list 	list;
 	t_champ champ;
-	t_input *data;
+	// t_input *data;
+	int		fd;
 	// t_node *node;
 
 	// data = NULL;
+	fd = 0;
 	if (ac == 2)
 	{
+		fd = open(av[1], fd, O_RDONLY);
 		init_list(&list);
 		init_champ(&champ);
-		data = get_data(&list, av);
-		asm_parser(&list, &champ);
+		// printf("champ: %p\n", champ.champ_name);
+		get_data(&list, &champ, fd, av);
 	}
 	else
-		ft_handle_error("ERROR. Usage: ./asm [filename.s]\n", 1);
+		ft_error("ERROR. Usage: ./asm [filename.s]\n");
 
-	
+	// system("leaks asm");
 	// SAVE THIS FOR REFERENCE! printf has casting to see what value.
 	// node = get_node(&list, (int (*)(void*, void*))get_index, data);
 	// printf("node: %s\n", ((t_input*)node->data)->line);
