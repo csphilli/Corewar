@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: cphillip <cphillip@student.hive.fi>        +#+  +:+       +#+         #
+#    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/01/10 15:02:44 by cphillip         ###   ########.fr        #
+#    Updated: 2021/01/29 18:31:15 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,8 @@ ASM_DIR = $(SRC_DIR)asm/
 ASM_INC = asm.h
 
 
-SRC_FILES = $(addprefix $(ASM_DIR), $(SRC))
-# $(addprefix $(SRC_DIR), $(SRC))\
+SRC_FILES = $(addprefix $(ASM_DIR), $(SRC))\
+			$(addprefix $(SRC_DIR), $(SRC))
 
 OBJ_FILES = $(SRC:.c=.o)
 
@@ -43,7 +43,7 @@ $(NAME): $(SRC_FILES) $(INC)/asm.h
 	fi
 	@make -C $(LIBFT)
 	@echo "Compiling $(NAME)..."
-	@gcc $(FLAGS) -o $(NAME) $(SRC_FILES) -I$(INC) $(LINK_LIBFT)	
+	@gcc $(FLAGS) -o $(NAME) $(SRC_FILES) -I$(INC) $(LINK_LIBFT)
 
 clean:
 	@rm -rf obj/
