@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/01/29 22:47:56 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/01/31 19:29:45 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	new_strjoin(char **dst, char *src)
 
 char	*cont_reading(char *line, int fd)
 {
-	char	*tmp;
 	char	*nl;
 	int		flag;
 

@@ -1,86 +1,74 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   analyse_statement.c                                :+:      :+:    :+:   */
+/*   tokenizing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/01/31 18:38:25 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/01/31 20:40:49 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		opcode_len(char *line)
-{
-	int len;
-
-	len = 0;
-	while (line[len] != ' ' && line[len] != '\t' && \
-			line[len] != '\n' && line[len] != '\0')
-		len++;
-	return (len);
-}
-
-void	len2_opcodes(char *line, int len)
+void	len2_opcodes(char *line, int len, t_list *ins_list)
 {
 	if (ft_strnstr(line, "ld", len))
-		printf(RED"ld\n"RESET);
+		tokenize_ld(line, ins_list);
 	else if (ft_strnstr(line, "st", len))
-		printf(RED"st\n"RESET);
+		tokenize_st(line, ins_list);
 	else if (ft_strnstr(line, "or", len))
-		printf(RED"or\n"RESET);
+		tokenize_or(line, ins_list);
 	else
-		printf("Label len2\n");
-	
+		printf("Label: %s\n", line);	
 }
 
-void	len3_opcodes(char *line, int len)
+void	len3_opcodes(char *line, int len, t_list *ins_list)
 {
 	if (ft_strnstr(line, "add", len))
-		printf(RED"add\n"RESET);
+		tokenize_add(line, ins_list);
 	else if (ft_strnstr(line, "sub", len))
-		printf(RED"sub\n"RESET);
+		tokenize_sub(line, ins_list);
 	else if (ft_strnstr(line, "and", len))
-		printf(RED"and\n"RESET);
+		tokenize_and(line, ins_list);
 	else if (ft_strnstr(line, "xor", len))
-		printf(RED"xor\n"RESET);
+		tokenize_xor(line, ins_list);
 	else if (ft_strnstr(line, "ldi", len))
-		printf(RED"ldi\n"RESET);
+		tokenize_ldi(line, ins_list);
 	else if (ft_strnstr(line, "sti", len))
-		printf(RED"sti\n"RESET);
+		tokenize_sti(line, ins_list);
 	else if (ft_strnstr(line, "lld", len))
-		printf(RED"lld\n"RESET);
+		tokenize_lld(line, ins_list);
 	else if (ft_strnstr(line, "aff", len))
-		printf(RED"aff\n"RESET);
+		tokenize_aff(line, ins_list);
 	else
-		printf("Label len3\n");
+		printf("Label: %s\n", line);
 }
 
-void	len4_opcodes(char *line, int len)
+void	len4_opcodes(char *line, int len, t_list *ins_list)
 {
 	if (ft_strnstr(line, "live", len))
-		printf(RED"live\n"RESET);
+		tokenize_live(line, ins_list);
 	else if (ft_strnstr(line, "zjmp", len))
-		printf(RED"zjmp\n"RESET);
+		tokenize_zjmp(line, ins_list);
 	else if (ft_strnstr(line, "fork", len))
-		printf(RED"fork\n"RESET);
+		tokenize_fork(line, ins_list);
 	else if (ft_strnstr(line, "lldi", len))
-		printf(RED"lldi\n"RESET);
+		tokenize_lldi(line, ins_list);
 	else
-		printf("Label Len4\n");
+		printf("Label: %s\n", line);
 }
 
-void	len5_opcodes(char *line, int len)
+void	len5_opcodes(char *line, int len, t_list *ins_list)
 {
 	if (ft_strnstr(line, "lfork", len))
-		printf(RED"lfork\n"RESET);
+		tokenize_lfork(line, ins_list);
 	else
-		printf("Label Len5\n");
+		printf("Label: %s\n", line);
 }
 
-void	analyse_statement(char *line)
+void	tokenizing(char *line, t_list *ins_list)
 {
 	int len;
 	int	i;
@@ -89,19 +77,18 @@ void	analyse_statement(char *line)
 	len = 0;
     if (!line || line[0] == 0 || line[0] == '#' || line[0] == ALT_COMMENT_CHAR)
 	{
-        printf("Found emptyline/comment/alt comment char\n"); // set to return
+        printf("EMPTY LINE/COMMENT\n"); // set to return
 		return ;
 	}
-	printf("line: %s\n", line);
 	len = opcode_len(line);
 	if (len == 2)
-		len2_opcodes(line, len);
+		len2_opcodes(line, len, ins_list);
 	else if (len == 3)
-		len3_opcodes(line, len);
+		len3_opcodes(line, len, ins_list);
 	else if (len == 4)
-		len4_opcodes(line, len);
+		len4_opcodes(line, len, ins_list);
 	else if (len == 5)
-		len5_opcodes(line, len);
+		len5_opcodes(line, len, ins_list);
 	else
-		printf("probably a label\n");
+		printf("Label: %s\n", line);
 }

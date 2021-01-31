@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/31 19:24:07 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/01/31 19:27:34 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	init_champ(t_champ *champ)
 int		main(int ac, char **av)
 {
 	t_list 	list;
-	t_champ champ;	
+	t_champ champ;
+	t_list	ins_list;
 
 	int		fd;
 	fd = 0;
@@ -50,7 +51,8 @@ int		main(int ac, char **av)
 		fd = open(av[1], fd, O_RDONLY);
 		init_list(&list);
 		init_champ(&champ);
-		get_data(&champ, fd);
+		init_list(&ins_list);
+		get_data(&champ, &ins_list, fd);
 	}
 	else
 		ft_error("ERROR. Usage: ./asm [filename.s]\n");

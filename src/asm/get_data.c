@@ -6,13 +6,13 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:32:36 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/31 17:10:57 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/01/31 20:37:41 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	get_data(t_champ *champ, int fd)
+void	get_data(t_champ *champ, t_list *ins_list, int fd)
 {
 	char	*line;
 	char	*tmp;
@@ -22,7 +22,6 @@ void	get_data(t_champ *champ, int fd)
 		tmp = line;
 		while ((*tmp == ' ' || *tmp == '\t') && *tmp != '\0')
 			tmp++;
-		// printf("tmp: >%s< | addy: %p\n", tmp, tmp);
 		if (ft_strnstr(tmp, NAME_CMD_STRING, NAME_CMD_LEN))
 		{
 			(champ->champ_name) ? ft_error("ERROR: Multiple names.\n") : \
@@ -34,7 +33,7 @@ void	get_data(t_champ *champ, int fd)
 			get_name_comment(&champ->comment, line, fd);
 		}
 		else
-			analyse_statement(tmp);
+			tokenizing(tmp, ins_list);
 		ft_strdel(&line);
 	}
 }
