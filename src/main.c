@@ -6,62 +6,46 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/01/31 19:27:34 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/01 21:16:58 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "ll.h"
 
-void	print_list(t_input *input)
-{
-	printf("[%d]: %s", input->index, input->line);
-}
+/*
+**	For reference later
+**	node = get_node(&list, (int (*)(void*, void*))get_index, data);
+**	printf("node: %s\n", ((t_input*)node->data)->line);
+*/
 
-int		get_index(t_input *i, int j)
+void	init_master(t_master *m)
 {
-	j = 5; // Just setting which index I want to return
-	if (i->index == j)
-		return (0);
-	else
-		return (1);
-}
-
-
-void	init_champ(t_champ *champ)
-{
-	// if (!(champ = (t_champ*)ft_memalloc(sizeof(t_champ))))
-	// 	ft_error("ERROR: Failed to allocate memory for champ struct.\n");
-	champ->champ_name = NULL;
-	champ->comment = NULL;
-	champ->magic = 15369203;
-	
+	m->champ = ft_memalloc(sizeof(t_champ));
+	m->champ->champ_name = NULL;
+	m->champ->champ_comment = NULL;
+	m->label = NULL;
+	m->champ->magic = 15369203;
+	m->ins_count = 0;
+	init_list(&m->list);
 }
 
 int		main(int ac, char **av)
 {
-	t_list 	list;
-	t_champ champ;
-	t_list	ins_list;
+	t_master	*master;
+	int			fd;
 
-	int		fd;
 	fd = 0;
 	if (ac == 2)
 	{
 		fd = open(av[1], fd, O_RDONLY);
-		init_list(&list);
-		init_champ(&champ);
-		init_list(&ins_list);
-		get_data(&champ, &ins_list, fd);
+		master = ft_memalloc(sizeof(t_master));
+		init_master(master);
+		get_data(master, fd);
+		display_list(&master->list, (t_display)(print_instrux_list));
 	}
 	else
 		ft_error("ERROR. Usage: ./asm [filename.s]\n");
-
-	// system("leaks asm");
-	// SAVE THIS FOR REFERENCE! printf has casting to see what value.
-	// node = get_node(&list, (int (*)(void*, void*))get_index, data);
-	// printf("node: %s\n", ((t_input*)node->data)->line);
-
-	// system("leaks asm");
+	system("leaks asm");
 	return (0);
 }

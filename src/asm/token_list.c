@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize_aff.c                                     :+:      :+:    :+:   */
+/*   token_list.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/31 20:26:26 by csphilli          #+#    #+#             */
-/*   Updated: 2021/01/31 20:26:58 by csphilli         ###   ########.fr       */
+/*   Created: 2021/02/01 20:47:10 by csphilli          #+#    #+#             */
+/*   Updated: 2021/02/01 20:57:13 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	tokenize_aff(char *line, t_list *ins_list)
+void	print_instrux_list(t_ins *ins)
 {
-	printf("Tokenizing aff: %s\n", line);
+	printf(BGRN"----- INDEX %d -----\n"RESET, ins->index);
+	printf(" Label: %s\n Opcode: %d\n Opname: %s\n", \
+		ins->label, ins->opcode, ins->opname);
+	printf(" ArgCnt: %d\n t_dir_size: %d\n arg_type_code: %d\n\n", \
+		ins->arg_count, ins->t_dir_size, ins->arg_type_code);
 }

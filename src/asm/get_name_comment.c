@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/01/31 19:29:45 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/01 21:20:02 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	trailing_quote(char **ret)
 	char		*tmp;
 
 	i = 0;
-    tmp = *ret;
-    while (tmp[i] != '\"')
-        i++;
+	tmp = *ret;
+	while (tmp[i] != '\"')
+		i++;
 	ft_strdel(ret);
 	*ret = ft_strndup(tmp, i);
 }
@@ -60,14 +60,14 @@ char	*cont_reading(char *line, int fd)
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (!ft_strchr(line, '\"'))
-        {
-            new_strjoin(&nl, "\n");
+		{
+			new_strjoin(&nl, "\n");
 			new_strjoin(&nl, line);
-        }
+		}
 		else if (ft_strchr(line, '\"'))
 		{
 			flag = 1;
-            new_strjoin(&nl, "\n");
+			new_strjoin(&nl, "\n");
 			new_strjoin(&nl, line);
 			ft_strdel(&line);
 			break ;
