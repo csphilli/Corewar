@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 11:12:56 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/01 16:32:11 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/03 09:09:35 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static const	t_asm_oplist	g_oplist[16] = {
 		.opcode = 0x0b,
 		.opname = "sti",
 		.arg_count = 3,
-		.arg_type = {T_REG, T_REG | T_DIR | T_IND, T_REG | T_DIR},
+		.arg_type = {T_REG, T_DIR | T_REG | T_IND, T_REG | T_DIR},
 		.t_dir_size = 2,
 		.arg_type_code = 1
 	},

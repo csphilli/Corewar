@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:55:39 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/01 21:23:12 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/02 14:12:26 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define ALT_COMMENT_CHAR   ';'
 # define LABEL_CHAR         ':'
 # define DIRECT_CHAR        '%'
+# define REG_CHAR			'r'
 # define SEPARATOR_CHAR     ','
 # define LABEL_CHARS        "abcdefghijklmnopqrstuvwxyz_0123456789"
 # define NAME_CMD_STRING    ".name"

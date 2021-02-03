@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:39:12 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/01 21:22:27 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/03 21:22:09 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,24 @@ int					leading_ws(char *line)
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	return (i);
+}
+
+int					len_sans_trailing_ws(char *line)
+{
+	int		cnt;
+	char	*tmp;
+
+	tmp = line;
+	cnt = 0;
+	while (*tmp)
+	{
+		if (*tmp == COMMENT_CHAR || *tmp == ALT_COMMENT_CHAR \
+			|| *tmp == ' ' || *tmp == '\t')
+			break ;
+		tmp++;
+		cnt++;
+	}
+	return (cnt);
 }
 
 int					opcode_len(char *line)

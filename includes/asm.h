@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/01 21:24:27 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/03 16:00:14 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct		s_ins
 	char			*opname;
 	int				arg_count;
 	int				arg_type[3];
+
 	int				t_dir_size;
 	int				arg_type_code;
 }					t_ins;
@@ -55,9 +56,12 @@ void				get_data(t_master *master, int fd);
 void				get_name_comment(char **ret, char *line, int fd);
 int					opcode_len(char *line);
 int					leading_ws(char *line);
+void				del_leading_ws(char **line);
 int					is_label(t_master *master, char *line, int len);
 void				tokenizing(t_master *master, char *line);
 t_asm_oplist		get_opcode(char *line, int len);
 void				print_instrux_list(t_ins *ins);
+void				ft_error_line(char *error_msg, int line);
+int					len_sans_trailing_ws(char *line);
 
 #endif
