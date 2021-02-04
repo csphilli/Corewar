@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/03 16:00:14 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/04 21:49:01 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,13 @@ typedef struct		s_champ
 typedef struct		s_ins
 {
 	int				index;
+	int				bytes;
 	char			*label;
 	int				opcode;
 	char			*opname;
 	int				arg_count;
 	int				arg_type[3];
-
+	char			**arg_values;
 	int				t_dir_size;
 	int				arg_type_code;
 }					t_ins;
@@ -63,5 +64,6 @@ t_asm_oplist		get_opcode(char *line, int len);
 void				print_instrux_list(t_ins *ins);
 void				ft_error_line(char *error_msg, int line);
 int					len_sans_trailing_ws(char *line);
+void				get_args(t_ins *ins, char *line, t_asm_oplist oplist);
 
 #endif
