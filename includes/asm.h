@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/04 21:49:01 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/05 14:01:39 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define ASM_H
 
 # include "libft.h"
+// # include "ll.h"
 # include "op.h"
 # include "asm_oplist.h"
 
@@ -33,9 +34,9 @@ typedef struct		s_champ
 
 typedef struct		s_ins
 {
+	char			*label;
 	int				index;
 	int				bytes;
-	char			*label;
 	int				opcode;
 	char			*opname;
 	int				arg_count;
@@ -48,7 +49,7 @@ typedef struct		s_ins
 typedef struct		s_master
 {
 	t_champ			*champ;
-	t_list			list;
+	t_list			instrux;
 	int				ins_count;
 	char			*label;
 }					t_master;
@@ -65,5 +66,6 @@ void				print_instrux_list(t_ins *ins);
 void				ft_error_line(char *error_msg, int line);
 int					len_sans_trailing_ws(char *line);
 void				get_args(t_ins *ins, char *line, t_asm_oplist oplist);
+void				handle_labels(t_master *m);
 
 #endif

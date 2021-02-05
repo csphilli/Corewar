@@ -6,18 +6,12 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/04 16:05:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/05 20:08:35 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-#include "ll.h"
-
-/*
-**	For reference later
-**	node = get_node(&list, (int (*)(void*, void*))get_index, data);
-**	printf("node: %s\n", ((t_input*)node->data)->line);
-*/
+// #include "ll.h"
 
 void	init_master(t_master *m)
 {
@@ -26,8 +20,8 @@ void	init_master(t_master *m)
 	m->champ->champ_comment = NULL;
 	m->label = NULL;
 	m->champ->magic = 15369203;
-	m->ins_count = 1;
-	init_list(&m->list);
+	m->ins_count = 0;
+	init_list(&m->instrux);
 }
 
 int		main(int ac, char **av)
@@ -42,7 +36,8 @@ int		main(int ac, char **av)
 		master = ft_memalloc(sizeof(t_master));
 		init_master(master);
 		get_data(master, fd);
-		display_list(&master->list, (t_display)(print_instrux_list));
+		handle_labels(master);
+		display_list(&master->instrux, (t_display)(print_instrux_list));
 	}
 	else
 		ft_error("ERROR. Usage: ./asm [filename.s]\n");

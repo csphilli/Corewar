@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/04 21:49:19 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/05 10:22:19 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ void	tokenizing(t_master *m, char *line)
 		ins->t_dir_size = oplist.t_dir_size;
 		ins->arg_type_code = oplist.arg_type_code;
 		get_args(ins, &line[i], oplist);
-		append_node(&m->list, ins);
+		append_node(&m->instrux, ins);
 	}
 }

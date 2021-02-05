@@ -6,13 +6,13 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:39:12 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/03 21:22:09 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/04 21:52:17 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_asm_oplist		get_opcode(char *line, int len)
+t_asm_oplist	get_opcode(char *line, int len)
 {
 	char	*str;
 	int		i;
@@ -26,7 +26,7 @@ t_asm_oplist		get_opcode(char *line, int len)
 	return (g_oplist[i]);
 }
 
-int					is_label(t_master *m, char *line, int len)
+int				is_label(t_master *m, char *line, int len)
 {
 	if (line[len - 1] != ':')
 		return (len);
@@ -38,7 +38,7 @@ int					is_label(t_master *m, char *line, int len)
 	}
 }
 
-int					leading_ws(char *line)
+int				leading_ws(char *line)
 {
 	int i;
 
@@ -48,7 +48,7 @@ int					leading_ws(char *line)
 	return (i);
 }
 
-int					len_sans_trailing_ws(char *line)
+int				len_sans_trailing_ws(char *line)
 {
 	int		cnt;
 	char	*tmp;
@@ -66,7 +66,7 @@ int					len_sans_trailing_ws(char *line)
 	return (cnt);
 }
 
-int					opcode_len(char *line)
+int				opcode_len(char *line)
 {
 	int len;
 
