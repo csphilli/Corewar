@@ -6,32 +6,35 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:18:57 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/05 20:09:38 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/06 12:10:51 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-#include "ll.h"
 
-// int		compare_label(char *name1, char *name2)
-// {
-// 	if (name1 && name2)
-// 	{
-// 		printf("comparing >%s< against sent >%s<\n", name1, name2);
-// 		return(ft_strcmp(name1, name2));
-
-// 	}
-// 	else
-// 		return (0);
-// }
-
-int		label_index(t_master *m, char *label)
+char		*new_str_from_label(t_ins *node, int arg_nbr, char *bytes)
 {
-	int		dst_index;
-	int		i;
-	t_node 	*tmp;
+	int		len;
+	char	*new;
 
-	dst_index = 0;
+	len = 0;
+	if (node->arg_values[arg_nbr])
+		ft_strdel(&node->arg_values[arg_nbr]);
+	if (node->arg_type[arg_nbr] == T_DIR)
+		len++;
+	len += ft_strlen(bytes);
+	new = ft_strnew(len);
+	if (node->arg_type[arg_nbr] == T_DIR)
+		new[0] = '%';
+	ft_strcat(new, bytes);
+	return (new);
+}
+
+t_node		*get_target(t_master *m, char *label)
+{
+	int		i;
+	t_node	*tmp;
+
 	i = 0;
 	while (!ft_strchr(LABEL_CHARS, label[i]))
 		i++;
@@ -40,68 +43,71 @@ int		label_index(t_master *m, char *label)
 	{
 		if (((t_ins*)tmp->data)->label && \
 			ft_strequ(((t_ins*)tmp->data)->label, &label[i]))
-			break ;
+			return (tmp);
 		tmp = tmp->next;
-		dst_index++;
 	}
-	((t_list*)&m->instrux)->cur = tmp;
-	return (dst_index);
+	return (NULL);
 }
 
-int		byte_loc(t_master *m, char *label, int home)
+int			bytes_to_label(t_node *start, t_node *end)
 {
-	int	dst_index;
-	int	i;
-	int	neg;
-	t_node *node;
+	t_node	*tmp;
+	int		bytes;
 
-	dst_index = label_index(m, label);
-	node = ((t_list*)&m->instrux)->cur;
-	neg = -1;
-	printf("List Cur: >%s< @ index: %d\n", ((t_ins*)node->data)->opname, \
-	 ((t_ins*)node->data)->index);
-	printf("Label in instruction %d referring to index %d\n", home, dst_index);
-
+	tmp = start;
+	bytes = 0;
+	while (tmp)
+	{
+		if (tmp == end)
+			break ;
+		bytes += ((t_ins*)tmp->data)->bytes;
+		tmp = tmp->next;
+	}
+	return (bytes);
 }
 
-char	modify_label(t_master *m, char **label, int index)
+char		*bytes_to_string(t_master *m, char **label, t_node *parent)
 {
-	char *tmp;
-	int	bytes;
+	t_node	*tgt;
+	int		bytes;
 
-	tmp = *label;
-	// ft_strdel(label);
-	bytes = byte_loc(m, tmp, index);
-	// printf("modifying %s at instruction %d\n", tmp, index);
+	bytes = 0;
+	tgt = get_target(m, *label);
+	if (tgt == NULL)
+		ft_error_line("ERROR: Could not find label in instruction ", \
+			((t_ins*)parent->data)->index + 1);
+	if (((t_ins*)parent->data)->index < ((t_ins*)tgt->data)->index)
+		bytes = bytes_to_label(parent, tgt);
+	else
+	{
+		bytes = bytes_to_label(tgt, parent);
+		bytes *= -1;
+	}
+	return (ft_itoa(bytes));
 }
 
-void	handle_labels(t_master *m)
+void		handle_labels(t_master *m)
 {
-	t_node *tmp;
+	t_node	*tmp;
 	int		i;
+	char	*bytes;
 
-	printf("handling labels\n");
 	tmp = ((t_list*)&m->instrux)->head;
 	while (tmp)
 	{
 		i = 0;
-		printf("--- Instruction %d ---\n", ((t_ins*)tmp->data)->index);
 		while (i < ((t_ins*)tmp->data)->arg_count)
 		{
 			if (ft_strchr(((t_ins*)tmp->data)->arg_values[i], LABEL_CHAR))
 			{
-
-				modify_label(m, &((t_ins*)tmp->data)->arg_values[i], \
-				((t_ins*)tmp->data)->index);
-				printf("Found a label: %s\n", ((t_ins*)tmp->data)->arg_values[i]);
+				bytes = bytes_to_string(m, \
+					&((t_ins*)tmp->data)->arg_values[i], tmp);
+				((t_ins*)tmp->data)->arg_values[i] = \
+					new_str_from_label(((t_ins*)tmp->data), i, bytes);
+				ft_strdel(&bytes);
 			}
-				// ((t_ins*)tmp->data)->arg_values[i] = modify_label(m, tmp);
 			i++;
 		}
-		// printf("tmp: %s\n", ((t_ins*)tmp->data)->opname);
 		tmp = tmp->next;
 	}
-
-
-	
 }

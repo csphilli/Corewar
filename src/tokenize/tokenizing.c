@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/05 10:22:19 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/06 12:10:19 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ void	add_label(char **dst, char **src)
 	*src = NULL;
 }
 
+int		empty_line_chk(char *line)
+{
+	if (!line || line[0] == 0 || line[0] == COMMENT_CHAR ||\
+		line[0] == ALT_COMMENT_CHAR)
+		return (1);
+	return (0);
+}
+
 void	tokenizing(t_master *m, char *line)
 {
 	int				i;
@@ -26,15 +34,14 @@ void	tokenizing(t_master *m, char *line)
 	t_asm_oplist	oplist;
 
 	i = 0;
-	if (!line || line[0] == 0 || line[0] == COMMENT_CHAR ||\
-		line[0] == ALT_COMMENT_CHAR)
+	if (empty_line_chk(line))
 		return ;
-	if ((i = is_label(m, line, opcode_len(line))) > 0)
+	if ((i = is_label(m, line, label_len(line))) > 0)
 	{
 		ins = ft_memalloc(sizeof(t_ins));
-		oplist = get_opcode(line, i);
 		ins->index = m->ins_count;
 		m->ins_count++;
+		oplist = get_opcode(ins, line, i);
 		m->label ? add_label(&ins->label, &m->label) : 0;
 		ins->opcode = oplist.opcode;
 		ins->opname = ft_strdup(oplist.opname);

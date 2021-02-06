@@ -1,21 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_line.c                                    :+:      :+:    :+:   */
+/*   arg_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/02 11:46:01 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/06 09:01:10 by csphilli         ###   ########.fr       */
+/*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
+/*   Updated: 2021/02/06 10:11:10 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	ft_error_line(char *error_msg, int line)
+void	pre_split(t_ins *ins, char **line)
 {
-	write(2, error_msg, ft_strlen(error_msg));
-	ft_putnbr(line);
-	write(2, ".\n", 2);
-	exit(0);
+	char	*tmp;
+	char	*new;
+	int		i;
+	int		j;
+
+	tmp = *line;
+	new = ft_strnew(ft_strlen(tmp));
+	i = 0;
+	j = 0;
+	while (tmp[i])
+	{
+		if (tmp[i] != ' ' && tmp[i] != '\t')
+		{
+			new[j] = tmp[i];
+			j++;
+		}
+		i++;
+	}
+	*line = new;
 }

@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 20:47:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/04 21:45:12 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/06 12:12:32 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_instrux_list(t_ins *ins)
 	int i;
 
 	i = 0;
-	printf(BGRN"----- INSTRUCTION %d -----\n"RESET, ins->index);
+	printf(BGRN"----- INSTRUCTION %d -----\n"RESET, ins->index + 1);
 	printf("\tLabel: %s\n\tOpcode: %d\n\tOpname: %s\n", \
 		ins->label, ins->opcode, ins->opname);
 	printf("\tBytes: %d\n", ins->bytes);

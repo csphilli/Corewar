@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/04 21:48:41 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/06 12:11:35 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		parse_arg_type(t_asm_oplist oplist, char *line, int arg_nbr)
 		return (0);
 }
 
-int		calc_bytes(t_ins *ins)
+int		calc_statement_bytes(t_ins *ins)
 {
 	int i;
 	int	bytes;
@@ -79,12 +79,15 @@ void	get_args(t_ins *ins, char *line, t_asm_oplist oplist)
 {
 	char	**args;
 	int		i;
+	char	*tmp;
 
 	i = 0;
-	args = ft_strsplit(line, SEPARATOR_CHAR);
+	tmp = line;
+	pre_split(ins, &tmp);
+	args = ft_strsplit(tmp, SEPARATOR_CHAR);
 	if (arg_count(args) != oplist.arg_count)
 		ft_error_line("ERROR. Invalid number of arguments in instruction ",\
-		ins->index);
+		ins->index + 1);
 	ins->arg_values = ft_memalloc(sizeof(char *) * oplist.arg_count);
 	while (args[i])
 	{
@@ -92,13 +95,11 @@ void	get_args(t_ins *ins, char *line, t_asm_oplist oplist)
 		if ((ins->arg_type[i] = parse_arg_type(oplist, args[i], i)) > 0)
 			ins->arg_values[i] = ft_strdup(args[i]);
 		else
-		{
-			printf("Arg line: %s\n", args[i]);
 			ft_error_line("ERROR: Invalid argument type for instruction ",\
-			ins->index);
-		}
+			ins->index + 1);
 		i++;
 	}
-	ins->bytes = calc_bytes(ins);
+	ins->bytes = calc_statement_bytes(ins);
 	free_strsplit(&args);
+	ft_strdel(&tmp);
 }
