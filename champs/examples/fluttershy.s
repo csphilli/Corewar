@@ -91,7 +91,7 @@ avdefgen:
 avdefinit:
 	sti		r1, %:avdefl1, %1
 	st		r1, 6
-	live	%43123
+	live 	%43123
 	sti		r1, %:avdefchk, %1
 	ld		%0, r2
 	ld		%6, r3

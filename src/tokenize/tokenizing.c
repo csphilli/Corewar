@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 12:27:02 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:38:29 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,17 @@ char	*prep_line(char *line)
 		return (ft_strdup(line));
 }
 
-void	tokenizing_cont(t_ins *ins, t_asm_oplist oplist)
+void	tokenizing_cont(t_master *m, t_ins *ins, t_asm_oplist oplist, char *line)
 {
 	ins->opcode = oplist.opcode;
 	ins->opname = ft_strdup(oplist.opname);
 	ins->arg_count = oplist.arg_count;
 	ins->t_dir_size = oplist.t_dir_size;
 	ins->arg_type_code = oplist.arg_type_code;
+	get_args(m, ins, &line[ft_strlen(ins->opname)], oplist);
+	append_node(&m->instrux, ins);
+	ins->line = m->line_cnt;
+	m->ins_count++;
 }
 
 void	tokenizing(t_master *m, char *line)
@@ -73,18 +77,19 @@ void	tokenizing(t_master *m, char *line)
 
 	i = 0;
 	if (empty_line_chk(line))
-		return ;
-	if (!is_label(line))
 	{
+		m->line_cnt++;
+		return ;
+	}
+	else if (!is_label(line))
+	{		
+		m->line_cnt++;
 		tmp = prep_line(line);
 		ins = ft_memalloc(sizeof(t_ins));
 		ins->index = m->ins_count;
-		m->ins_count++;
-		oplist = get_opcode(ins, tmp);
+		oplist = get_opcode(m, tmp);
 		add_labels(m, ins);
-		tokenizing_cont(ins, oplist);
-		get_args(ins, &tmp[ft_strlen(ins->opname)], oplist);
-		append_node(&m->instrux, ins);
+		tokenizing_cont(m, ins, oplist, tmp);
 		ft_strdel(&tmp);
 	}
 	else

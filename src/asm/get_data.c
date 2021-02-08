@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:32:36 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/02 11:57:14 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 13:08:00 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ void	get_data(t_master *m, int fd)
 		if (ft_strnstr(tmp, NAME_CMD_STRING, NAME_CMD_LEN))
 		{
 			(m->champ->champ_name) ? \
-			ft_error("ERROR: Multiple names.\n") : \
-			get_name_comment(&m->champ->champ_name, line, fd);
+			ft_error_line("ERROR: Multiple names. Line: ", m->line_cnt) : \
+			get_name_comment(m, &m->champ->champ_name, line, fd);
 		}
 		else if (ft_strnstr(tmp, COMMENT_CMD_STRING, COMMENT_CMD_LEN))
 		{
 			(m->champ->champ_comment) ? \
-			ft_error("ERROR: Multiple comments.\n") : \
-			get_name_comment(&m->champ->champ_comment, line, fd);
+			ft_error_line("ERROR: Multiple comments. Line: ", m->line_cnt) : \
+			get_name_comment(m, &m->champ->champ_comment, line, fd);
 		}
 		else
 			tokenizing(m, tmp);

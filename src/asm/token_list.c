@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 20:47:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 10:13:28 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:25:35 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	print_instrux_list(t_ins *ins)
 	printf("\tBytes: %d\n", ins->bytes);
 	printf("\tArgCnt: %d\n\tt_dir_size: %d\n\targ_type_code: %d\n", \
 		ins->arg_count, ins->t_dir_size, ins->arg_type_code);
+	printf("\tLine: %d\n", ins->line);
 	printf(GRN"\tARGUMENTS\n"RESET);
 	printf("\tTYPE\tVALUE\n");
 	while (i < ins->arg_count)

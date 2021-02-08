@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:20:35 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 12:30:11 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 13:16:49 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	save_label(t_master *m, char *line)
 	label->label = ft_strnew(i);
 	ft_memcpy(label->label, line, sizeof(char) * i);
 	append_node(&m->labels, label);
+	m->line_cnt++;
 }
 
 void	validate_label(t_master *m, char *line)
@@ -50,7 +51,7 @@ void	validate_label(t_master *m, char *line)
 		if (line[i] == COMMENT_CHAR || line[i] == ALT_COMMENT_CHAR)
 			flag = 1;
 		if (line[i] != ' ' && line[i] != '\t' && flag == 0)
-			ft_error("Error: Invalid Label.\n");
+			ft_error_line("Error: Invalid label on line ", m->line_cnt);
 		i++;
 	}
 	save_label(m, line);

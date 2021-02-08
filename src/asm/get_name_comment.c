@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 12:20:05 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 13:34:42 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	new_strjoin(char **dst, char *src)
 **  COMMENT_CMD_STRING. Returns finalized string or errors out.
 */
 
-char	*cont_reading(char *line, int fd)
+char	*cont_reading(t_master *m, char *line, int fd)
 {
 	char	*nl;
 	int		flag;
@@ -72,10 +72,10 @@ char	*cont_reading(char *line, int fd)
 			ft_strdel(&line);
 			break ;
 		}
+		m->line_cnt++;
 		ft_strdel(&line);
 	}
-	if (!flag)
-		ft_error("ERROR: Invalid name/comment string\n");
+	!flag ? ft_error("ERROR: Invalid name/comment string\n") : 0;
 	return (nl);
 }
 
@@ -85,7 +85,7 @@ char	*cont_reading(char *line, int fd)
 **  or error if invalid input.
 */
 
-void	get_name_comment(char **ret, char *line, int fd)
+void	get_name_comment(t_master *m, char **ret, char *line, int fd)
 {
 	int	i;
 
@@ -95,9 +95,12 @@ void	get_name_comment(char **ret, char *line, int fd)
 		while (line[i] != '\"')
 			i++;
 		if (ft_strchr(&line[++i], '\"'))
+		{
 			*ret = ft_strdup(&line[i]);
+			m->line_cnt++;
+		}
 		else
-			*ret = cont_reading(&line[i], fd);
+			*ret = cont_reading(m, &line[i], fd);
 		trailing_quote(ret);
 	}
 	else

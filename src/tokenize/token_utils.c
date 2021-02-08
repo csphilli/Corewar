@@ -6,13 +6,13 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:39:12 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 12:22:18 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 14:34:33 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_asm_oplist	get_opcode(t_ins *ins, char *line)
+t_asm_oplist	get_opcode(t_master *m, char *line)
 {
 	char	*str;
 	int		i;
@@ -30,7 +30,7 @@ t_asm_oplist	get_opcode(t_ins *ins, char *line)
 		i++;
 	}
 	if (i == OP_COUNT)
-		ft_error_line("ERROR: Invalid Opname in instruction ", ins->index + 1);
+		ft_error_line("ERROR: Invalid Opname. Line ", m->line_cnt);
 	ft_strdel(&str);
 	str = NULL;
 	return (g_oplist[i]);
