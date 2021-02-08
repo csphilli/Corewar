@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 13:19:48 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 22:44:47 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,17 @@ void	clean_arg(char **line)
 int		parse_arg_type(t_asm_oplist oplist, char *line, int arg_nbr)
 {
 	int i;
+	int	nbr;
 
 	i = 0;
 	if (line[i] == REG_CHAR && oplist.arg_type[arg_nbr] & T_REG)
-		return (T_REG);
+	{
+		nbr = ft_atoi(&line[1]);
+		if (nbr >= 0 && nbr <= 99)
+			return (T_REG);
+		else
+			return (0);
+	}
 	else if (line[i] == DIRECT_CHAR && oplist.arg_type[arg_nbr] & T_DIR)
 		return (T_DIR);
 	else if ((ft_strchr(LABEL_CHARS, line[i]) || line[i] == ':' || \

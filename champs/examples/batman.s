@@ -3,7 +3,7 @@
 
 hyphen:
 loop:
-        sti r1,%:live, %1 ;comment
+        sti r00,%:live, %1 ;comment
 		zjmp %:live
 live:
         live %0
