@@ -6,22 +6,22 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/05 20:35:01 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 12:28:50 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-// #include "ll.h"
 
 void	init_master(t_master *m)
 {
 	m->champ = ft_memalloc(sizeof(t_champ));
 	m->champ->champ_name = NULL;
 	m->champ->champ_comment = NULL;
-	m->label = NULL;
 	m->champ->magic = 15369203;
 	m->ins_count = 0;
+	m->line_cnt = 1;
 	init_list(&m->instrux);
+	init_list(&m->labels);
 }
 
 int		main(int ac, char **av)

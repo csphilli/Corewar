@@ -6,19 +6,23 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:39:12 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/06 12:10:39 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 12:22:18 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-t_asm_oplist	get_opcode(t_ins *ins, char *line, int len)
+t_asm_oplist	get_opcode(t_ins *ins, char *line)
 {
 	char	*str;
 	int		i;
+	int		len;
 
 	i = 0;
-	str = ft_strndup(line, len);
+	len = 0;
+	while (line[len] != ' ' && line[len] != '\t')
+		len++;
+	str = strndup(line, sizeof(char) * len);
 	while (i < OP_COUNT)
 	{
 		if (ft_strequ(str, g_oplist[i].opname))
@@ -32,16 +36,20 @@ t_asm_oplist	get_opcode(t_ins *ins, char *line, int len)
 	return (g_oplist[i]);
 }
 
-int				is_label(t_master *m, char *line, int len)
+int				is_label(char *line)
 {
-	if (line[len - 1] != LABEL_CHAR)
-		return (len);
-	else
+	int		i;
+
+	i = 0;
+	while (line[i])
 	{
-		m->label = ft_strnew(len - 1);
-		ft_memcpy(m->label, line, sizeof(char) * len - 1);
-		return (0);
+		if (!ft_strchr(LABEL_CHARS, line[i]))
+			break ;
+		i++;
 	}
+	if (line[i] == LABEL_CHAR)
+		return (1);
+	return (0);
 }
 
 int				leading_ws(char *line)
@@ -70,15 +78,4 @@ int				len_sans_trailing_ws(char *line)
 		cnt++;
 	}
 	return (cnt);
-}
-
-int				label_len(char *line)
-{
-	int len;
-
-	len = 0;
-	while (line[len] != ' ' && line[len] != '\t' && \
-			line[len] != '\n' && line[len] != '\0')
-		len++;
-	return (len);
 }

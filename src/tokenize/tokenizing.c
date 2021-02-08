@@ -6,17 +6,25 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/06 12:10:19 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 12:27:02 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	add_label(char **dst, char **src)
+void	add_labels(t_master *m, t_ins *ins)
 {
-	*dst = ft_strdup(*src);
-	ft_strdel(src);
-	*src = NULL;
+	if (((t_list*)&m->labels)->head)
+	{
+		init_list(&ins->labels);
+		while (((t_list*)&m->labels)->head)
+		{
+			append_node(&ins->labels, ((t_list*)&m->labels)->head->data);
+			delete_node(&m->labels, ((t_list*)&m->labels)->head);
+		}
+	}
+	else
+		ins->labels.head = NULL;
 }
 
 int		empty_line_chk(char *line)
@@ -27,28 +35,58 @@ int		empty_line_chk(char *line)
 	return (0);
 }
 
+char	*prep_line(char *line)
+{
+	int		i;
+	char	*new;
+
+	i = 0;
+	while (ft_strchr(OPNAME_CHAR, line[i]))
+		i++;
+	if (line[i] != '\t' && line[i] != ' ')
+	{
+		new = ft_strnew(i);
+		ft_memcpy(new, line, sizeof(char) * i);
+		ft_strncat(new, " ", 1);
+		ft_strcat(new, &line[i]);
+		return (new);
+	}
+	else
+		return (ft_strdup(line));
+}
+
+void	tokenizing_cont(t_ins *ins, t_asm_oplist oplist)
+{
+	ins->opcode = oplist.opcode;
+	ins->opname = ft_strdup(oplist.opname);
+	ins->arg_count = oplist.arg_count;
+	ins->t_dir_size = oplist.t_dir_size;
+	ins->arg_type_code = oplist.arg_type_code;
+}
+
 void	tokenizing(t_master *m, char *line)
 {
 	int				i;
 	t_ins			*ins;
 	t_asm_oplist	oplist;
+	char			*tmp;
 
 	i = 0;
 	if (empty_line_chk(line))
 		return ;
-	if ((i = is_label(m, line, label_len(line))) > 0)
+	if (!is_label(line))
 	{
+		tmp = prep_line(line);
 		ins = ft_memalloc(sizeof(t_ins));
 		ins->index = m->ins_count;
 		m->ins_count++;
-		oplist = get_opcode(ins, line, i);
-		m->label ? add_label(&ins->label, &m->label) : 0;
-		ins->opcode = oplist.opcode;
-		ins->opname = ft_strdup(oplist.opname);
-		ins->arg_count = oplist.arg_count;
-		ins->t_dir_size = oplist.t_dir_size;
-		ins->arg_type_code = oplist.arg_type_code;
-		get_args(ins, &line[i], oplist);
+		oplist = get_opcode(ins, tmp);
+		add_labels(m, ins);
+		tokenizing_cont(ins, oplist);
+		get_args(ins, &tmp[ft_strlen(ins->opname)], oplist);
 		append_node(&m->instrux, ins);
+		ft_strdel(&tmp);
 	}
+	else
+		validate_label(m, line);
 }

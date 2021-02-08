@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 11:12:56 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/06 11:53:10 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/07 13:47:08 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define T_IND					    4
 # define T_LAB					    8
 # define OP_COUNT					16
+# define OPNAME_CHAR				"livedstaubnorxzjmpfk"
 
 typedef struct	s_asm_oplist
 {

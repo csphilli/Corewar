@@ -1,9 +1,15 @@
 .name "Batman"
 .comment "This city needs me"
 
+hyphen:
+
 loop:
-        sti r1,% : live, % 1 ;comment
+        sti r1,%:live, %1 ;comment
+		zjmp %:live
 live:
-        live % 0
+        live %0
         ld %0, r2
-        zjmp %:loop
+		sti r2, %:hyphen, %1
+        zjmp%:loop
+		and r1, r2, r1
+

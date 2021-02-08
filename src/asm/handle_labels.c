@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:18:57 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/06 12:10:51 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 12:21:51 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,18 @@ t_node		*get_target(t_master *m, char *label)
 {
 	int		i;
 	t_node	*tmp;
+	t_node	*fnd;
 
 	i = 0;
+	fnd = NULL;
 	while (!ft_strchr(LABEL_CHARS, label[i]))
 		i++;
 	tmp = ((t_list*)&m->instrux)->head;
 	while (tmp)
 	{
-		if (((t_ins*)tmp->data)->label && \
-			ft_strequ(((t_ins*)tmp->data)->label, &label[i]))
+		fnd = get_node(&((t_ins*)tmp->data)->labels, \
+			(int (*)(void*, void*))compare_labels, &label[i]);
+		if (fnd != NULL)
 			return (tmp);
 		tmp = tmp->next;
 	}

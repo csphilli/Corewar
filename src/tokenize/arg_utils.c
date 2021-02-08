@@ -6,13 +6,13 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/06 10:11:10 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 12:17:13 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	pre_split(t_ins *ins, char **line)
+void	pre_split(char **line)
 {
 	char	*tmp;
 	char	*new;

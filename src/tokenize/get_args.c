@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/06 12:11:35 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 12:18:59 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	get_args(t_ins *ins, char *line, t_asm_oplist oplist)
 
 	i = 0;
 	tmp = line;
-	pre_split(ins, &tmp);
+	pre_split(&tmp);
 	args = ft_strsplit(tmp, SEPARATOR_CHAR);
 	if (arg_count(args) != oplist.arg_count)
 		ft_error_line("ERROR. Invalid number of arguments in instruction ",\
