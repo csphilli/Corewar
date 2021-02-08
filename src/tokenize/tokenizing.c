@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 14:38:29 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 22:20:16 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ char	*prep_line(char *line)
 		return (ft_strdup(line));
 }
 
-void	tokenizing_cont(t_master *m, t_ins *ins, t_asm_oplist oplist, char *line)
+void	tokenizing_cont(t_master *m, t_ins *ins, \
+		t_asm_oplist oplist, char *line)
 {
 	ins->opcode = oplist.opcode;
 	ins->opname = ft_strdup(oplist.opname);
@@ -82,7 +83,7 @@ void	tokenizing(t_master *m, char *line)
 		return ;
 	}
 	else if (!is_label(line))
-	{		
+	{
 		m->line_cnt++;
 		tmp = prep_line(line);
 		ins = ft_memalloc(sizeof(t_ins));

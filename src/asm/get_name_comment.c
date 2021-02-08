@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 13:34:42 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/08 22:19:40 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,33 +50,49 @@ void	new_strjoin(char **dst, char *src)
 **  COMMENT_CMD_STRING. Returns finalized string or errors out.
 */
 
+int		unfinished(char **new, char *line, int flag)
+{
+	char	*tmp;
+
+	tmp = NULL;
+	if (flag == 0 && (!ft_strstr(line, COMMENT_CMD_STRING) &&\
+		!ft_strstr(line, NAME_CMD_STRING)))
+	{
+		new_strjoin(new, "\n");
+		new_strjoin(new, line);
+		return (1);
+	}
+	else
+		ft_error("ERROR: Incomplete name/comment.\n");
+	return (0);
+}
+
 char	*cont_reading(t_master *m, char *line, int fd)
 {
-	char	*nl;
+	char	*new;
 	int		flag;
 
 	flag = 0;
-	nl = ft_strdup(line);
+	new = ft_strdup(line);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (!ft_strchr(line, '\"'))
 		{
-			new_strjoin(&nl, "\n");
-			new_strjoin(&nl, line);
+			new_strjoin(&new, "\n");
+			new_strjoin(&new, line);
 		}
-		else if (ft_strchr(line, '\"'))
+		else if (ft_strchr(line, '\"') && unfinished(&new, line, flag))
 		{
 			flag = 1;
-			new_strjoin(&nl, "\n");
-			new_strjoin(&nl, line);
 			ft_strdel(&line);
 			break ;
 		}
-		m->line_cnt++;
 		ft_strdel(&line);
+		m->line_cnt++;
 	}
-	!flag ? ft_error("ERROR: Invalid name/comment string\n") : 0;
-	return (nl);
+	if (flag == 0)
+		ft_error("ERROR: Incomplete name/comment.\n");
+	return (new);
 }
 
 /*
