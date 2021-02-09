@@ -6,15 +6,38 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:20:35 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 13:16:49 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/09 10:16:41 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
+/*
+**	Used in conjuction with the get_node function found in handle_labels.c
+**	Simply returns the result of string comparison between label names.
+*/
+
 int		compare_labels(t_labels *label, char *s2)
 {
 	return (ft_strcmp(label->label, s2));
+}
+
+// subject to change since a label and instruction can be on the same line
+
+int				is_label(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (!ft_strchr(LABEL_CHARS, line[i]))
+			break ;
+		i++;
+	}
+	if (line[i] == LABEL_CHAR)
+		return (1);
+	return (0);
 }
 
 void	save_label(t_master *m, char *line)
@@ -35,6 +58,8 @@ void	save_label(t_master *m, char *line)
 	append_node(&m->labels, label);
 	m->line_cnt++;
 }
+
+// subject to change given labels and instructions can be on the same line.
 
 void	validate_label(t_master *m, char *line)
 {

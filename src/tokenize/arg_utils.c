@@ -6,11 +6,18 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 12:17:13 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/09 08:55:27 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	Used as a helper function to get_args in the get_args.c file. This removes
+**	whitespace between the arguments prior to ft_strsplit.
+**	If the argument was sti r1, % : label, %1, the result would be
+**	sti r1,%:label,%1
+*/
 
 void	pre_split(char **line)
 {

@@ -6,11 +6,16 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:39:12 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 14:34:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/09 10:16:31 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	Returns the opcode if found, otherwise errors out. The oplist that it's
+**	searching in is found in includes/asm_oplist.h
+*/
 
 t_asm_oplist	get_opcode(t_master *m, char *line)
 {
@@ -36,21 +41,10 @@ t_asm_oplist	get_opcode(t_master *m, char *line)
 	return (g_oplist[i]);
 }
 
-int				is_label(char *line)
-{
-	int		i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!ft_strchr(LABEL_CHARS, line[i]))
-			break ;
-		i++;
-	}
-	if (line[i] == LABEL_CHAR)
-		return (1);
-	return (0);
-}
+/*
+**	Returns the starting position of a label/instruction without the leading
+**	whitespaces.
+*/
 
 int				leading_ws(char *line)
 {
@@ -61,6 +55,10 @@ int				leading_ws(char *line)
 		i++;
 	return (i);
 }
+
+/*
+**	Calculates the length of a string without trailing whitespaces.
+*/
 
 int				len_sans_trailing_ws(char *line)
 {

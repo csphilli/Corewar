@@ -6,11 +6,16 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 22:44:47 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/09 09:05:18 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	Counts the number of arguments in a given instruction. Used as validation
+**	for the respective opcode.
+*/
 
 int		arg_count(char **arg)
 {
@@ -21,6 +26,11 @@ int		arg_count(char **arg)
 		i++;
 	return (i);
 }
+
+/*
+**	Cleans up the argument so a strsplit can be done without including
+**	leading or trailing whitespaces. Also removes trailing comments.
+*/
 
 void	clean_arg(char **line)
 {
@@ -36,6 +46,12 @@ void	clean_arg(char **line)
 	ft_memcpy(*line, &tmp[leading], sizeof(char) * len);
 	ft_strdel(&tmp);
 }
+
+/*
+**	Parses the instruction given and identifies which argument it is.
+**	Also validates that the specific argument can be utilized for the
+**	respective argument number in the instruction and type.
+*/
 
 int		parse_arg_type(t_asm_oplist oplist, char *line, int arg_nbr)
 {
@@ -60,6 +76,11 @@ int		parse_arg_type(t_asm_oplist oplist, char *line, int arg_nbr)
 		return (0);
 }
 
+/*
+**	Calculates the total number of bytes a specific instruction
+**	will have.
+*/
+
 int		calc_statement_bytes(t_ins *ins)
 {
 	int i;
@@ -81,6 +102,16 @@ int		calc_statement_bytes(t_ins *ins)
 		bytes += 1;
 	return (bytes);
 }
+
+/*
+**	Parses a statement and adds the args to the t_ins instruction node.
+**	Helper function locations are listed where. Descriptions of what they do are
+**	above the function.
+**	pre_split is found in the arg_utils.c file.
+**	arg_count is above.
+**	parse_arg_type is above.
+**	calc_statement_bytes is above.
+*/
 
 void	get_args(t_master *m, t_ins *ins, char *line, t_asm_oplist oplist)
 {

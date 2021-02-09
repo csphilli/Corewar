@@ -6,11 +6,16 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:32:36 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/08 22:14:35 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/09 09:06:29 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	Either captures the name or comment or tokenizes an instruction line.
+**	get_name_comment is in get_name_comment.c
+*/
 
 void	get_data(t_master *m, int fd)
 {

@@ -6,11 +6,17 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/08 22:20:40 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/09 09:22:42 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	Initializes the master struct.
+**	init_list is part of the library functions and can be found in
+**	libft/srcs/ft_lstfuncs.c file
+*/
 
 void	init_master(t_master *m)
 {
@@ -23,6 +29,14 @@ void	init_master(t_master *m)
 	init_list(&m->instrux);
 	init_list(&m->labels);
 }
+
+/*
+**	In the event that the last line contains a label but no
+**	instruction tied to the label, it still needs to be added
+**	to the list of instructions so that other labels referring to
+**	it can be converted to the number of bytes to the label. So it'll
+**	just have a blank instruction set.
+*/
 
 void	leftover_labels(t_master *m)
 {

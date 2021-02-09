@@ -6,11 +6,14 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 22:20:16 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/09 10:24:30 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+// May have to become altered since labels and instructions can occupy the
+// same line.
 
 void	add_labels(t_master *m, t_ins *ins)
 {
@@ -27,6 +30,10 @@ void	add_labels(t_master *m, t_ins *ins)
 		ins->labels.head = NULL;
 }
 
+/*
+**	Simply checks for an empty line. Returns 1 if it's an empty line.
+*/
+
 int		empty_line_chk(char *line)
 {
 	if (!line || line[0] == 0 || line[0] == COMMENT_CHAR ||\
@@ -34,6 +41,12 @@ int		empty_line_chk(char *line)
 		return (1);
 	return (0);
 }
+
+/*
+**	Preps a line so that the opname can be separate from the argument.
+**	Since arg_count will count the number of arguments, this function
+**	is a validation assistant.
+*/
 
 char	*prep_line(char *line)
 {
@@ -55,6 +68,14 @@ char	*prep_line(char *line)
 		return (ft_strdup(line));
 }
 
+/*
+**	An extension to the tokenizing function. Simply carries out the rest
+**	of the instructions due to the limiting norm requirements.
+**	get_args is in the get_args.c file.
+**	append_node is part of the libft functions and is found in
+**	libft/srcs/ft_lstadd.c
+*/
+
 void	tokenizing_cont(t_master *m, t_ins *ins, \
 		t_asm_oplist oplist, char *line)
 {
@@ -68,6 +89,15 @@ void	tokenizing_cont(t_master *m, t_ins *ins, \
 	ins->line = m->line_cnt;
 	m->ins_count++;
 }
+
+/*
+**	Handles the tokenization of each line.
+**	empty_line_chk is above.
+**	is_label is in the label_utils.c file.
+**	add_labels is above.
+**	tokenizing_cont is above.
+**	validate_label is in the label_utils.c file.
+*/
 
 void	tokenizing(t_master *m, char *line)
 {
