@@ -2,4 +2,7 @@
 *.pdf
 tester
 corewar
-/champs
+champs/examples/*.s
+champs/examples/*.cor
+champs/*.s
+champs/*.cor
