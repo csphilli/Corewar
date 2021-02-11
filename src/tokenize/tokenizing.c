@@ -6,14 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/09 10:24:30 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 12:50:31 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-// May have to become altered since labels and instructions can occupy the
-// same line.
 
 void	add_labels(t_master *m, t_ins *ins)
 {
@@ -51,17 +48,13 @@ int		empty_line_chk(char *line)
 char	*prep_line(char *line)
 {
 	int		i;
+	int		ws;
 	char	*new;
 
-	i = 0;
-	while (ft_strchr(OPNAME_CHAR, line[i]))
-		i++;
-	if (line[i] != '\t' && line[i] != ' ')
+	if ((i = is_label(line)) > 0)
 	{
-		new = ft_strnew(i);
-		ft_memcpy(new, line, sizeof(char) * i);
-		ft_strncat(new, " ", 1);
-		ft_strcat(new, &line[i]);
+		ws = leading_ws(&line[i]);
+		new = ft_strdup(&line[ws + i]);
 		return (new);
 	}
 	else
@@ -93,10 +86,9 @@ void	tokenizing_cont(t_master *m, t_ins *ins, \
 /*
 **	Handles the tokenization of each line.
 **	empty_line_chk is above.
-**	is_label is in the label_utils.c file.
+**	type_parse is in the type_parse.c file.
 **	add_labels is above.
 **	tokenizing_cont is above.
-**	validate_label is in the label_utils.c file.
 */
 
 void	tokenizing(t_master *m, char *line)
@@ -107,14 +99,12 @@ void	tokenizing(t_master *m, char *line)
 	char			*tmp;
 
 	i = 0;
+	tmp = NULL;
+	m->line_cnt++;
 	if (empty_line_chk(line))
-	{
-		m->line_cnt++;
 		return ;
-	}
-	else if (!is_label(line))
+	if (type_parse(m, line))
 	{
-		m->line_cnt++;
 		tmp = prep_line(line);
 		ins = ft_memalloc(sizeof(t_ins));
 		ins->index = m->ins_count;
@@ -123,6 +113,4 @@ void	tokenizing(t_master *m, char *line)
 		tokenizing_cont(m, ins, oplist, tmp);
 		ft_strdel(&tmp);
 	}
-	else
-		validate_label(m, line);
 }

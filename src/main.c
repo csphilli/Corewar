@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/09 09:22:42 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 12:27:48 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_master(t_master *m)
 	m->champ->champ_comment = NULL;
 	m->champ->magic = 15369203;
 	m->ins_count = 0;
-	m->line_cnt = 0;
+	m->line_cnt = 1;
 	init_list(&m->instrux);
 	init_list(&m->labels);
 }
@@ -44,6 +44,7 @@ void	leftover_labels(t_master *m)
 
 	ins = ft_memalloc(sizeof(t_ins));
 	add_labels(m, ins);
+	ins->index = m->ins_count;
 	append_node(&m->instrux, ins);
 }
 

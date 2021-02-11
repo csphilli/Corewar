@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:20:35 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/09 10:16:41 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 12:49:52 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,6 @@
 int		compare_labels(t_labels *label, char *s2)
 {
 	return (ft_strcmp(label->label, s2));
-}
-
-// subject to change since a label and instruction can be on the same line
-
-int				is_label(char *line)
-{
-	int		i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (!ft_strchr(LABEL_CHARS, line[i]))
-			break ;
-		i++;
-	}
-	if (line[i] == LABEL_CHAR)
-		return (1);
-	return (0);
 }
 
 void	save_label(t_master *m, char *line)
@@ -59,25 +41,14 @@ void	save_label(t_master *m, char *line)
 	m->line_cnt++;
 }
 
-// subject to change given labels and instructions can be on the same line.
-
-void	validate_label(t_master *m, char *line)
+int		is_label(char *line)
 {
-	int i;
-	int	flag;
+	int	i;
 
 	i = 0;
-	flag = 0;
-	while (line[i] != LABEL_CHAR)
+	while (ft_strchr(LABEL_CHARS, line[i]))
 		i++;
-	i++;
-	while (line[i] != '\0' && line[i] != '\n')
-	{
-		if (line[i] == COMMENT_CHAR || line[i] == ALT_COMMENT_CHAR)
-			flag = 1;
-		if (line[i] != ' ' && line[i] != '\t' && flag == 0)
-			ft_error_line("Error: Invalid label on line ", m->line_cnt);
-		i++;
-	}
-	save_label(m, line);
+	if (line[i] == LABEL_CHAR)
+		return (i + 1);
+	return (0);
 }

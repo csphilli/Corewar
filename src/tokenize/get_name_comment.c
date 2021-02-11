@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 22:19:40 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 12:45:31 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	new_strjoin(char **dst, char *src)
 **  COMMENT_CMD_STRING. Returns finalized string or errors out.
 */
 
-int		unfinished(char **new, char *line, int flag)
+int		unfinished(t_master *m, char **new, char *line, int flag)
 {
 	char	*tmp;
 
@@ -63,7 +63,7 @@ int		unfinished(char **new, char *line, int flag)
 		return (1);
 	}
 	else
-		ft_error("ERROR: Incomplete name/comment.\n");
+		ft_error_line("ERROR: Incomplete name/comment on line ", m->line_cnt);
 	return (0);
 }
 
@@ -81,7 +81,7 @@ char	*cont_reading(t_master *m, char *line, int fd)
 			new_strjoin(&new, "\n");
 			new_strjoin(&new, line);
 		}
-		else if (ft_strchr(line, '\"') && unfinished(&new, line, flag))
+		else if (ft_strchr(line, '\"') && unfinished(m, &new, line, flag))
 		{
 			flag = 1;
 			ft_strdel(&line);
@@ -91,7 +91,7 @@ char	*cont_reading(t_master *m, char *line, int fd)
 		m->line_cnt++;
 	}
 	if (flag == 0)
-		ft_error("ERROR: Incomplete name/comment.\n");
+		ft_error("ERROR: Missing closing double-quote for name/comment.\n");
 	return (new);
 }
 
@@ -120,5 +120,5 @@ void	get_name_comment(t_master *m, char **ret, char *line, int fd)
 		trailing_quote(ret);
 	}
 	else
-		ft_error("ERROR: Missing name/comment.\n");
+		ft_error("ERROR: Invalid name/comment.\n");
 }
