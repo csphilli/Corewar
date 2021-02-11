@@ -6,11 +6,17 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 12:45:57 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 12:50:48 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 15:51:11 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	Helper function for type_parse below.
+**	Identifies if the line only has 1 label. If so, saves it to the master
+**	struct until an instruction will claim in and returns 1 else 0.
+*/
 
 int		one_label(t_master *m, char *line)
 {
@@ -37,6 +43,13 @@ int		one_label(t_master *m, char *line)
 	}
 	return (0);
 }
+
+/*
+**	Helper function to type_parse below.
+**	Identifies if there is only one instruction on the line.
+**	Performs validation against g_oplist found in asm_oplist.h
+**	Returns 1 if found matching opname else 0.
+*/
 
 int		one_instruction(char *line)
 {
@@ -65,27 +78,37 @@ int		one_instruction(char *line)
 	return (ret);
 }
 
-void	extract_label(t_master *m, char *line)
+/*
+**	Used in conjuction with type_parse below.
+**	If there is both a label and instruction on one line, this extracts
+**	the label and saves it to master to be applied towards the instruction.
+**	The one_label above checks if there's just one label in the line. Since
+**	this function is checking for both label and instruction, there has to
+**	be more information than just a label on the line which is why to
+**	save the label, the one_label func must return false.
+*/
+
+int		label_and_ins(t_master *m, char *line)
 {
 	int i;
 
 	i = 0;
-	while (ft_strchr(LABEL_CHARS, line[i]))
-		i++;
-	if (line[i] != LABEL_CHAR)
-		ft_error_line("ERROR: Invalid label name on line ", m->line_cnt);
-	save_label(m, line);
-}
-
-int		label_and_ins(t_master *m, char *line)
-{
 	if (!one_label(m, line))
 	{
-		extract_label(m, line);
+		while (ft_strchr(LABEL_CHARS, line[i]))
+			i++;
+		if (line[i] != LABEL_CHAR)
+			ft_error_line("ERROR: Invalid label name on line ", m->line_cnt);
+		save_label(m, line);
 		return (1);
 	}
 	return (0);
 }
+
+/*
+**	Simple type parse function to save labels/instructions
+**	All functions used are above.
+*/
 
 int		type_parse(t_master *m, char *line)
 {
