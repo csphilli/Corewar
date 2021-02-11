@@ -6,17 +6,19 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 12:45:31 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 14:55:04 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 /*
-**  Takes final output and removes quotes from end.
+**  First tests if there is any characters after the last trailing quote.
+**	If so, errors out. Otherwise, returns a string sans trailing quote.
+**	extraneous is in the name_comment_utils.c file.
 */
 
-void	trailing_quote(char **ret)
+void	trailing_quote(t_master *m, char **ret)
 {
 	size_t		i;
 	char		*tmp;
@@ -25,12 +27,17 @@ void	trailing_quote(char **ret)
 	tmp = *ret;
 	while (tmp[i] != '\"')
 		i++;
-	ft_strdel(ret);
-	*ret = ft_strndup(tmp, i);
+	if (!extraneous(&tmp[i]))
+	{
+		ft_strdel(ret);
+		*ret = ft_strndup(tmp, i);
+	}
+	else
+		ft_error_line("ERROR: Extraneous info on line ", m->line_cnt);
 }
 
 /*
-**  Helper function for cont_reading
+**  Helper function for cont_reading.
 */
 
 void	new_strjoin(char **dst, char *src)
@@ -117,7 +124,7 @@ void	get_name_comment(t_master *m, char **ret, char *line, int fd)
 		}
 		else
 			*ret = cont_reading(m, &line[i], fd);
-		trailing_quote(ret);
+		trailing_quote(m, ret);
 	}
 	else
 		ft_error("ERROR: Invalid name/comment.\n");
