@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 12:45:57 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 15:51:11 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 21:53:41 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		one_label(t_master *m, char *line)
 	if (s == 1)
 	{
 		save_label(m, line);
+		m->line_cnt++;
 		return (1);
 	}
 	return (0);
@@ -51,7 +52,7 @@ int		one_label(t_master *m, char *line)
 **	Returns 1 if found matching opname else 0.
 */
 
-int		one_instruction(char *line)
+int		one_instruction(t_master *m, char *line)
 {
 	int		i;
 	int		j;
@@ -70,6 +71,7 @@ int		one_instruction(char *line)
 		if (ft_strequ(tmp, g_oplist[j].opname))
 		{
 			ret = 1;
+			m->line_cnt++;
 			break ;
 		}
 		j++;
@@ -100,6 +102,7 @@ int		label_and_ins(t_master *m, char *line)
 		if (line[i] != LABEL_CHAR)
 			ft_error_line("ERROR: Invalid label name on line ", m->line_cnt);
 		save_label(m, line);
+		m->line_cnt++;
 		return (1);
 	}
 	return (0);
@@ -114,7 +117,7 @@ int		type_parse(t_master *m, char *line)
 {
 	if (one_label(m, line))
 		return (0);
-	else if (one_instruction(line))
+	else if (one_instruction(m, line))
 		return (1);
 	else if (label_and_ins(m, line))
 		return (1);

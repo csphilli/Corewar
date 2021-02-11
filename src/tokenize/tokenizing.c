@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 12:50:31 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 21:53:27 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	tokenizing_cont(t_master *m, t_ins *ins, \
 	ins->arg_type_code = oplist.arg_type_code;
 	get_args(m, ins, &line[ft_strlen(ins->opname)], oplist);
 	append_node(&m->instrux, ins);
-	ins->line = m->line_cnt;
+	ins->line = m->line_cnt - 1;
 	m->ins_count++;
 }
 
@@ -100,9 +100,11 @@ void	tokenizing(t_master *m, char *line)
 
 	i = 0;
 	tmp = NULL;
-	m->line_cnt++;
 	if (empty_line_chk(line))
+	{
+		m->line_cnt++;
 		return ;
+	}
 	if (type_parse(m, line))
 	{
 		tmp = prep_line(line);

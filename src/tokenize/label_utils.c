@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:20:35 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 12:49:52 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 21:53:08 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	save_label(t_master *m, char *line)
 	label->label = ft_strnew(i);
 	ft_memcpy(label->label, line, sizeof(char) * i);
 	append_node(&m->labels, label);
-	m->line_cnt++;
 }
 
 int		is_label(char *line)
