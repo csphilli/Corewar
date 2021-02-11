@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/11 14:49:49 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 15:03:59 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ typedef struct		s_master
 }					t_master;
 
 void				get_data(t_master *master, int fd);
-void				get_name_comment(t_master *master, char **ret, char *line, int fd);
+void				get_name_comment(t_master *master, char **ret, \
+					char *line, int fd);
 int					label_len(char *line);
 int					leading_ws(char *line);
 int					is_label(char *line);
@@ -68,7 +69,8 @@ t_asm_oplist		get_opcode(t_master *master, char *line);
 void				print_instrux_list(t_ins *ins);
 void				ft_error_line(char *error_msg, int line);
 int					len_sans_trailing_ws(char *line);
-void				get_args(t_master *master, t_ins *ins, char *line, t_asm_oplist oplist);
+void				get_args(t_master *master, t_ins *ins, char *line, \
+					t_asm_oplist oplist);
 void				handle_labels(t_master *m);
 void				pre_split(char **line);
 int					compare_labels(t_labels *label, char *s2);

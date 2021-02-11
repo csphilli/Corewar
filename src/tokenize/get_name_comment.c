@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 14:55:04 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/11 15:03:24 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,9 @@ void	new_strjoin(char **dst, char *src)
 }
 
 /*
-**  For multi-line name/comment strings. Continues adding
-**  to string until another double quote is found. First instance
-**  of new double quote (which would be the closing quote)
-**  cannot also be on a line that contains the NAME_CMD_STR or
-**  COMMENT_CMD_STRING. Returns finalized string or errors out.
+**	This function ensures that if there is a closing quote that there
+**	isn't also a .name or .comment command which would signal an ambiguous
+**	quote. If so, the program will error out.
 */
 
 int		unfinished(t_master *m, char **new, char *line, int flag)
@@ -73,6 +71,14 @@ int		unfinished(t_master *m, char **new, char *line, int flag)
 		ft_error_line("ERROR: Incomplete name/comment on line ", m->line_cnt);
 	return (0);
 }
+
+/*
+**  For multi-line name/comment strings. Continues adding
+**  to string until another double quote is found. First instance
+**  of new double quote (which would be the closing quote)
+**  cannot also be on a line that contains the NAME_CMD_STR or
+**  COMMENT_CMD_STRING. Returns finalized string or errors out.
+*/
 
 char	*cont_reading(t_master *m, char *line, int fd)
 {
