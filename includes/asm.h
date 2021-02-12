@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/11 15:03:59 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/12 10:07:05 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void				add_labels(t_master *m, t_ins *ins);
 void				save_label(t_master *m, char *line);
 int					type_parse(t_master *m, char *line);
 int					extraneous(char *line);
+void				check_for_plus(t_master *m, char *line);
 
 #endif

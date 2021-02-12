@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/12 08:34:29 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/12 10:07:37 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ void	clean_arg(char **line)
 **	respective argument number in the instruction and type.
 */
 
-int		parse_arg_type(t_asm_oplist oplist, char *line, int arg_nbr)
+int		parse_arg_type(t_master *m, t_asm_oplist oplist, \
+		char *line, int arg_nbr)
 {
 	int i;
 	int	nbr;
 
 	i = 0;
+	check_for_plus(m, line);
 	if (line[i] == REG_CHAR && oplist.arg_type[arg_nbr] & T_REG)
 	{
 		nbr = ft_atoi(&line[1]);
@@ -130,7 +132,7 @@ void	get_args(t_master *m, t_ins *ins, char *line, t_asm_oplist oplist)
 	while (args[i])
 	{
 		clean_arg(&args[i]);
-		if ((ins->arg_type[i] = parse_arg_type(oplist, args[i], i)) > 0)
+		if ((ins->arg_type[i] = parse_arg_type(m, oplist, args[i], i)) > 0)
 			ins->arg_values[i] = ft_strdup(args[i]);
 		else
 			ft_error_line("ERROR: Invalid argument type(s) on line ",\
