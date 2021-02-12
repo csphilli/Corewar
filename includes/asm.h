@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/12 10:42:16 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/12 23:29:22 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct		s_master
 	int				ins_count;
 	t_list			labels;
 	int				line_cnt;
+	int32_t			*encoded_player;
+	int				encoded_player_size;
 }					t_master;
 
 /*
@@ -88,6 +90,10 @@ void				check_for_plus(t_master *m, char *line);
 **	ENCODING FUNCTIONS
 */
 
-void				encoding_parse(t_master *m);
+void				encode_asm(t_master *m);
+int32_t				*split_hex(int32_t nb, int nb_len);
+void				set_bytes(t_master *m, int32_t *bytes, \
+						int bytes_amount, int mem_offset);
+int32_t				*ascii_to_hex(char *str);
 
 #endif

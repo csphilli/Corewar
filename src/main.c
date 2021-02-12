@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/12 10:42:35 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/12 23:29:43 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		main(int ac, char **av)
 		if (((t_list*)&m->labels)->head)
 			leftover_labels(m);
 		handle_labels(m);
-		encoding_parse(m);
+		encode_asm(m);
 		printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
 			m->champ->champ_comment);
 		display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
