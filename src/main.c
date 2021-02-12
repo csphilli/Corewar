@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/12 09:05:32 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/12 10:42:35 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_master(t_master *m)
 	m->champ = ft_memalloc(sizeof(t_champ));
 	m->champ->champ_name = NULL;
 	m->champ->champ_comment = NULL;
-	m->champ->magic = 15369203;
 	m->ins_count = 0;
 	m->line_cnt = 0;
 	init_list(&m->instrux);
@@ -64,12 +63,13 @@ int		main(int ac, char **av)
 		if (((t_list*)&m->labels)->head)
 			leftover_labels(m);
 		handle_labels(m);
+		encoding_parse(m);
 		printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
 			m->champ->champ_comment);
-		display_list(&m->instrux, (t_display)(print_instrux_list));
+		display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
-	system("leaks asm");
+	// system("leaks asm"); // Leaks checker
 	return (0);
 }
