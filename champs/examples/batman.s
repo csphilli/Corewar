@@ -1,15 +1,11 @@
-.name "Batman test"
-
-
-.comment "This city needs me"
+.name "Batman 
+"
+.comment "This city needs metest"
 
 loop:
-hyphen:	 sti r45,%:live, %1 ;comment
-		zjmp %:live
-live:   
-		live %0
-        ld %0, r2
-		sti r2, %:hyphen, %1
-        zjmp %:loop
-
-avdeftgt:
+		sti r1,%:live,%1
+live:
+        live%0
+        ld%0, r2
+        zjmp%:loop
+		

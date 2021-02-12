@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 21:53:01 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/12 09:54:12 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int		unfinished(t_master *m, char **new, char *line, int flag)
 	{
 		new_strjoin(new, "\n");
 		new_strjoin(new, line);
+		m->line_cnt++;
 		return (1);
 	}
 	else
@@ -87,6 +88,7 @@ char	*cont_reading(t_master *m, char *line, int fd)
 
 	flag = 0;
 	new = ft_strdup(line);
+	m->line_cnt++;
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (!ft_strchr(line, '\"'))

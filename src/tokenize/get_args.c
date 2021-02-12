@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 09:32:49 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/12 08:34:29 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	get_args(t_master *m, t_ins *ins, char *line, t_asm_oplist oplist)
 	args = ft_strsplit(tmp, SEPARATOR_CHAR);
 	if (arg_count(args) != oplist.arg_count)
 		ft_error_line("ERROR. Invalid number of arguments on line ",\
-		m->line_cnt);
+		m->line_cnt - 1);
 	ins->arg_values = ft_memalloc(sizeof(char *) * oplist.arg_count);
 	while (args[i])
 	{

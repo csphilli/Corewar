@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 12:45:57 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 21:53:41 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/12 09:54:39 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ int		one_instruction(t_master *m, char *line)
 		if (ft_strequ(tmp, g_oplist[j].opname))
 		{
 			ret = 1;
-			m->line_cnt++;
 			break ;
 		}
 		j++;
 	}
+	m->line_cnt++;
 	ft_strdel(&tmp);
 	return (ret);
 }
@@ -100,7 +100,7 @@ int		label_and_ins(t_master *m, char *line)
 		while (ft_strchr(LABEL_CHARS, line[i]))
 			i++;
 		if (line[i] != LABEL_CHAR)
-			ft_error_line("ERROR: Invalid label name on line ", m->line_cnt);
+			return (0);
 		save_label(m, line);
 		m->line_cnt++;
 		return (1);
@@ -122,6 +122,7 @@ int		type_parse(t_master *m, char *line)
 	else if (label_and_ins(m, line))
 		return (1);
 	else
-		ft_error_line("ERROR: Invalid label/instruction on line ", m->line_cnt);
+		ft_error_line("ERROR: Invalid label/instruction on line ",\
+		m->line_cnt);
 	return (0);
 }
