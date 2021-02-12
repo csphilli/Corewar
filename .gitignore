@@ -6,3 +6,4 @@ champs/examples/*.s
 champs/examples/*.cor
 champs/*.s
 champs/*.cor
+*.txt
