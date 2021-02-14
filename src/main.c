@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/12 10:42:35 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/14 21:00:10 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,6 @@ int		main(int ac, char **av)
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
-	// system("leaks asm"); // Leaks checker
+	system("leaks asm"); // Leaks checker
 	return (0);
 }
