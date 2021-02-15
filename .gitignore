@@ -9,3 +9,4 @@ champs/*.cor
 *.txt
 .vscode
 asm
+*.dSYM

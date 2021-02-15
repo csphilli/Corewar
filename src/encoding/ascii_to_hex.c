@@ -6,27 +6,57 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 22:39:32 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/12 23:23:48 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/15 17:06:01 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int	dec_to_hex(int nb)
-{
-	int hex;
-	int quotient;
-	int	remainder;
+// static uint8_t	neg_dec_to_hex(nb)
+// {
+// 	printf("NEGATIVE NUMBER\n");
+// 	nb = ~nb;
+// 	nb++;
+// 	return ((uint8_t)nb);
+// }
 
+uint16_t		dec_to_hex(int nb)
+{
+	uint16_t	hex;
+	uint16_t	quotient;
+	uint16_t	remainder;
+	int			zero_toggle;
+	int			neg;
+
+	neg = 0;
+	// printf("nb: %d\n", nb);
+	if (nb < 0)
+	{
+		// printf("NEGATIVE NUMBER\n");
+		// for (int i = 15; 0 <= i; i--) {
+		// 	printf("%u ", (nb & (1 << i)) ? 1 : 0);
+		// }
+		// printf("\n");
+		neg = 1;
+		nb *= -1;
+	}
+	// for (int i = 15; 0 <= i; i--) {
+	// 	printf("%u ", (nb & (1 << i)) ? 1 : 0);
+	// }
+	// printf("\n");
 	hex = 0x0;
 	quotient = nb;
+	zero_toggle = 0;
 	while (quotient != 0)
 	{
 		remainder = quotient % 16;
+		if (remainder == 0)
+			zero_toggle++;
 		hex *= 16;
 		hex += remainder;
 		quotient /= 16;
 	}
+	// printf("hex bef reverse: %#x\n", hex);
 	quotient = hex;
 	hex = 0;
 	while (quotient != 0)
@@ -35,26 +65,45 @@ static int	dec_to_hex(int nb)
 		hex = hex * 16 + remainder;
 		quotient /= 16;
 	}
+	hex = hex << (4 * zero_toggle);
+	if (neg)
+	{
+		// hex = 0xFF00;
+		// printf("hex before neg: %#x\n", hex);
+		// for (int i = 15; 0 <= i; i--) {
+		// 	printf("%u ", (hex & (1 << i)) ? 1 : 0);
+		// }
+		// printf("\n");
+		// hex = 0xFFFF ^ hex;
+		hex = ~hex;
+		// printf("hex after neg xor: %#x\n", hex);
+		// for (int i = 15; 0 <= i; i--) {
+		// 	printf("%u ", (hex & (1 << i)) ? 1 : 0);
+		// }
+		// printf("\n");
+		hex++;
+		// printf("hex after neg add 1: %#x\n", hex);
+		// for (int i = 15; 0 <= i; i--) {
+		// 	printf("%u ", (hex & (1 << i)) ? 1 : 0);
+		// }
+		// printf("\n");
+	}
+	// printf("returning hex: %#x\n", hex);
 	return (hex);
 }
 
-int32_t		*ascii_to_hex(char *str)
+uint8_t		*ascii_to_hex(char *str)
 {
 	int		i;
-	int32_t	*hex;
+	uint8_t	*hex;
 
-	if (!(hex = (int32_t*)ft_memalloc(sizeof(char) * ft_strlen(str))))
+	if (!(hex = (uint8_t*)ft_memalloc(sizeof(uint8_t) * ft_strlen(str))))
 		ft_errorexit("ERROR: Malloc error");
 	i = 0;
+	// printf("\nNEW STRING: %s\n", str);
 	while (str[i])
 	{
-		// next_nb = dec_to_hex((int)str[i]);
-		// printf("hex bef:\t%#x, shift amount: %d\n", hex, 4 * ft_nbr_size_base(next_nb, 16));
-		// hex = hex[i] << (4 * ft_nbr_size_base(next_nb, 16));
-		// printf("hex between:\t%#x\n", hex);
-		// hex += next_nb;
-		// printf("hex aft:\t%#x\n", hex);
-		// printf("char: %c, as hex: %x, (int)str[i]: %d\n\n", str[i], next_nb, (int)str[i]);
+		// printf("str[%d]: |%c|, int: %d, hex: %#x\n", i, str[i], (int)str[i], (int)str[i]);
 		hex[i] = dec_to_hex((int)str[i]);
 		i++;
 	}

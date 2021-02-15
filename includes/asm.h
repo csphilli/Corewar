@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/12 23:29:22 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/15 16:54:07 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct		s_master
 	int				line_cnt;
 	int32_t			*encoded_player;
 	int				encoded_player_size;
+	char			*filename;
 }					t_master;
 
 /*
@@ -91,9 +92,13 @@ void				check_for_plus(t_master *m, char *line);
 */
 
 void				encode_asm(t_master *m);
-int32_t				*split_hex(int32_t nb, int nb_len);
-void				set_bytes(t_master *m, int32_t *bytes, \
+uint8_t				*split_hex(int32_t nb, int nb_len);
+void				set_bytes(t_master *m, uint8_t *bytes, \
 						int bytes_amount, int mem_offset);
-int32_t				*ascii_to_hex(char *str);
+void				set_a_byte(t_master *m, uint8_t byte, int mem_offset);
+uint16_t			dec_to_hex(int nb);
+uint8_t				*ascii_to_hex(char *str);
+void				encode_ins(t_master *m);
+void				write_to_file(t_master *m);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/12 23:29:43 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/15 18:07:59 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,19 @@ int		main(int ac, char **av)
 	fd = 0;
 	if (ac == 2)
 	{
-		fd = open(av[1], fd, O_RDONLY);
 		m = ft_memalloc(sizeof(t_master));
+		m->filename = av[1];
+		fd = open(m->filename, fd, O_RDONLY);
 		init_master(m);
 		get_data(m, fd);
 		if (((t_list*)&m->labels)->head)
 			leftover_labels(m);
 		handle_labels(m);
 		encode_asm(m);
-		printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
-			m->champ->champ_comment);
-		display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
+		write_to_file(m);
+		// printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
+		// 	m->champ->champ_comment);
+		// display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
