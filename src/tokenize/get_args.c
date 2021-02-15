@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/15 13:56:58 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 22:58:39 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,30 @@
 
 /*
 **	Counts the number of arguments in a given instruction. Used as validation
-**	for the respective opcode.
+**	for the respective opcode. It's simply counting the number of separator
+**	chars on a given line. If that amount is == max_count - 1, a valid
+**	number of arguments has been passed. It is -1 because of the 0 index
+**	start counter.
 */
 
-int		arg_count(char **arg)
+int		arg_count(char *line, int max_count)
 {
 	int i;
+	int	cnt;
 
 	i = 0;
-	while (*arg++)
+	cnt = 0;
+	while (line[i])
+	{
+		if (line[i] == SEPARATOR_CHAR)
+			cnt++;
+		if (line[i] == COMMENT_CHAR || line[i] == ALT_COMMENT_CHAR)
+			break ;
 		i++;
-	return (i);
+	}
+	if (cnt == max_count - 1)
+		return (1);
+	return (0);
 }
 
 /*
@@ -51,6 +64,7 @@ void	clean_arg(char **line)
 **	Parses the instruction given and identifies which argument it is.
 **	Also validates that the specific argument can be utilized for the
 **	respective argument number in the instruction and type.
+**	valid_reg_def is in arg_utils.c
 */
 
 int		parse_arg_type(t_asm_oplist oplist, \
@@ -63,7 +77,7 @@ int		parse_arg_type(t_asm_oplist oplist, \
 	if (line[i] == REG_CHAR && oplist.arg_type[arg_nbr] & T_REG)
 	{
 		nbr = ft_atoi(&line[1]);
-		if (nbr >= 0 && nbr <= 99)
+		if (nbr >= 0 && nbr <= 99 && valid_reg_def(line))
 			return (T_REG);
 		else
 			return (0);
@@ -124,9 +138,9 @@ void	get_args(t_master *m, t_ins *ins, char *line, t_asm_oplist oplist)
 	tmp = line;
 	pre_split(&tmp);
 	args = ft_strsplit(tmp, SEPARATOR_CHAR);
-	if (arg_count(args) != oplist.arg_count)
-		ft_error_line("ERROR. Invalid number of arguments on line ",\
-		m->line_cnt - 1);
+	if (!arg_count(tmp, oplist.arg_count))
+		ft_error_line("ERROR: Invalid number of arguments on line ",\
+		m->line_cnt);
 	ins->arg_values = ft_memalloc(sizeof(char *) * oplist.arg_count);
 	while (args[i])
 	{
@@ -134,8 +148,7 @@ void	get_args(t_master *m, t_ins *ins, char *line, t_asm_oplist oplist)
 		if ((ins->arg_type[i] = parse_arg_type(oplist, args[i], i)) > 0)
 			ins->arg_values[i] = ft_strdup(args[i]);
 		else
-			ft_error_line("ERROR: Invalid argument type(s) on line ",\
-			m->line_cnt);
+			error_arg_type(m, args[i]);
 		i++;
 	}
 	ins->bytes = calc_statement_bytes(ins);

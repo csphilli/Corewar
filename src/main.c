@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/15 14:12:22 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 19:57:33 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		main(int ac, char **av)
 		if (((t_list*)&m->labels)->head)
 			leftover_labels(m);
 		handle_labels(m);
+		error_chk_labels(m);
 		encoding_parse(m);
 		printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
 			m->champ->champ_comment);

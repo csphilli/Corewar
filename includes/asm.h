@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/15 14:07:38 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 22:30:24 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,11 @@ char				*ft_charcat(char *dest, const char src);
 int					end_of_label(char *line);
 char				*new_str_from_label(t_ins *node, int arg_nbr, char *bytes);
 char				*extract_label(char *line);
+void				error_chk_labels(t_master *m);
+void				error_arg_type(t_master *m, char *line);
+void				label_not_found(char *error_msg, t_ins *node,\
+					char *label);
+int					valid_reg_def(char *line);
 
 /*
 **	ENCODING FUNCTIONS

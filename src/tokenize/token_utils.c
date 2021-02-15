@@ -6,11 +6,25 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:39:12 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/12 08:45:00 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 22:21:25 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	Error message for invalid opcode.
+*/
+
+void			opcode_error(t_master *m, char *opname)
+{
+	ft_putstr_fd("ERROR: Invalid opcode \'", 2);
+	ft_putstr_fd(opname, 2);
+	ft_putstr_fd("\' found on line ", 2);
+	ft_putnbr_fd(m->line_cnt, 2);
+	ft_putstr_fd(".\n", 2);
+	exit(1);
+}
 
 /*
 **	Returns the opcode if found, otherwise errors out. The oplist that it's
@@ -35,7 +49,7 @@ t_asm_oplist	get_opcode(t_master *m, char *line)
 		i++;
 	}
 	if (i == OP_COUNT)
-		ft_error_line("ERROR: Invalid Opname. Line ", m->line_cnt - 1);
+		opcode_error(m, str);
 	ft_strdel(&str);
 	str = NULL;
 	return (g_oplist[i]);

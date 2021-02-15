@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:18:57 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/15 14:14:55 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 20:45:18 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ char		*bytes_to_string(t_master *m, char *line, t_node *parent)
 	label = extract_label(line);
 	tgt = get_target(m, label);
 	if (tgt == NULL)
-		ft_error_line("ERROR: Label not found. Line ", \
-			((t_ins*)parent->data)->line);
+		label_not_found("ERROR: Invalid Label.", ((t_ins*)parent->data), label);
 	if (((t_ins*)parent->data)->index < ((t_ins*)tgt->data)->index)
 		bytes = bytes_to_label(parent, tgt);
 	else

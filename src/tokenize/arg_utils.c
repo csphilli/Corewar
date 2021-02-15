@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/15 13:57:21 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 22:35:57 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,22 @@ void	pre_split(char **line)
 		i++;
 	}
 	*line = new;
+}
+
+int		valid_reg_def(char *line)
+{
+	int	i;
+	int	cnt;
+
+	i = 0;
+	cnt = 0;
+	while (line[i])
+	{
+		if (!ft_isdigit(line[i]))
+			cnt++;
+		i++;
+	}
+	if (cnt == 1)
+		return (1);
+	return (0);
 }
