@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:20:35 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/11 21:53:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 14:14:30 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,22 @@
 int		compare_labels(t_labels *label, char *s2)
 {
 	return (ft_strcmp(label->label, s2));
+}
+
+t_ins	*node_name_helper(t_node *node)
+{
+	return (((t_ins*)node->data));
+}
+
+char	*downsize(char *line)
+{
+	char	*tmp;
+
+	tmp = line;
+	if (line)
+		ft_strdel(&line);
+	line = ft_strdup(tmp);
+	return (line);
 }
 
 void	save_label(t_master *m, char *line)

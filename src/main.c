@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/14 21:00:10 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 14:12:22 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	leftover_labels(t_master *m)
 	ins = ft_memalloc(sizeof(t_ins));
 	add_labels(m, ins);
 	ins->index = m->ins_count;
-	ins->line = m->line_cnt - 1;
+	ins->line = m->line_cnt;
 	append_node(&m->instrux, ins);
 }
 

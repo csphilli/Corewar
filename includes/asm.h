@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/12 10:42:16 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 14:07:38 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_ins
 	int				arg_count;
 	int				arg_type[3];
 	char			**arg_values;
+	char			**orig_arg_values;
 	int				t_dir_size;
 	int				arg_type_code;
 	int				line;
@@ -82,7 +83,12 @@ void				add_labels(t_master *m, t_ins *ins);
 void				save_label(t_master *m, char *line);
 int					type_parse(t_master *m, char *line);
 int					extraneous(char *line);
-void				check_for_plus(t_master *m, char *line);
+t_ins				*node_name_helper(t_node *node);
+char				*downsize(char *line);
+char				*ft_charcat(char *dest, const char src);
+int					end_of_label(char *line);
+char				*new_str_from_label(t_ins *node, int arg_nbr, char *bytes);
+char				*extract_label(char *line);
 
 /*
 **	ENCODING FUNCTIONS

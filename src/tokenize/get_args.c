@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/14 21:33:24 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 13:56:58 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ int		parse_arg_type(t_asm_oplist oplist, \
 	int	nbr;
 
 	i = 0;
-	// check_for_plus(m, line);
 	if (line[i] == REG_CHAR && oplist.arg_type[arg_nbr] & T_REG)
 	{
 		nbr = ft_atoi(&line[1]);

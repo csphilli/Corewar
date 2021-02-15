@@ -6,34 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/05 10:18:57 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/14 21:31:23 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 14:14:55 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-/*
-**	Converts a label into a numeric label. For example, %:label could be
-**	%-15.
-*/
-
-char		*new_str_from_label(t_ins *node, int arg_nbr, char *bytes)
-{
-	int		len;
-	char	*new;
-
-	len = 0;
-	if (node->arg_values[arg_nbr])
-		ft_strdel(&node->arg_values[arg_nbr]);
-	if (node->arg_type[arg_nbr] == T_DIR)
-		len++;
-	len += ft_strlen(bytes);
-	new = ft_strnew(len);
-	if (node->arg_type[arg_nbr] == T_DIR)
-		new[0] = '%';
-	ft_strcat(new, bytes);
-	return (new);
-}
 
 /*
 **	This function finds the target label within a node.
@@ -107,20 +84,6 @@ int			bytes_to_label(t_node *start, t_node *end)
 **	bytes_to_label is above.
 */
 
-char		*extract_label(char *line)
-{
-	int	i;
-	char	*str;
-
-	i = 0;
-	while (!ft_strchr(LABEL_CHARS, *line))
-		line++;
-	while (ft_strchr(LABEL_CHARS, line[i]))
-		i++;
-	str = ft_strndup(line, i);
-	return (str);
-}
-
 char		*bytes_to_string(t_master *m, char *line, t_node *parent)
 {
 	t_node	*tgt;
@@ -129,7 +92,6 @@ char		*bytes_to_string(t_master *m, char *line, t_node *parent)
 
 	bytes = 0;
 	label = extract_label(line);
-	printf("label: %s\n", label);
 	tgt = get_target(m, label);
 	if (tgt == NULL)
 		ft_error_line("ERROR: Label not found. Line ", \
@@ -153,32 +115,6 @@ char		*bytes_to_string(t_master *m, char *line, t_node *parent)
 **	new_str_from_label is above.
 */
 
-char    *ft_charcat(char *dest, const char src)
-{
-    int        i;
-    size_t    dest_l;
-
-    i = 0;
-    dest_l = strlen(dest);
-    dest[dest_l + i] = src;
-        i++;
-    dest[dest_l + i] = '\0';
-    return ((char *)dest);
-}
-
-int		end_of_label(char *line)
-{
-	printf("rest of string: >%s<\n", line);
-	int	i;
-
-	i = 1;
-	while (line[i] != '\n' && line[i] != '\0' && \
-			ft_strchr(LABEL_CHARS, line[i]))
-		i++;
-	printf("returning: %d\n", i - 1);
-	return (i - 1);
-}
-
 char		*convert_string(t_master *m, char *line, t_node *parent)
 {
 	int		i;
@@ -187,27 +123,20 @@ char		*convert_string(t_master *m, char *line, t_node *parent)
 
 	i = 0;
 	new = ft_strnew(50);
-	printf("LINE AT START: >%s< | len: %zu\n", line, ft_strlen(line));
 	while (line[i] != '\0' && line[i] != '\n')
 	{
-		printf("char[%d]: %c\n", i, line[i]);
 		if (line[i] == LABEL_CHAR)
 		{
 			value = bytes_to_string(m, &line[i], parent);
 			ft_strncat(new, value, ft_strlen(value));
 			i += end_of_label(&line[i]);
-			printf("char at [%d]: %c\n", i, line[i]);
-			printf("new: >%s<\n", new);
 			ft_strdel(&value);
 		}
 		else
-		{
-			printf("catting char: %c\n", line[i]);
 			ft_charcat(new, line[i]);
-		}
 		i++;
 	}
-	printf("NEW FINAL: >%s< | len: %zu\n", new, ft_strlen(new));
+	new = downsize(new);
 	return (new);
 }
 
@@ -216,22 +145,22 @@ void		handle_labels(t_master *m)
 	t_node	*tmp;
 	int		i;
 	char	*bytes;
+	t_ins	*ins;
 
 	tmp = ((t_list*)&m->instrux)->head;
 	while (tmp)
 	{
 		i = 0;
-		while (i < ((t_ins*)tmp->data)->arg_count)
+		ins = node_name_helper(tmp);
+		ins->orig_arg_values = ft_memalloc(sizeof(char*) * ins->arg_count);
+		while (i < ins->arg_count)
 		{
-			if (((t_ins*)tmp->data)->arg_type[i] != T_REG)
+			ins->orig_arg_values[i] = ft_strdup(ins->arg_values[i]);
+			if (ins->arg_type[i] != T_REG)
 			{
-				bytes = convert_string(m, \
-					((t_ins*)tmp->data)->arg_values[i], tmp);
-				ft_strdel(&((t_ins*)tmp->data)->arg_values[i]);
-				((t_ins*)tmp->data)->arg_values[i] = ft_strdup(bytes);
-				// byte_string(m, &((t_ins*)tmp->data)->arg_values[i], tmp);
-				// ((t_ins*)tmp->data)->arg_values[i] = \
-				// 	new_str_from_label(((t_ins*)tmp->data), i, bytes);
+				bytes = convert_string(m, ins->arg_values[i], tmp);
+				ft_strdel(&ins->arg_values[i]);
+				ins->arg_values[i] = ft_strdup(bytes);
 				ft_strdel(&bytes);
 			}
 			i++;
