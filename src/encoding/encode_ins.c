@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 16:47:16 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/15 18:09:28 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/15 22:43:07 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static uint8_t	parse_reg(char *reg)
 
 static void		parse_dir(t_master *m, char *dir, int t_dir_size, int *mem_i)
 {
-	uint16_t	dir_nb;
+	uint32_t	dir_nb;
 
 	// printf("\n%sPARSE_DIR%s\n", MAG, RESET);
 	// printf("dec_to_hex: %d: %#x\n", -260, dec_to_hex(-260));

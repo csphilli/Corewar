@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 22:39:32 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/15 17:06:01 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/15 22:42:56 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 // 	return ((uint8_t)nb);
 // }
 
-uint16_t		dec_to_hex(int nb)
+uint32_t		dec_to_hex(int nb)
 {
-	uint16_t	hex;
-	uint16_t	quotient;
-	uint16_t	remainder;
+	uint32_t	hex;
+	uint32_t	quotient;
+	uint32_t	remainder;
 	int			zero_toggle;
 	int			neg;
 
@@ -40,7 +40,7 @@ uint16_t		dec_to_hex(int nb)
 		neg = 1;
 		nb *= -1;
 	}
-	// for (int i = 15; 0 <= i; i--) {
+	// for (int i = 31; 0 <= i; i--) {
 	// 	printf("%u ", (nb & (1 << i)) ? 1 : 0);
 	// }
 	// printf("\n");
@@ -56,7 +56,6 @@ uint16_t		dec_to_hex(int nb)
 		hex += remainder;
 		quotient /= 16;
 	}
-	// printf("hex bef reverse: %#x\n", hex);
 	quotient = hex;
 	hex = 0;
 	while (quotient != 0)
