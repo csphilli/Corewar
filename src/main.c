@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/15 19:57:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 14:47:43 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		main(int ac, char **av)
 		printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
 			m->champ->champ_comment);
 		display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
+		printf("Hex to dec: %d\n", ft_hex_to_dec("0x2ab09"));
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");

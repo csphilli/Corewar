@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/15 22:30:24 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 14:40:06 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void				error_arg_type(t_master *m, char *line);
 void				label_not_found(char *error_msg, t_ins *node,\
 					char *label);
 int					valid_reg_def(char *line);
+int					ft_pow(int n, int exp);
+int					ft_hex_to_dec(char *hex_str);
 
 /*
 **	ENCODING FUNCTIONS
