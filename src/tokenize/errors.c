@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:46:01 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/15 22:33:31 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 09:43:17 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_error_line(char *error_msg, int line)
 void	label_not_found(char *error_msg, t_ins *node, char *label)
 {
 	ft_putendl_fd(error_msg, 2);
-	ft_putstr_fd("Label: '", 2);
+	ft_putstr_fd("Label '", 2);
 	ft_putstr_fd(label, 2);
 	ft_putstr_fd("' not found. Error on line ", 2);
 	ft_putnbr_fd(node->line, 2);

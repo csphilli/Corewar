@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/15 22:35:57 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 08:54:59 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	pre_split(char **line)
 			new[j] = tmp[i];
 			j++;
 		}
+		if (tmp[i] == COMMENT_CHAR || tmp[i] == ALT_COMMENT_CHAR)
+			break ;
 		i++;
 	}
 	*line = new;

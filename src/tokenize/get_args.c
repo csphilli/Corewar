@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/15 22:58:39 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 08:53:21 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,18 @@ int		calc_statement_bytes(t_ins *ins)
 **	calc_statement_bytes is above.
 */
 
+void	print_args(char **args)
+{
+	int i;
+
+	i = 0;
+	while (args[i])
+	{
+		printf("ARG[%d]: %s\n", i, args[i]);
+		i++;
+	}
+}
+
 void	get_args(t_master *m, t_ins *ins, char *line, t_asm_oplist oplist)
 {
 	char	**args;
@@ -138,6 +150,7 @@ void	get_args(t_master *m, t_ins *ins, char *line, t_asm_oplist oplist)
 	tmp = line;
 	pre_split(&tmp);
 	args = ft_strsplit(tmp, SEPARATOR_CHAR);
+	print_args(args);
 	if (!arg_count(tmp, oplist.arg_count))
 		ft_error_line("ERROR: Invalid number of arguments on line ",\
 		m->line_cnt);
