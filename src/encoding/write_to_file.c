@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 18:28:07 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/16 15:27:30 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:35:03 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	write_to_bytecode(char *bytes, t_master *m)
 	i = 0;
 	while (i < m->encoded_player_size)
 	{
-		bytes[i] = (uint8_t)(m->encoded_player[i]);
+		bytes[i] = m->encoded_player[i];
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:16:36 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/16 15:07:56 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:34:41 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static void	encode_header(t_master *m)
 void		encode_asm(t_master *m)
 {
 	m->encoded_player_size = calc_encoded_size(m);
-	if (!(m->encoded_player = (int32_t*)ft_memalloc(sizeof(int32_t) \
+	if (!(m->encoded_player = (uint8_t*)ft_memalloc(sizeof(uint8_t) \
 										* m->encoded_player_size)))
 		ft_errorexit("ERROR: Malloc error");
 	ft_bzero(m->encoded_player, m->encoded_player_size);

@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/16 15:20:38 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:34:48 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct		s_master
 	int				ins_count;
 	t_list			labels;
 	int				line_cnt;
-	int32_t			*encoded_player;
+	uint8_t			*encoded_player;
 	int				encoded_player_size;
 	char			*filename;
 }					t_master;
