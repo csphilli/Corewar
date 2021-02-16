@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/16 14:40:06 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 23:05:06 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # define PROG_NAME_LENGTH	(128)
 # define COMMENT_LENGTH		(2048)
 # define COREWAR_EXEC_MAGIC	0xea83f3 // dec: 15369203
+# define N_OPERANDS 2
+
+typedef int(*t_func)(int, int);
 
 typedef struct		s_labels
 {
@@ -57,6 +60,20 @@ typedef struct		s_master
 	t_list			labels;
 	int				line_cnt;
 }					t_master;
+
+typedef	struct		s_func_map
+{
+	int				sign;
+	t_func			f;
+}					t_func_map;
+
+int					add(int n1, int n2);
+int					sub(int n1, int n2);
+
+static const		t_func_map	g_func_list[N_OPERANDS] = {
+	{'+', add},
+	{'-', sub}
+};
 
 /*
 **	TOKENIZING FUNCTIONS
@@ -96,11 +113,12 @@ void				label_not_found(char *error_msg, t_ins *node,\
 int					valid_reg_def(char *line);
 int					ft_pow(int n, int exp);
 int					ft_hex_to_dec(char *hex_str);
+void				label_calcs(t_master *m);
+t_func				get_operation(int sign);
 
 /*
 **	ENCODING FUNCTIONS
 */
 
 void				encoding_parse(t_master *m);
-
 #endif

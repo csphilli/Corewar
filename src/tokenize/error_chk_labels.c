@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:57:48 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/15 22:23:15 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 22:20:33 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	chk_pcent(t_ins *ins, int arg)
 		ft_error_line("ERROR: Invalid '%' on line ", ins->line);
 }
 
-void	chk_multi_signs(t_ins *ins, int arg)
+void	chk_operands(t_ins *ins, int arg)
 {
 	int		i;
 	char	*line;
@@ -69,8 +69,12 @@ void	chk_multi_signs(t_ins *ins, int arg)
 	while (line[i])
 	{
 		if (line[i] == '+' || line[i] == '-')
+		{
 			if (line[i + 1] && (line[i + 1] == '+' || line[i + 1] == '-'))
 				ft_error_line("ERROR: Multiple '+/-' on line ", ins->line);
+		}
+		else if (line[i] == '/' || line[i] == '*')
+			ft_error_line("ERROR: Invalid operand on line ", ins->line);
 		i++;
 	}
 }
@@ -92,7 +96,7 @@ void	error_chk_labels(t_master *m)
 			{
 				chk_single_plus(ins, i);
 				chk_pcent(ins, i);
-				chk_multi_signs(ins, i);
+				chk_operands(ins, i);
 			}
 			i++;
 		}
