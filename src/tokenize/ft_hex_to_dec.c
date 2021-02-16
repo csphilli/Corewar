@@ -6,11 +6,18 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:25:48 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/16 14:48:20 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:01:07 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void	print_hex_error(char *str)
+{
+	ft_putstr_fd("ERROR: Invalid hex str: ", 2);
+	ft_putendl_fd(str, 2);
+	exit(1);
+}
 
 void	error_chk_hex(char *hex)
 {
@@ -19,13 +26,12 @@ void	error_chk_hex(char *hex)
 	i = 0;
 	while (hex[i])
 	{
-		if (ft_toupper(hex[i]) == 'X' && i != 1)
-			ft_error("ERROR: Invalid Hex string.\n");
-		if ((ft_toupper(hex[i]) >= 'A' && ft_toupper(hex[i]) <= 'Z') ||
+		if ((ft_toupper(hex[i]) == 'X' && i == 1) || \
+			(ft_toupper(hex[i]) >= 'A' && ft_toupper(hex[i]) <= 'F') ||\
 			(hex[i] >= '0' && hex[i] <= '9'))
 			i++;
 		else
-			ft_error("ERROR: Invalid Hex Char.\n");
+			print_hex_error(hex);
 	}
 }
 
