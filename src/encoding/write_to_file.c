@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 18:28:07 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/15 11:35:36 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:27:30 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 
 static char	*file_extension_swap(char *filename)
 {
-	// int		i;
 	char	*new_file;
 
-	// i = ft_strlen(filename);
 	new_file = ft_strjoin(filename, ".cor");
 	return (new_file);
 }
@@ -49,7 +47,7 @@ static char	*convert_to_bytecode(t_master *m)
 	return (bytecode);
 }
 
-void	write_to_file(t_master *m)
+void		write_to_file(t_master *m)
 {
 	int		fd;
 	char	*new_file;

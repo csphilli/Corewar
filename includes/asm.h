@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/15 22:39:15 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/16 15:20:38 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,14 @@ void				check_for_plus(t_master *m, char *line);
 */
 
 void				encode_asm(t_master *m);
-uint8_t				*split_hex(int32_t nb, int nb_len);
+uint8_t				*split_hex(uint32_t nb, int nb_len);
 void				set_bytes(t_master *m, uint8_t *bytes, \
 						int bytes_amount, int mem_offset);
 void				set_a_byte(t_master *m, uint8_t byte, int mem_offset);
 uint32_t			dec_to_hex(int nb);
 uint8_t				*ascii_to_hex(char *str);
 void				encode_ins(t_master *m);
+uint8_t				calc_arg_type_code(t_ins *ins);
 void				write_to_file(t_master *m);
 
 #endif
