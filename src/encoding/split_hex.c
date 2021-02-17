@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:52:25 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/16 15:27:02 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/17 20:01:43 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ uint8_t	*split_hex(uint32_t nb, int nb_len)
 	else
 		nb_len /= 2;
 	if (!(split = (uint8_t*)ft_memalloc(sizeof(uint8_t) * nb_len)))
-		ft_errorexit("ERROR: Malloc error");
+		ft_errorexit("ERROR: Malloc error\n");
 	ft_bzero(split, nb_len);
 	i = nb_len;
 	while (--i >= 0)

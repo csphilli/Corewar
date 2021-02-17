@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/16 15:34:22 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/17 20:04:40 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	init_master(t_master *m)
 	m->champ->champ_comment = NULL;
 	m->ins_count = 0;
 	m->line_cnt = 0;
+	m->encoded_player = NULL;
+	m->encoded_player_size = 0;
 	init_list(&m->instrux);
 	init_list(&m->labels);
 }
@@ -58,7 +60,8 @@ int		main(int ac, char **av)
 	{
 		m = ft_memalloc(sizeof(t_master));
 		m->filename = av[1];
-		fd = open(m->filename, fd, O_RDONLY);
+		if ((fd = open(m->filename, fd, O_RDONLY)) < 0)
+			ft_errorexit("Error on reading input file\n");
 		init_master(m);
 		get_data(m, fd);
 		if (((t_list*)&m->labels)->head)

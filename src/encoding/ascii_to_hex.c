@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 22:39:32 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/16 15:18:33 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/17 20:02:07 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ uint8_t			*ascii_to_hex(char *str)
 	uint8_t	*hex;
 
 	if (!(hex = (uint8_t*)ft_memalloc(sizeof(uint8_t) * ft_strlen(str))))
-		ft_errorexit("ERROR: Malloc error");
+		ft_errorexit("ERROR: Malloc error\n");
 	i = 0;
 	while (str[i])
 	{
