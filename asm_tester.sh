@@ -1,6 +1,9 @@
 #!/bin/bash
 # Small script that goes through the champs/examples .s files
 # and compares the output of our asm to the subject asm
+# !! when using this script, change the file extension in write_to_file.c
+# !! from file_extension_swap(m->filename, ".s", ".cor")
+# !! to file_extension_swap(m->filename, ".s", ".s.cor");
 
 ASM_SUBJECT="./champs/asm_subject"
 ASM="./asm"

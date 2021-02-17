@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 18:28:07 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/16 15:35:03 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/17 19:52:01 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,17 @@
 **	only adds .cor extension, needs fixing
 */
 
-static char	*file_extension_swap(char *filename)
+static char	*file_extension_swap(char *filename, char *old, char *new_extension)
 {
 	char	*new_file;
+	char	*base;
 
-	new_file = ft_strjoin(filename, ".cor");
+	if (ft_strstr(filename, old))
+		base = ft_strsub(filename, 0, ft_strlen(filename) - ft_strlen(old));
+	else
+		base = ft_strdup(filename);
+	new_file = ft_strjoin(base, new_extension);
+	ft_strdel(&base);
 	return (new_file);
 }
 
@@ -53,7 +59,7 @@ void		write_to_file(t_master *m)
 	char	*new_file;
 	char	*bytecode;
 
-	new_file = file_extension_swap(m->filename);
+	new_file = file_extension_swap(m->filename, ".s", ".cor");
 	bytecode = convert_to_bytecode(m);
 	if (!(fd = open(new_file, O_WRONLY | O_CREAT, 0644)))
 		perror("ERROR ON FILE OPENING\n");
