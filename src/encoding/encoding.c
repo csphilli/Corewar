@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:16:36 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/17 20:05:07 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/18 11:58:14 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,7 @@ static void	encode_header(t_master *m)
 
 void		encode_asm(t_master *m)
 {
-	if (!m->champ->champ_name || !m->champ->champ_comment \
-								|| !m->champ->champ_size)
+	if (!m->champ->champ_name || !m->champ->champ_comment)
 		ft_errorexit("ERROR: incomplete input\n");
 	m->encoded_player_size = calc_encoded_size(m);
 	if (!(m->encoded_player = (uint8_t*)ft_memalloc(sizeof(uint8_t) \
