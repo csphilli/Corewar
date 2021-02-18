@@ -6,11 +6,15 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 13:58:00 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/15 14:11:35 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/18 10:40:39 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	Similar to ft_strcat, this simply cats a char to a string
+*/
 
 char	*ft_charcat(char *dest, const char src)
 {
@@ -24,6 +28,11 @@ char	*ft_charcat(char *dest, const char src)
 	return ((char *)dest);
 }
 
+/*
+**	Counts to the end of a label and returns the amount of moves. - 1 because
+**	it will initially exceed the end of the label.
+*/
+
 int		end_of_label(char *line)
 {
 	int	i;
@@ -34,6 +43,10 @@ int		end_of_label(char *line)
 		i++;
 	return (i - 1);
 }
+
+/*
+**	Gets the label from the line.
+*/
 
 char	*extract_label(char *line)
 {
@@ -50,24 +63,20 @@ char	*extract_label(char *line)
 }
 
 /*
-**	Converts a label into a numeric label. For example, %:label could be
-**	%-15.
+**	After the final count, mod_atoi omits the DIRECT_CHAR. This function
+**	simply adds it back.
 */
 
-char	*new_str_from_label(t_ins *node, int arg_nbr, char *bytes)
+void	add_label_char_back(t_ins *ins, int i, char **src)
 {
-	int		len;
 	char	*new;
 
-	len = 0;
-	if (node->arg_values[arg_nbr])
-		ft_strdel(&node->arg_values[arg_nbr]);
-	if (node->arg_type[arg_nbr] == T_DIR)
-		len++;
-	len += ft_strlen(bytes);
-	new = ft_strnew(len);
-	if (node->arg_type[arg_nbr] == T_DIR)
-		new[0] = '%';
-	ft_strcat(new, bytes);
-	return (new);
+	if (ins->arg_type[i] == T_DIR && !ft_strchr(*src, '%'))
+	{
+		new = ft_strnew(ft_strlen(*src) + 1);
+		new[0] = DIRECT_CHAR;
+		ft_strcat(new, *src);
+		ft_strdel(src);
+		*src = new;
+	}
 }
