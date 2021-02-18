@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 21:49:33 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/18 13:58:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/18 14:38:56 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,9 @@ void	label_calcs(t_master *m)
 		{
 			if (ins->arg_type[i] == T_DIR || ins->arg_type[i] == T_IND)
 			{
+				printf("before signs: %s\n", ins->arg_values[i]);
 				simp_signs(&ins->arg_values[i]);
+				printf("after signs: %s\n", ins->arg_values[i]);
 				if (hex_in_str(ins->arg_values[i]))
 					convert_hex(ins, &ins->arg_values[i]);
 				// printf("argument prior to work: %s\n", ins->arg_values[i]);
