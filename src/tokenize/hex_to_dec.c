@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:25:48 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/18 14:14:17 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:01:44 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,6 @@ void	print_hex_error(t_ins *ins, char *str)
 **	Error checking for hex string. Must follow hex string definition
 **	otherwise errors out.
 */
-
-int		is_hex(char *s)
-{
-	if (*s == '0' && (*(s + 1) && ft_toupper(*(s + 1)) == 'X'))
-		return (1);
-	return (0);
-}
 
 void	error_chk_hex(t_ins *ins, char *hex, int len)
 {
