@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 13:25:48 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/18 10:56:07 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:01:44 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		hex_len(char *line)
 **	Makes converting mutliple strings "easier".
 */
 
-int		hex_to_dec(t_ins *ins, char *hex_str, char **e_ptr)
+int		hex_to_dec(t_ins *ins, char *hex_str)
 {
 	int		len;
 	int		i;
@@ -92,7 +92,6 @@ int		hex_to_dec(t_ins *ins, char *hex_str, char **e_ptr)
 		len--;
 		i++;
 	}
-	*e_ptr = &hex_str[i + 1];
 	return (sum);
 }
 
@@ -104,27 +103,26 @@ int		hex_to_dec(t_ins *ins, char *hex_str, char **e_ptr)
 
 void	convert_hex(t_ins *ins, char **line)
 {
-	char	*end;
 	char	*tmp;
 	char	*new;
 	char	*hex;
 
-	new = ft_strnew(ft_strlen(*line));
 	tmp = *line;
-	ft_strdel(line);
-	end = tmp;
+	new = ft_strnew(ft_strlen(tmp));
 	while (*tmp)
 	{
-		if (*tmp == '0' && *(tmp + 1) && ft_toupper(*(tmp + 1)) == 'X')
+		if (is_hex(tmp))
 		{
-			hex = ft_itoa(hex_to_dec(ins, tmp, &end));
-			new_strjoin(&new, hex);
+			hex = ft_itoa(hex_to_dec(ins, tmp));
+			ft_strcat(new, hex);
 			ft_strdel(&hex);
-			tmp = end;
+			while (*(tmp + 1) && *(tmp + 1) != '+' && *(tmp + 1) != '-')
+				tmp++;
 		}
 		else
 			ft_charcat(new, *tmp);
 		tmp++;
 	}
+	ft_strdel(line);
 	*line = new;
 }
