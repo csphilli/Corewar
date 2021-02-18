@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
+#    By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/02/09 08:50:21 by csphilli         ###   ########.fr        #
+#    Updated: 2021/02/13 09:24:28 by osalmine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = asm
 
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra -g
 
 LIBFT = ./libft/
 LINK_LIBFT = -L $(LIBFT) -lft -I$(LIBFT)/includes

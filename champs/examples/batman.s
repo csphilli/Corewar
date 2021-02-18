@@ -1,6 +1,5 @@
-.name "Batman 
-"
-.comment "This city needs metest"
+.name "Batman"
+.comment "This city needs me"
 
 loop:
 hyphen:	sti r1,%:live,%1

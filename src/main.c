@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/12 10:42:35 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/17 20:04:40 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	init_master(t_master *m)
 	m->champ->champ_comment = NULL;
 	m->ins_count = 0;
 	m->line_cnt = 0;
+	m->encoded_player = NULL;
+	m->encoded_player_size = 0;
 	init_list(&m->instrux);
 	init_list(&m->labels);
 }
@@ -56,17 +58,20 @@ int		main(int ac, char **av)
 	fd = 0;
 	if (ac == 2)
 	{
-		fd = open(av[1], fd, O_RDONLY);
 		m = ft_memalloc(sizeof(t_master));
+		m->filename = av[1];
+		if ((fd = open(m->filename, fd, O_RDONLY)) < 0)
+			ft_errorexit("Error on reading input file\n");
 		init_master(m);
 		get_data(m, fd);
 		if (((t_list*)&m->labels)->head)
 			leftover_labels(m);
 		handle_labels(m);
-		encoding_parse(m);
-		printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
-			m->champ->champ_comment);
-		display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
+		encode_asm(m);
+		write_to_file(m);
+		// printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
+		// 	m->champ->champ_comment);
+		// display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
