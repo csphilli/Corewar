@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/18 11:32:10 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/18 14:14:55 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int		main(int ac, char **av)
 		if (((t_list*)&m->labels)->head)
 			leftover_labels(m);
 		handle_labels(m);
+		label_calcs(m);
 		encode_asm(m);
 		write_to_file(m);
 		// printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
@@ -75,6 +76,6 @@ int		main(int ac, char **av)
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
-	system("leaks asm"); // Leaks checker
+	// system("leaks asm"); // Leaks checker
 	return (0);
 }

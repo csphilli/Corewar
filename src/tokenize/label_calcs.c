@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 21:49:33 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/18 11:04:49 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/18 13:58:08 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int		mod_atoi(char *str, char **end_ptr)
 	int	i;
 	int	sign;
 	int	res;
-
 	i = 0;
 	sign = 1;
 	res = 0;
@@ -143,6 +142,7 @@ void	label_calcs(t_master *m)
 				simp_signs(&ins->arg_values[i]);
 				if (hex_in_str(ins->arg_values[i]))
 					convert_hex(ins, &ins->arg_values[i]);
+				// printf("argument prior to work: %s\n", ins->arg_values[i]);
 				final_count(ins, i, &ins->arg_values[i]);
 			}
 			i++;
