@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/02/13 09:24:28 by osalmine         ###   ########.fr        #
+#    Updated: 2021/02/18 11:32:24 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

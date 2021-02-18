@@ -6,22 +6,22 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 20:47:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/12 11:27:59 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 14:05:47 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	arg_type(int id)
+void	print_arg_type(int id)
 {
 	if (id == T_REG)
-		printf("T_REG");
+		printf("\t%-20s", "T_REG");
 	else if (id == T_DIR)
-		printf("T_DIR");
+		printf("\t%-20s", "T_DIR");
 	else if (id == T_LAB)
-		printf("T_LAB");
+		printf("\t%-20s", "T_LAB");
 	else
-		printf(BRED"T_IND"RESET);
+		printf(BRED"\t%-20s"RESET, "T_IND");
 }
 
 void	print_ins_labels(t_labels *labels)
@@ -31,32 +31,30 @@ void	print_ins_labels(t_labels *labels)
 
 void	print_instrux_list(t_ins *ins)
 {
-	int i;
+	int		i;
+	t_node	*labels;
 
 	i = 0;
-	t_node *labels;
-
 	labels = ((t_list*)&ins->labels)->head;
 	printf(BGRN"----- INSTRUCTION %d -----\n"RESET, ins->index + 1);
 	printf("\tLabel(s):\n");
-	// display_list(&ins->labels, (t_display)(print_ins_labels));
-	while (labels)
-	{
-		printf("\t%s\n", ((t_labels*)labels->data)->label);
-		labels = labels->next;
-	}
+	display_list(&ins->labels, (t_display)(print_ins_labels));
+	// while (labels)
+	// {
+	// 	printf("\t%s\n", ((t_labels*)labels->data)->label);
+	// 	labels = labels->next;
+	// }
 	printf("\tOpcode: %d\n\tOpname: %s\n", ins->opcode, ins->opname);
 	printf("\tBytes: %d\n", ins->bytes);
 	printf("\tArgCnt: %d\n\tt_dir_size: %d\n\targ_type_code: %d\n", \
 		ins->arg_count, ins->t_dir_size, ins->arg_type_code);
 	printf("\tLine: %d\n", ins->line);
 	printf(GRN"\tARGUMENTS\n"RESET);
-	printf("\tTYPE\tVALUE\n");
+	printf("\t%-20s%-20s%-20s\n", "TYPE", "VALUE", "ORIG VALUE");
 	while (i < ins->arg_count)
 	{
-		printf("\t");
-		arg_type(ins->arg_type[i]);
-		printf("\t%s\n", ins->arg_values[i]);
+		print_arg_type(ins->arg_type[i]);
+		printf("%-20s%-20s\n", ins->arg_values[i], ins->orig_arg_values[i]);
 		i++;
 	}
 	printf("\n");

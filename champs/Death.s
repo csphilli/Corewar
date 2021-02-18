@@ -1,6 +1,5 @@
 .name "Death"
 .comment "Fork"
-.extend
 
 	st	r1, :l1+1
 	st	r1, :l2+1
@@ -26,7 +25,6 @@ lock:	add	r3, r4, r3
 nolock:	
 	xor	r1, r1, r1
 	add	r1, r1, r1
-	.code	00 00 00
 live:	live	%1
 
 

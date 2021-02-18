@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/17 20:04:40 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/18 11:32:10 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	leftover_labels(t_master *m)
 	ins = ft_memalloc(sizeof(t_ins));
 	add_labels(m, ins);
 	ins->index = m->ins_count;
-	ins->line = m->line_cnt - 1;
+	ins->line = m->line_cnt;
 	append_node(&m->instrux, ins);
 }
 
@@ -75,6 +75,6 @@ int		main(int ac, char **av)
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
-	// system("leaks asm"); // Leaks checker
+	system("leaks asm"); // Leaks checker
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/12 10:10:24 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 08:54:59 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,27 @@ void	pre_split(char **line)
 			new[j] = tmp[i];
 			j++;
 		}
+		if (tmp[i] == COMMENT_CHAR || tmp[i] == ALT_COMMENT_CHAR)
+			break ;
 		i++;
 	}
 	*line = new;
 }
 
-/*
-**	Helper function used with parse_arg_type found in the get_args.c file.
-**	Checks if there is a forbidden '+' char on the entire line. Errors if so.
-*/
-
-void	check_for_plus(t_master *m, char *line)
+int		valid_reg_def(char *line)
 {
-	int i;
+	int	i;
+	int	cnt;
 
 	i = 0;
-	while (line[i] != '\n' && line[i] != '\0')
+	cnt = 0;
+	while (line[i])
 	{
-		if (line[i] == '+')
-			ft_error_line("ERROR: '+' char found on line ", m->line_cnt);
+		if (!ft_isdigit(line[i]))
+			cnt++;
 		i++;
 	}
+	if (cnt == 1)
+		return (1);
+	return (0);
 }

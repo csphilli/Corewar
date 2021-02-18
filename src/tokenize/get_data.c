@@ -6,11 +6,21 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:32:36 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/09 09:06:29 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/16 14:48:55 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void	get_data_cont(t_master *m, char *line)
+{
+	if (line[0] == '.' && \
+		!ft_strnstr(line, NAME_CMD_STRING, NAME_CMD_LEN) && \
+		!ft_strnstr(line, COMMENT_CMD_STRING, COMMENT_CMD_LEN))
+		ft_error_line("ERROR: Invalid command on line ", m->line_cnt + 1);
+	else
+		tokenizing(m, line);
+}
 
 /*
 **	Either captures the name or comment or tokenizes an instruction line.
@@ -40,7 +50,7 @@ void	get_data(t_master *m, int fd)
 			get_name_comment(m, &m->champ->champ_comment, line, fd);
 		}
 		else
-			tokenizing(m, tmp);
+			get_data_cont(m, tmp);
 		ft_strdel(&line);
 	}
 }

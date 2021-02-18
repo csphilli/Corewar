@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/16 15:34:48 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/18 11:31:15 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # define PROG_NAME_LENGTH	(128)
 # define COMMENT_LENGTH		(2048)
 # define COREWAR_EXEC_MAGIC	0xea83f3 // dec: 15369203
+# define N_OPERANDS 2
+
+typedef int(*t_func)(int, int);
 
 typedef struct		s_labels
 {
@@ -43,6 +46,7 @@ typedef struct		s_ins
 	int				arg_count;
 	int				arg_type[3];
 	char			**arg_values;
+	char			**orig_arg_values;
 	int				t_dir_size;
 	int				arg_type_code;
 	int				line;
@@ -85,7 +89,24 @@ void				add_labels(t_master *m, t_ins *ins);
 void				save_label(t_master *m, char *line);
 int					type_parse(t_master *m, char *line);
 int					extraneous(char *line);
-void				check_for_plus(t_master *m, char *line);
+t_ins				*node_name_helper(t_node *node);
+char				*downsize(char *line);
+char				*ft_charcat(char *dest, const char src);
+int					end_of_label(char *line);
+char				*extract_label(char *line);
+void				error_chk_labels(t_master *m);
+void				error_arg_type(t_master *m, char *line);
+void				label_not_found(char *error_msg, t_ins *node,\
+					char *label);
+int					valid_reg_def(char *line);
+int					ft_pow(int n, int exp);
+void				label_calcs(t_master *m);
+t_func				get_operation(int sign);
+void				new_strjoin(char **dst, char *src);
+void				add_label_char_back(t_ins *ins, int i, char **src);
+void				convert_hex(t_ins *ins, char **line);
+int					nbr_count(char *s);
+void				simp_signs(char **line);
 
 /*
 **	ENCODING FUNCTIONS

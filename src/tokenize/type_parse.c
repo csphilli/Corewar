@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 12:45:57 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/12 09:54:39 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/15 22:55:28 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int		one_label(t_master *m, char *line)
 	if (s == 1)
 	{
 		save_label(m, line);
-		m->line_cnt++;
 		return (1);
 	}
 	return (0);
@@ -52,7 +51,7 @@ int		one_label(t_master *m, char *line)
 **	Returns 1 if found matching opname else 0.
 */
 
-int		one_instruction(t_master *m, char *line)
+int		one_instruction(char *line)
 {
 	int		i;
 	int		j;
@@ -64,6 +63,8 @@ int		one_instruction(t_master *m, char *line)
 	ret = 0;
 	while (ft_strchr(OPNAME_CHAR, line[i]))
 		i++;
+	if (line[i] == LABEL_CHAR || ft_strchr(LABEL_CHARS, line[i]))
+		return (0);
 	tmp = ft_strnew(i);
 	ft_memcpy(tmp, line, sizeof(char) * i);
 	while (j < OP_COUNT)
@@ -75,7 +76,6 @@ int		one_instruction(t_master *m, char *line)
 		}
 		j++;
 	}
-	m->line_cnt++;
 	ft_strdel(&tmp);
 	return (ret);
 }
@@ -102,7 +102,6 @@ int		label_and_ins(t_master *m, char *line)
 		if (line[i] != LABEL_CHAR)
 			return (0);
 		save_label(m, line);
-		m->line_cnt++;
 		return (1);
 	}
 	return (0);
@@ -115,14 +114,18 @@ int		label_and_ins(t_master *m, char *line)
 
 int		type_parse(t_master *m, char *line)
 {
+	int	ret;
+
+	ret = 0;
 	if (one_label(m, line))
-		return (0);
-	else if (one_instruction(m, line))
-		return (1);
+		ret = 0;
+	else if (one_instruction(line))
+		ret = 1;
 	else if (label_and_ins(m, line))
-		return (1);
+		ret = 1;
 	else
 		ft_error_line("ERROR: Invalid label/instruction on line ",\
-		m->line_cnt);
-	return (0);
+		m->line_cnt + 1);
+	m->line_cnt++;
+	return (ret);
 }

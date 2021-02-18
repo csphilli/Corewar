@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error_line.c                                    :+:      :+:    :+:   */
+/*   ft_pow.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/02 11:46:01 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/08 08:55:17 by csphilli         ###   ########.fr       */
+/*   Created: 2021/02/16 13:21:08 by csphilli          #+#    #+#             */
+/*   Updated: 2021/02/16 14:49:30 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	ft_error_line(char *error_msg, int line)
+int	ft_pow(int n, int exp)
 {
-	write(2, error_msg, ft_strlen(error_msg));
-	ft_putnbr(line);
-	write(2, ".\n", 2);
-	exit(0);
+	int y;
+
+	y = 0;
+	if (n > 0 && exp >= 0)
+	{
+		if (exp == 0)
+			return (1);
+		else if (exp % 2 == 0)
+		{
+			y = ft_pow(n, exp / 2);
+			return (y * y);
+		}
+		else
+			return (n * ft_pow(n, exp - 1));
+	}
+	return (0);
 }
