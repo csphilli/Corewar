@@ -7,3 +7,6 @@ champs/examples/*.cor
 champs/*.s
 champs/*.cor
 *.txt
+.vscode
+asm
+*.dSYM

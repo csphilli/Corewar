@@ -6,13 +6,13 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/02/16 10:20:13 by csphilli         ###   ########.fr        #
+#    Updated: 2021/02/18 11:32:24 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = asm
 
-FLAGS = -Wall -Wextra
+FLAGS = -Wall -Wextra -g
 
 LIBFT = ./libft/
 LINK_LIBFT = -L $(LIBFT) -lft -I$(LIBFT)/includes

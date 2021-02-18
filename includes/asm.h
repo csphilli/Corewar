@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/18 11:06:41 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/18 11:31:15 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ typedef struct		s_master
 	int				ins_count;
 	t_list			labels;
 	int				line_cnt;
+	uint8_t			*encoded_player;
+	int				encoded_player_size;
+	char			*filename;
 }					t_master;
 
 /*
@@ -109,5 +112,15 @@ void				simp_signs(char **line);
 **	ENCODING FUNCTIONS
 */
 
-void				encoding_parse(t_master *m);
+void				encode_asm(t_master *m);
+uint8_t				*split_hex(uint32_t nb, int nb_len);
+void				set_bytes(t_master *m, uint8_t *bytes, \
+						int bytes_amount, int mem_offset);
+void				set_a_byte(t_master *m, uint8_t byte, int mem_offset);
+uint32_t			dec_to_hex(int nb);
+uint8_t				*ascii_to_hex(char *str);
+void				encode_ins(t_master *m);
+uint8_t				calc_arg_type_code(t_ins *ins);
+void				write_to_file(t_master *m);
+
 #endif
