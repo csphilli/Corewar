@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   write_to_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 18:28:07 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/17 20:04:19 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/18 15:25:56 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void		write_to_file(t_master *m)
 	char	*new_file;
 	char	*bytecode;
 
-	new_file = file_extension_swap(m->filename, ".s", ".cor");
+	new_file = file_extension_swap(m->filename, ".s", ".s.cor");
 	bytecode = convert_to_bytecode(m);
 	if (!(fd = open(new_file, O_WRONLY | O_CREAT, 0644)))
 		ft_errorexit("Error creating a new file\n");
