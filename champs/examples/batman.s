@@ -4,7 +4,7 @@
 loop:
 	sti r1,%:live,%1
 live:
-        live%2 + :loop
+        live%2
         ld%0, r2
-        zjmp%:loop + 0x55d
+        zjmp%:loop
 		
