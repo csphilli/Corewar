@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:16:36 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/18 11:58:14 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/19 12:07:14 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static int	calc_champ_size(t_master *m)
 		size += ((t_ins*)tmp->data)->bytes;
 		tmp = tmp->next;
 	}
+	if (size == 0)
+		ft_errorexit("ERROR: no instructions for champion\n");
 	return (size);
 }
 
