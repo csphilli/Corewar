@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/18 15:02:19 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/19 15:22:51 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ void				convert_hex(t_ins *ins, char **line);
 int					nbr_count(char *s);
 void				simp_signs(char **line);
 int					is_hex(char *s);
+int					unfinished(t_master *m, char **new,\
+					char *line, int flag);
+void				len_chk(t_champ *champ);
 
 /*
 **	ENCODING FUNCTIONS
