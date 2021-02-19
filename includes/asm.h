@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
 /*   Updated: 2021/02/19 15:22:51 by csphilli         ###   ########.fr       */
@@ -111,6 +111,9 @@ int					is_hex(char *s);
 int					unfinished(t_master *m, char **new,\
 					char *line, int flag);
 void				len_chk(t_champ *champ);
+void				check_for_newline(t_master *m);
+void				check_for_filename(char *filename);
+
 
 /*
 **	ENCODING FUNCTIONS

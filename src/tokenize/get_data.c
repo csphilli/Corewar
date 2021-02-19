@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:32:36 by cphillip          #+#    #+#             */
 /*   Updated: 2021/02/19 15:19:43 by csphilli         ###   ########.fr       */
@@ -32,6 +32,7 @@ void	get_data(t_master *m, int fd)
 	char	*line;
 	char	*tmp;
 
+	check_for_newline(m);
 	while (get_next_line(fd, &line) > 0)
 	{
 		tmp = line;
