@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/18 15:03:36 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/19 13:11:32 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		main(int ac, char **av)
 	{
 		m = ft_memalloc(sizeof(t_master));
 		m->filename = av[1];
+		check_for_filename(m->filename);
 		if ((fd = open(m->filename, fd, O_RDONLY)) < 0)
 			ft_errorexit("Error on reading input file\n");
 		init_master(m);
