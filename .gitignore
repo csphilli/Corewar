@@ -10,3 +10,4 @@ champs/*.cor
 .vscode
 asm
 *.dSYM
+asmtest
