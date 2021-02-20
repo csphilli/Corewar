@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 18:28:07 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/19 12:10:55 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/20 22:43:06 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ void		write_to_file(t_master *m)
 	char	*new_file;
 	char	*bytecode;
 
-	new_file = file_extension_swap(m->filename, ".s", ".s.cor");
+	new_file = file_extension_swap(m->filename, ".s", ".cor");
 	bytecode = convert_to_bytecode(m);
 	if (!(fd = open(new_file, O_WRONLY | O_CREAT | O_TRUNC, 0644)))
 		ft_errorexit("Error creating a new file\n");
 	write(fd, bytecode, m->encoded_player_size);
-	printf("Write complete to %s\n", new_file);
+	ft_putstr_fd("Writing output program to ", 1);
+	ft_putstr_fd(new_file, 1);
+	write(1, "\n", 2);
 	ft_strdel(&new_file);
 	ft_strdel(&bytecode);
 }
