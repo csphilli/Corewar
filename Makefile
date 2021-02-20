@@ -6,29 +6,56 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/02/18 11:32:24 by csphilli         ###   ########.fr        #
+#    Updated: 2021/02/20 22:35:27 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = asm
 
-FLAGS = -Wall -Wextra -g
+FLAGS = -Wall -Wextra -Wall -g
 
 LIBFT = ./libft/
 LINK_LIBFT = -L $(LIBFT) -lft -I$(LIBFT)/includes
 
-# FT_PRINTF = ./ft_printf/
-# LINK_FT_PRINTF = -L $(FT_PRINTF) -lft_printf -I$(FT_PRINTF)/includes
-
-SRC = *.c
 SRC_DIR = ./src/
+SRC = main.c
 
 ENC_DIR = $(SRC_DIR)encoding/
-TOKENIZE_DIR = $(SRC_DIR)tokenize/
+ENC_SRC = 	ascii_to_hex.c\
+			calc_arg_type.c\
+			encode_ins.c\
+			encoding.c\
+			set_bytes.c\
+			split_hex.c\
+			write_to_file.c
 
-SRC_FILES = $(addprefix $(ENC_DIR), $(SRC))\
+TOKENIZE_DIR = $(SRC_DIR)tokenize/
+TOKEN_SRC =	arg_utils.c\
+			check_for_newline.c\
+			check_for_s.c\
+			error_chk_labels.c\
+			errors.c\
+			ft_pow.c\
+			get_args.c\
+			get_data.c\
+			get_name_comment.c\
+			handle_labels.c\
+			hex_to_dec_utils.c\
+			hex_to_dec.c\
+			label_calcs.c\
+			label_utils.c\
+			label_utils2.c\
+			name_comment_utils.c\
+			printing.c\
+			simp_signs.c\
+			token_utils.c\
+			tokenizing.c\
+			type_parse.c
+
+SRC_FILES = $(addprefix $(ENC_DIR), $(ENC_SRC))\
 			$(addprefix $(SRC_DIR), $(SRC))\
-			$(addprefix $(TOKENIZE_DIR), $(SRC))
+			$(addprefix $(TOKENIZE_DIR), $(TOKEN_SRC))
+
 
 OBJ_FILES = $(SRC:.c=.o)
 
