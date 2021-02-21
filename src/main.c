@@ -6,12 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/20 22:43:26 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/21 12:15:51 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
 // NOTE!!!! Is our output file extension correct? <----- READ!
 
 /*
@@ -74,9 +73,9 @@ int		main(int ac, char **av)
 		label_calcs(m);
 		encode_asm(m);
 		write_to_file(m);
-		printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
-			m->champ->champ_comment);
-		display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
+		// printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
+		// 	m->champ->champ_comment);
+		// display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
 
 	}
 	else
