@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   encoding.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:16:36 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/19 12:07:14 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/20 22:45:29 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	calc_champ_size(t_master *m)
 		tmp = tmp->next;
 	}
 	if (size == 0)
-		ft_errorexit("ERROR: no instructions for champion\n");
+		ft_errorexit("ERROR: No instructions for champion.\n");
 	return (size);
 }
 
@@ -87,11 +87,11 @@ static void	encode_header(t_master *m)
 void		encode_asm(t_master *m)
 {
 	if (!m->champ->champ_name || !m->champ->champ_comment)
-		ft_errorexit("ERROR: incomplete input\n");
+		ft_errorexit("ERROR: Incomplete input.\n");
 	m->encoded_player_size = calc_encoded_size(m);
 	if (!(m->encoded_player = (uint8_t*)ft_memalloc(sizeof(uint8_t) \
 										* m->encoded_player_size)))
-		ft_errorexit("ERROR: Malloc error\n");
+		ft_errorexit("ERROR: Malloc error.\n");
 	ft_bzero(m->encoded_player, m->encoded_player_size);
 	encode_header(m);
 	encode_ins(m);

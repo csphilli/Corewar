@@ -11,3 +11,4 @@ champs/*.cor
 asm
 *.dSYM
 asmtest
+*.zip
