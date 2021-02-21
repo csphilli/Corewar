@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/19 15:22:51 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/20 22:21:37 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 # include "libft.h"
 # include "op.h"
 # include "asm_oplist.h"
-# include <stdio.h> // remove before submission
 # define PROG_NAME_LENGTH	(128)
 # define COMMENT_LENGTH		(2048)
-# define COREWAR_EXEC_MAGIC	0xea83f3 // dec: 15369203
+# define COREWAR_EXEC_MAGIC	0xea83f3
 # define N_OPERANDS 2
+
+// are the correct flags in the makefile?
 
 typedef int(*t_func)(int, int);
 

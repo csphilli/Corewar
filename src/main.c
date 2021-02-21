@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/19 13:11:32 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/20 22:43:26 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+// NOTE!!!! Is our output file extension correct? <----- READ!
 
 /*
 **	Initializes the master struct.
@@ -75,6 +77,7 @@ int		main(int ac, char **av)
 		printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
 			m->champ->champ_comment);
 		display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
+
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");

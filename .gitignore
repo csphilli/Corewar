@@ -10,5 +10,5 @@ champs/*.cor
 .vscode
 asm
 *.dSYM
-/asmtest
-asmtest.zip
+asmtest
+*.zip
