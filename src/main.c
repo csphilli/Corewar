@@ -74,12 +74,13 @@ int		main(int ac, char **av)
 		label_calcs(m);
 		encode_asm(m);
 		write_to_file(m);
-		// ft_printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
-		// 	m->champ->champ_comment);
-		// display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
+		printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
+			m->champ->champ_comment);
+		display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
+
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
-	// system("leaks asm"); // Leaks checker
+	system("leaks asm"); // Leaks checker
 	return (0);
 }

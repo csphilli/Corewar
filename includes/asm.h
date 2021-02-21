@@ -109,8 +109,12 @@ void				convert_hex(t_ins *ins, char **line);
 int					nbr_count(char *s);
 void				simp_signs(char **line);
 int					is_hex(char *s);
+int					unfinished(t_master *m, char **new,\
+					char *line, int flag);
+void				len_chk(t_champ *champ);
 void				check_for_newline(t_master *m);
 void				check_for_filename(char *filename);
+
 
 /*
 **	ENCODING FUNCTIONS
