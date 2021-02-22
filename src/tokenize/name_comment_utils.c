@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:49:14 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/19 14:59:28 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/21 12:19:25 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		unfinished(t_master *m, char **new, char *line, int flag)
 void	len_chk(t_champ *c)
 {
 	if (c->champ_name && ft_strlen(c->champ_name) > PROG_NAME_LENGTH)
-		ft_errorexit("ERROR: Champ name exceeds allowable\
+		ft_errorexit("ERROR: Champ name exceeds allowable \
 size of 128 bytes.\n");
 	if (c->champ_comment && ft_strlen(c->champ_comment) > COMMENT_LENGTH)
 		ft_errorexit("ERROR: Champ comment exceeds allowable size of \
