@@ -6,7 +6,7 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/02/23 18:15:55 by csphilli         ###   ########.fr        #
+#    Updated: 2021/02/23 22:30:50 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ ASM_EXEC = asm
 CC = gcc
 CFLAGS = -Wall -Wextra -Wall -g
 INCLUDES = -I includes/ $(LIBFT_INC)
+INCLUDES_DIR = includes/
 
 # library
 LIBFT = $(LIB_DIR)libft.a
@@ -28,24 +29,29 @@ LINK_LIBFT = -L $(LIB_DIR) -lft
 # object directories
 OBJ_DIR = obj/
 TGT_DIR = $(OBJ_DIR)
-TGT_DIR += $(addprefix $(OBJ_DIR), $(ENC_DIR), $(TOKENIZE_DIR))
+TGT_DIR += $(addprefix $(OBJ_DIR), $(ASM_DIR))
 
 # files
 SRC_DIR = src/
 
-ENC_DIR = $(SRC_DIR)encoding/
-ENC_FILES = 	ascii_to_hex.c\
+# includes
+INC_DIR = includes/
+INC_FILES = asm_oplist.h\
+			asm.h\
+			op.h
+
+INC_SRC = $(addprefix $(INC_DIR), $(INC_FILES))
+
+# assembler
+ASM_DIR = asm/
+ASM_FILES = 	ascii_to_hex.c\
 				calc_arg_type.c\
 				encode_ins.c\
 				encoding.c\
 				set_bytes.c\
 				split_hex.c\
-				write_to_file.c
-
-ENC_SRC = $(addprefix $(ENC_DIR), $(ENC_FILES))
-
-TOKENIZE_DIR = $(SRC_DIR)tokenize/
-TOKEN_FILES =	arg_utils.c\
+				write_to_file.c\
+				arg_utils.c\
 				check_for_newline.c\
 				check_for_s.c\
 				error_chk_labels.c\
@@ -68,46 +74,22 @@ TOKEN_FILES =	arg_utils.c\
 				type_parse.c\
 				main.c
 
-TOK_SRC = $(addprefix $(TOKENIZE_DIR), $(TOKEN_FILES))
+ASM_SRC = $(addprefix $(ASM_DIR), $(ASM_FILES))
 
-# SRC_FILES = $(addprefix $(ENC_DIR), $(ENC_SRC))\
-# 			$(addprefix $(SRC_DIR), $(SRC))\
-# 			$(addprefix $(TOKENIZE_DIR), $(TOKEN_SRC))
+# assembler objects
+ASM_CTO = $(ASM_SRC:.c=.o)
+ASM_OBJ = $(addprefix $(OBJ_DIR), $(ASM_CTO))
 
-# ASM_SRC = $(ENC_SRC) $(TOKEN_SRC)
+PROG_BAR = "."
 
-ASM_ENC_OBJ = $(ENC_SRC:.c=.o)
-# ASM_ENC_OBJ = $(addprefix $(OBJ_DIR), $(ASM_ENC_CTO))
-
-ASM_TOK_OBJ = $(TOK_SRC:.c=.o)
-# ASM_TOK_OBJ = $(addprefix $(OBJ_DIR), $(ASM_TOK_CTO))
-
-ASM_OBJ = $(ASM_ENC_OBJ) $(ASM_TOK_OBJ)
-
-# INC = ./includes/
-# INC_H = *.h
-$(OBJ_DIR)/%.o: $(ENC_SRC)%.c $(TOK_SRC)%.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -o -c $@ $<
-
-# all: $(NAME)
 all: $(ASM_EXEC)
 
-# $(NAME): $(SRC_FILES) $(addprefix $(INC), $(INC_H))
-# 	@if git submodule status | egrep -q '^[-]' ; then \
-# 		echo "INFO: Initializing git submodules"; \
-# 		git submodule update --init --recursive; \
-# 	fi
-# 	@make -C $(LIBFT)
-# 	@echo "Compiling $(NAME)..."
-# 	@gcc $(FLAGS) -o $(NAME) $(SRC_FILES) -I$(INC) $(LINK_LIBFT)
+$(TGT_DIR):
+	@mkdir -p $(TGT_DIR)
 
-$(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(ASM_OBJ)
-	@echo "\nCompiling the assembler"
-	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) -o $@ $(ASM_OBJ)
-	@echo "Done!"
-	
-	
-
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+	@echo $(PROG_BAR)"\c"
 
 $(LIBFT):
 	@if git submodule status | egrep -q '^[-]' ; then \
@@ -115,17 +97,21 @@ $(LIBFT):
 	git submodule update --init --recursive; \
 	fi
 	@make -C $(LIB_DIR)
+	@echo "Compiling into object files"
 
-$(TGT_DIR):
-	@mkdir -p $(TGT_DIR)
+$(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(ASM_OBJ) $(INC_SRC)
+	@echo "\nASM object files prepared"
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) -o $@ $(ASM_OBJ)
+	@echo "Linking the Assembler"
+	@echo "Done!"
 
 clean:
 	@make clean -C $(LIB_DIR)
-	@rm -rf $(ASM_ENC_OBJ)
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@make fclean -C $(LIB_DIR)
+	@rm -rf $(ASM_EXEC)
 
 re: fclean all
 
