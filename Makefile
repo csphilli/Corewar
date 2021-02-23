@@ -6,7 +6,7 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/02/23 22:30:50 by csphilli         ###   ########.fr        #
+#    Updated: 2021/02/23 22:38:18 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,6 @@ ASM_EXEC = asm
 CC = gcc
 CFLAGS = -Wall -Wextra -Wall -g
 INCLUDES = -I includes/ $(LIBFT_INC)
-INCLUDES_DIR = includes/
 
 # library
 LIBFT = $(LIB_DIR)libft.a
