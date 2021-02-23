@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/23 22:43:56 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	leftover_labels(t_master *m)
 	ins->line = m->line_cnt;
 	append_node(&m->instrux, ins);
 }
+
+// We can create a main parser which separates out the assembler calls and the VM calls.
 
 int		main(int ac, char **av)
 {
