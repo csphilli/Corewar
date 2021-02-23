@@ -6,20 +6,21 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/20 22:21:37 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/23 17:07:24 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-# include "libft.h"
+// # include "libft.h"
+# include "../libft/includes/libft.h"
 # include "op.h"
 # include "asm_oplist.h"
 # define PROG_NAME_LENGTH	(128)
 # define COMMENT_LENGTH		(2048)
 # define COREWAR_EXEC_MAGIC	0xea83f3
-# define N_OPERANDS 2
+// # define N_OPERANDS 2
 
 // are the correct flags in the makefile?
 

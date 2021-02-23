@@ -6,11 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:16:36 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/20 22:45:29 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../../includes/asm.h"
 
 static int	calc_champ_size(t_master *m)
 {

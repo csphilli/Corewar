@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   calc_arg_type.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 15:19:53 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/16 15:26:17 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../../includes/asm.h"
 
 static void	calc_reg(int *bit_multiplier, uint8_t *arg_type_code)
 {

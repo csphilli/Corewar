@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_to_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 22:39:32 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/17 20:02:07 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../../includes/asm.h"
+// #include "../../includes/asm.h"
 
 static int		check_for_neg(int *nb)
 {

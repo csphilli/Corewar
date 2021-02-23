@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   split_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:52:25 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/17 20:01:43 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../../includes/asm.h"
 
 /*
 **	nb_len is divided by 2 as e.g. 0xea83f3 is 6 numbers
