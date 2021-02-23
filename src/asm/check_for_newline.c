@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_for_newline.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 12:50:12 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/19 12:57:25 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../../includes/asm.h"
 
 void	check_for_newline(t_master *m)
 {
