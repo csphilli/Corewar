@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/23 22:43:56 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/25 21:32:44 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ void	leftover_labels(t_master *m)
 	append_node(&m->instrux, ins);
 }
 
-// We can create a main parser which separates out the assembler calls and the VM calls.
-
 int		main(int ac, char **av)
 {
 	t_master	*m;
@@ -65,7 +63,7 @@ int		main(int ac, char **av)
 		m->filename = av[1];
 		check_for_filename(m->filename);
 		if ((fd = open(m->filename, fd, O_RDONLY)) < 0)
-			ft_errorexit("Error on reading input file\n");
+			ft_errorexit("ERROR: Cannot read from input file.\n");
 		init_master(m);
 		get_data(m, fd);
 		if (((t_list*)&m->labels)->head)
@@ -82,6 +80,6 @@ int		main(int ac, char **av)
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
-	system("leaks asm"); // Leaks checker
+	// system("leaks asm"); // Leaks checker
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/23 17:42:30 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/25 20:31:15 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	pre_split(char **line)
 	j = 0;
 	while (tmp[i])
 	{
-		if (tmp[i] != ' ' && tmp[i] != '\t')
+		if (tmp[i] != ' ' && tmp[i] != '\t' && tmp[i] != COMMENT_CHAR &&\
+			tmp[i] != ALT_COMMENT_CHAR)
 		{
 			new[j] = tmp[i];
 			j++;
@@ -60,4 +61,55 @@ int		valid_reg_def(char *line)
 	if (cnt == 1)
 		return (1);
 	return (0);
+}
+
+int		valid_t_dir(char *line)
+{
+	if (*(line + 1) == '\0')
+		return (0);
+	line++;
+	if (*line == LABEL_CHAR)
+	{
+		line++;
+		while (*line)
+		{
+			if (!ft_strchr(LABEL_CHARS, *line))
+				return (0);
+			line++;
+		}
+	}
+	else
+	{
+		while (*line)
+		{
+			if (!ft_strchr(NON_LABEL_CHARS, *line))
+				return (0);
+			line++;
+		}
+	}
+	return (1);
+}
+
+int		valid_t_ind(char *line)
+{
+	if (*line == LABEL_CHAR)
+	{
+		line++;
+		while (*line)
+		{
+			if (!ft_strchr(LABEL_CHARS, *line))
+				return (0);
+			line++;
+		}
+	}
+	else
+	{
+		while (*line)
+		{
+			if (!ft_strchr(NON_LABEL_CHARS, *line))
+				return (0);
+			line++;
+		}
+	}
+	return (1);
 }

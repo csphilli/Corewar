@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:57:48 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/25 19:52:58 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,13 @@ void	chk_operands(t_ins *ins, int arg)
 	}
 }
 
+void	chk_name_comment_exists(t_champ *champ)
+{
+	if (!champ->champ_name && !champ->champ_comment)
+		ft_errorexit("ERROR: Incomplete input. Missing \
+name and/or comment\n");
+}
+
 void	error_chk_labels(t_master *m)
 {
 	t_node	*tmp;
@@ -86,6 +93,7 @@ void	error_chk_labels(t_master *m)
 	int		i;
 
 	tmp = ((t_list*)&m->instrux)->head;
+	chk_name_comment_exists(m->champ);
 	while (tmp)
 	{
 		i = 0;

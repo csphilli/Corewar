@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:55:39 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/12 22:24:47 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/02/25 15:58:10 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define REG_CHAR			'r'
 # define SEPARATOR_CHAR     ','
 # define LABEL_CHARS        "abcdefghijklmnopqrstuvwxyz_0123456789"
+# define NON_LABEL_CHARS	"-01234567890"
 # define NAME_CMD_STRING    ".name"
 # define NAME_CMD_LEN		5
 # define COMMENT_CMD_STRING ".comment"

@@ -6,7 +6,7 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/02/23 22:38:18 by csphilli         ###   ########.fr        #
+#    Updated: 2021/02/25 19:55:47 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ ASM_EXEC = asm
 
 # gcc settings
 CC = gcc
-CFLAGS = -Wall -Wextra -Wall -g
+CFLAGS = -Wall -Wextra -Wall
 INCLUDES = -I includes/ $(LIBFT_INC)
 
 # library
@@ -87,8 +87,7 @@ $(TGT_DIR):
 	@mkdir -p $(TGT_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
-	@echo $(PROG_BAR)"\c"
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
 
 $(LIBFT):
 	@if git submodule status | egrep -q '^[-]' ; then \
@@ -98,8 +97,8 @@ $(LIBFT):
 	@make -C $(LIB_DIR)
 	@echo "Compiling into object files"
 
-$(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(ASM_OBJ) $(INC_SRC)
-	@echo "\nASM object files prepared"
+$(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(ASM_OBJ) $(INC_SRC) 
+	@echo "ASM object files prepared"
 	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) -o $@ $(ASM_OBJ)
 	@echo "Linking the Assembler"
 	@echo "Done!"

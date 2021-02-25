@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/23 22:09:48 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/25 20:27:49 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define PROG_NAME_LENGTH	(128)
 # define COMMENT_LENGTH		(2048)
 # define COREWAR_EXEC_MAGIC	0xea83f3
-// # define N_OPERANDS 2
+# include <stdio.h> // remove before submission
 
 // are the correct flags in the makefile?
 
@@ -115,6 +115,8 @@ int					unfinished(t_master *m, char **new,\
 void				len_chk(t_champ *champ);
 void				check_for_newline(t_master *m);
 void				check_for_filename(char *filename);
+int					valid_t_dir(char *line);
+int					valid_t_ind(char *line);
 
 
 /*
