@@ -6,11 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:03:09 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 /*
 **  First tests if there is any characters after the last trailing quote.
@@ -33,7 +33,8 @@ void	trailing_quote(t_master *m, char **ret)
 		*ret = ft_strndup(tmp, i);
 	}
 	else
-		ft_error_line("ERROR: Extraneous info on line ", m->line_cnt);
+		ft_error_line("ERROR: Extraneous info after command \
+on line ", m->line_cnt);
 }
 
 /*

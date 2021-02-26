@@ -6,11 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/25 20:31:15 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 /*
 **	Used as a helper function to get_args in the get_args.c file. This removes

@@ -6,11 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:46:01 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/25 20:46:09 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 void	ft_error_line(char *error_msg, int line)
 {

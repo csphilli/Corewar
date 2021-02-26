@@ -6,11 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:16:36 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:01:40 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 static int	calc_champ_size(t_master *m)
 {
@@ -95,16 +95,4 @@ void		encode_asm(t_master *m)
 	ft_bzero(m->encoded_player, m->encoded_player_size);
 	encode_header(m);
 	encode_ins(m);
-	// printf("\nEncoding\n");
-	// for (int i = 0; i < m->encoded_player_size; i++)
-	// {
-	// 	if (i == 0)
-	// 		printf("%08x   ", i);
-	// 	if (i % 8 == 0 && i != 0)
-	// 		printf("  ");
-	// 	if (i % 16 == 0 && i != 0)
-	// 		printf("\n%08x   ", i);
-	// 	printf("%02x ", m->encoded_player[i]);
-	// }
-	// printf("\nDone\n");
 }

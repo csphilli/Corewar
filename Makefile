@@ -6,7 +6,7 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/02/25 19:55:47 by csphilli         ###   ########.fr        #
+#    Updated: 2021/02/26 08:04:39 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,7 @@ ASM_FILES = 	ascii_to_hex.c\
 				token_utils.c\
 				tokenizing.c\
 				type_parse.c\
-				main.c
+				asm.c
 
 ASM_SRC = $(addprefix $(ASM_DIR), $(ASM_FILES))
 

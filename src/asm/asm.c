@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/25 21:32:44 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:05:47 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
+
 // NOTE!!!! Is our output file extension correct? <----- READ!
 
 /*
@@ -80,6 +81,6 @@ int		main(int ac, char **av)
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
-	// system("leaks asm"); // Leaks checker
+	system("leaks asm"); // Leaks checker
 	return (0);
 }
