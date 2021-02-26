@@ -6,11 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 14:49:14 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 07:59:25 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 /*
 **	Helper function for trailing_quote in get_name_comment.c file.
@@ -56,7 +56,7 @@ int		unfinished(t_master *m, char **new, char *line, int flag)
 		return (1);
 	}
 	else
-		ft_error_line("ERROR: Incomplete name/comment on line ", m->line_cnt);
+		ft_errorexit("ERROR: Incomplete name/comment.\n");
 	return (0);
 }
 

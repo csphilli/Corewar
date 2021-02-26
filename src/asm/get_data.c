@@ -6,11 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:32:36 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:02:11 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 void	get_data_cont(t_master *m, char *line)
 {

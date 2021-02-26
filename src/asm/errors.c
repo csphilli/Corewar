@@ -6,11 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:46:01 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 void	ft_error_line(char *error_msg, int line)
 {
@@ -33,7 +33,7 @@ void	label_not_found(char *error_msg, t_ins *node, char *label)
 
 void	error_arg_type(t_master *m, char *line)
 {
-	ft_putstr_fd("ERROR: Invalid arg type \'", 2);
+	ft_putstr_fd("ERROR: Invalid instruction \'", 2);
 	ft_putstr_fd(line, 2);
 	ft_putstr_fd("\' found on line ", 2);
 	ft_putnbr_fd(m->line_cnt, 2);

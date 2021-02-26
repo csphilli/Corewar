@@ -6,36 +6,40 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/04 21:47:17 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 /*
-**	Counts the number of arguments in a given instruction. Used as validation
-**	for the respective opcode. It's simply counting the number of separator
-**	chars on a given line. If that amount is == max_count - 1, a valid
-**	number of arguments has been passed. It is -1 because of the 0 index
-**	start counter.
+**	Counts the number of arguments in a given instruction.
 */
 
 int		arg_count(char *line, int max_count)
 {
-	int i;
-	int	cnt;
+	int cnt;
+	int	sep;
 
-	i = 0;
 	cnt = 0;
-	while (line[i])
+	sep = 0;
+	if (*line && *line != SEPARATOR_CHAR)
 	{
-		if (line[i] == SEPARATOR_CHAR)
-			cnt++;
-		if (line[i] == COMMENT_CHAR || line[i] == ALT_COMMENT_CHAR)
-			break ;
-		i++;
+		cnt++;
+		line++;
 	}
-	if (cnt == max_count - 1)
+	while (*line)
+	{
+		while (*line == SEPARATOR_CHAR)
+		{
+			line++;
+			sep++;
+			if (*line && *line != SEPARATOR_CHAR)
+				cnt++;
+		}
+		line++;
+	}
+	if (cnt == max_count && sep == cnt - 1)
 		return (1);
 	return (0);
 }
@@ -82,10 +86,10 @@ int		parse_arg_type(t_asm_oplist oplist, \
 		else
 			return (0);
 	}
-	else if (line[i] == DIRECT_CHAR && oplist.arg_type[arg_nbr] & T_DIR)
+	else if (line[i] == DIRECT_CHAR && oplist.arg_type[arg_nbr] & T_DIR &&\
+				valid_t_dir(line))
 		return (T_DIR);
-	else if ((ft_strchr(LABEL_CHARS, line[i]) || line[i] == ':' || \
-		line[i] == '-') && oplist.arg_type[arg_nbr] & T_IND)
+	else if (valid_t_ind(line) && oplist.arg_type[arg_nbr] & T_IND)
 		return (T_IND);
 	else
 		return (0);
@@ -125,6 +129,7 @@ int		calc_statement_bytes(t_ins *ins)
 **	pre_split is found in the arg_utils.c file.
 **	arg_count is above.
 **	parse_arg_type is above.
+**	error_arg_type found in the errors.c file
 **	calc_statement_bytes is above.
 */
 

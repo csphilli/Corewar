@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/23 22:43:56 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:05:47 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
+
 // NOTE!!!! Is our output file extension correct? <----- READ!
 
 /*
@@ -51,8 +52,6 @@ void	leftover_labels(t_master *m)
 	append_node(&m->instrux, ins);
 }
 
-// We can create a main parser which separates out the assembler calls and the VM calls.
-
 int		main(int ac, char **av)
 {
 	t_master	*m;
@@ -65,7 +64,7 @@ int		main(int ac, char **av)
 		m->filename = av[1];
 		check_for_filename(m->filename);
 		if ((fd = open(m->filename, fd, O_RDONLY)) < 0)
-			ft_errorexit("Error on reading input file\n");
+			ft_errorexit("ERROR: Cannot read from input file.\n");
 		init_master(m);
 		get_data(m, fd);
 		if (((t_list*)&m->labels)->head)

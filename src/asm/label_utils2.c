@@ -6,11 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 13:58:00 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/23 16:50:08 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/asm.h"
+#include "asm.h"
 
 /*
 **	Similar to ft_strcat, this simply cats a char to a string
