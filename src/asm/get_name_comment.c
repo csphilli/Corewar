@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/26 08:03:09 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/28 21:43:43 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ on line ", m->line_cnt);
 
 void	new_strjoin(char **dst, char *src)
 {
-	char *tmp;
+	char *new;
 
-	tmp = *dst;
+	new = ft_strjoin(*dst, src);
 	ft_strdel(dst);
-	*dst = ft_strjoin(tmp, src);
+	*dst = new;
 }
 
 /*
