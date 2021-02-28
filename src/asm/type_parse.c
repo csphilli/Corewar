@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 12:45:57 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/28 20:57:03 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int		one_label(t_master *m, char *line)
 	i++;
 	while (line[i] != '\n' && line[i] != '\0')
 	{
-		if (line[i] != ' ' && line[i] != '\t')
+		if (line[i] == COMMENT_CHAR || line[i] == ALT_COMMENT_CHAR)
+			break ;
+		else if (line[i] != ' ' && line[i] != '\t')
 			return (0);
 		i++;
 	}
