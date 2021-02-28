@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/28 21:42:40 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/28 21:49:31 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		main(int ac, char **av)
 	fd = 0;
 	if (ac == 2)
 	{
+		printf("FILE: %s\n", av[1]);
 		m = ft_memalloc(sizeof(t_master));
 		m->filename = av[1];
 		check_for_filename(m->filename);
