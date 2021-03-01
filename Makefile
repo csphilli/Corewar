@@ -13,6 +13,7 @@
 # targets
 # NAME = asm
 ASM_EXEC = asm
+COR_EXEC = corewar
 
 # gcc settings
 CC = gcc
@@ -29,6 +30,7 @@ LINK_LIBFT = -L $(LIB_DIR) -lft
 OBJ_DIR = obj/
 TGT_DIR = $(OBJ_DIR)
 TGT_DIR += $(addprefix $(OBJ_DIR), $(ASM_DIR))
+TGT_DIR += $(addprefix $(OBJ_DIR), $(COR_DIR))
 
 # files
 SRC_DIR = src/
@@ -37,7 +39,9 @@ SRC_DIR = src/
 INC_DIR = includes/
 INC_FILES = asm_oplist.h\
 			asm.h\
-			op.h
+			op.h\
+			core.h\
+			cop.h
 
 INC_SRC = $(addprefix $(INC_DIR), $(INC_FILES))
 
@@ -79,9 +83,54 @@ ASM_SRC = $(addprefix $(ASM_DIR), $(ASM_FILES))
 ASM_CTO = $(ASM_SRC:.c=.o)
 ASM_OBJ = $(addprefix $(OBJ_DIR), $(ASM_CTO))
 
+# corewar
+COR_DIR = corewar_src/
+
+COR_FILES =     core.c\
+                core_arg_reader.c\
+                core_players.c\
+                core_players2.c\
+                core_carriage.c\
+                core_play.c\
+                core_code_handler.c\
+                core_check.c\
+                core_execute.c\
+                core_tools.c\
+                core_values.c\
+                core_dump.c\
+                c_live.c\
+                c_ld.c\
+                c_st.c\
+                c_add.c\
+                c_sub.c\
+                c_and.c\
+                c_or.c\
+                c_xor.c\
+                c_zjmp.c\
+                c_ldi.c\
+                c_sti.c\
+                c_fork.c\
+                c_lld.c\
+                c_lldi.c\
+                c_lfork.c\
+                c_aff.c\
+                n_arena.c\
+                n_cases.c\
+                n_color.c\
+                n_color2.c\
+                n_end.c\
+                n_keys.c\
+                n_print_update.c\
+                n_wait.c
+
+COR_SRC = $(addprefix $(COR_DIR), $(COR_FILES))
+
+# corewar objects
+COR_CTO = $(COR_SRC:.c=.o)
+COR_OBJ = $(addprefix $(OBJ_DIR), $(COR_CTO))
 PROG_BAR = "."
 
-all: $(ASM_EXEC)
+all: $(ASM_EXEC) $(COR_EXEC)
 
 $(TGT_DIR):
 	@mkdir -p $(TGT_DIR)
@@ -103,6 +152,12 @@ $(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(ASM_OBJ) $(INC_SRC)
 	@echo "Linking the Assembler"
 	@echo "Done!"
 
+$(COR_EXEC): $(TGT_DIR) $(LIBFT) $(COR_OBJ) $(INC_SRC)
+	@echo "\nCORE object files prepared"
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) -o $@ $(COR_OBJ) -std=c99 -lncurses
+	@echo "Linking the Corewar"
+	@echo "Done!"
+
 clean:
 	@make clean -C $(LIB_DIR)
 	@rm -rf $(OBJ_DIR)
@@ -110,6 +165,7 @@ clean:
 fclean: clean
 	@make fclean -C $(LIB_DIR)
 	@rm -rf $(ASM_EXEC)
+	@rm -rf $(COR_EXEC)
 
 re: fclean all
 
