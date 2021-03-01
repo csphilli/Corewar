@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:57:48 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/02/28 22:02:29 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ void	chk_operands(t_ins *ins, int arg)
 
 void	chk_name_comment_exists(t_champ *champ)
 {
-	if (!champ->champ_name && !champ->champ_comment)
-		ft_errorexit("ERROR: Incomplete input. Missing \
-name and/or comment\n");
+	if (!champ->champ_name)
+		ft_errorexit("ERROR: Missing champ name!\n");
+	else if (!champ->champ_comment)
+		ft_errorexit("ERROR: Missing champ comment!\n");
 }
 
 void	error_chk_labels(t_master *m)
