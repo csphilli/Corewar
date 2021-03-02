@@ -6,23 +6,20 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/25 20:27:49 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/02 12:44:45 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-// # include "libft.h"
 # include "../libft/includes/libft.h"
+# include "../ft_printf/includes/ft_printf.h"
 # include "op.h"
 # include "asm_oplist.h"
 # define PROG_NAME_LENGTH	(128)
 # define COMMENT_LENGTH		(2048)
 # define COREWAR_EXEC_MAGIC	0xea83f3
-# include <stdio.h> // remove before submission
-
-// are the correct flags in the makefile?
 
 typedef int(*t_func)(int, int);
 
