@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_st.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
+/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int	st(t_arguments args, t_carriage *carriage, t_game *game)
 		destination_reg = game->memory[pos];
 		carriage->regs[destination_reg - 1] = reg_content;
 		if (game->print)
-			printf("P %4d | st r%d %d\n", carriage->nr, reg, destination_reg);
+			ft_printf("P %4d | st r%d %d\n", carriage->nr, reg, destination_reg);
 	}
 	else
 	{
 		memory_spot = get_two(pos, game);
 		if (game->print)
-			printf("P %4d | st r%d %d\n", carriage->nr, reg, memory_spot);
+			ft_printf("P %4d | st r%d %d\n", carriage->nr, reg, memory_spot);
 		memory_spot = carriage->position + (memory_spot % IDX_MOD);
 		write_to_memory(reg_content, memory_spot, carriage, game);
 	}
