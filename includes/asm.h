@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/03/02 12:44:45 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/02 13:25:24 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void				check_for_newline(t_master *m);
 void				check_for_filename(char *filename);
 int					valid_t_dir(char *line);
 int					valid_t_ind(char *line);
-
 
 /*
 **	ENCODING FUNCTIONS
