@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_sti.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
+/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	sti(t_arguments args, t_carriage *carriage, t_game *game)
 	memory_spot = carriage->position + ((memory1 + memory2) % IDX_MOD);
 	if (game->print)
 	{
-		printf("P %4d | sti r%d %d %d\n", carriage->nr, reg, memory1, memory2);
-		printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
+		ft_printf("P %4d | sti r%d %d %d\n", carriage->nr, reg, memory1, memory2);
+		ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
 		memory1, memory2, memory1 + memory2, memory_spot);
 	}
 	write_to_memory(carriage->regs[reg - 1], memory_spot, carriage, game);

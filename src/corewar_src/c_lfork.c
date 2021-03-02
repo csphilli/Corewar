@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_lfork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
+/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		c_lfork(t_carriage *carriage, t_game *game)
 	value = get_two(position, game);
 	new_spot = carriage->position + value;
 	if (game->print)
-		printf("P %4d | lfork %d (%d)\n", carriage->nr, value, new_spot);
+		ft_printf("P %4d | lfork %d (%d)\n", carriage->nr, value, new_spot);
 	new_spot = move_pos(0, new_spot);
 	add_child_carriage(new_spot, carriage, game);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core_dump.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
+/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ int	dump_game(t_game *game)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		printf("0x%04x : ", i);
+		ft_printf("0x%04x : ", i);
 		a = 0;
 		while (a < 64)
 		{
-			printf("%02x ", game->memory[i]);
+			ft_printf("%02x ", game->memory[i]);
 			a++;
 			i++;
 		}
-		printf("\n");
+		ft_printf("\n");
 	}
 	return (0);
 }

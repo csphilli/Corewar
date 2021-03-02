@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
+/*   Updated: 2021/03/02 13:25:05 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 # include "cop.h"
 # include "../libft/includes/libft.h"
+# include "../ft_printf/includes/ft_printf.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <ncurses.h>
 
-typedef struct s_op		t_op;
+typedef struct s_op			t_op;
 typedef struct s_game		t_game;
 typedef struct s_player		t_player;
 typedef struct s_waiter		t_waiter;

@@ -6,7 +6,7 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/02/26 08:04:39 by csphilli         ###   ########.fr        #
+#    Updated: 2021/03/02 13:04:06 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,19 @@ COR_EXEC = corewar
 # gcc settings
 CC = gcc
 CFLAGS = -Wall -Wextra -Wall
-INCLUDES = -I includes/ $(LIBFT_INC)
+INCLUDES = -I includes/ $(LIBFT_INC) $(FT_PRINTF_INC)
 
 # library
-LIBFT = $(LIB_DIR)libft.a
 LIB_DIR = libft/
+LIBFT = $(LIB_DIR)libft.a
 LIBFT_INC = -I $(LIB_DIR)includes/
 LINK_LIBFT = -L $(LIB_DIR) -lft
+
+# ft_printf
+FT_PRINTF_DIR = ft_printf/
+FT_PRINTF = $(FT_PRINTF_DIR)libft_printf.a
+FT_PRINTF_INC = -I $(FT_PRINTF_DIR)includes/
+LINK_FT_PRINTF = -L $(FT_PRINTF_DIR) -lft_printf
 
 # object directories
 OBJ_DIR = obj/
@@ -128,42 +134,46 @@ COR_SRC = $(addprefix $(COR_DIR), $(COR_FILES))
 # corewar objects
 COR_CTO = $(COR_SRC:.c=.o)
 COR_OBJ = $(addprefix $(OBJ_DIR), $(COR_CTO))
-PROG_BAR = "."
 
 all: $(ASM_EXEC) $(COR_EXEC)
 
-$(TGT_DIR):
+$(TGT_DIR): $(SUBMODS)
 	@mkdir -p $(TGT_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+	@echo "#\c"
 
-$(LIBFT):
+$(SUBMODS):
 	@if git submodule status | egrep -q '^[-]' ; then \
 	echo "INFO: Initializing git submodules"; \
 	git submodule update --init --recursive; \
-	fi
+	fi	
+
+$(LIBFT):
 	@make -C $(LIB_DIR)
-	@echo "Compiling into object files"
 
-$(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(ASM_OBJ) $(INC_SRC) 
-	@echo "ASM object files prepared"
-	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) -o $@ $(ASM_OBJ)
-	@echo "Linking the Assembler"
-	@echo "Done!"
+$(FT_PRINTF):
+	@make -C $(FT_PRINTF_DIR)
 
-$(COR_EXEC): $(TGT_DIR) $(LIBFT) $(COR_OBJ) $(INC_SRC)
-	@echo "\nCORE object files prepared"
-	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) -o $@ $(COR_OBJ) -std=c99 -lncurses
-	@echo "Linking the Corewar"
-	@echo "Done!"
+$(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(FT_PRINTF) $(ASM_OBJ) $(INC_SRC)
+	@echo "\nASM files compiled"
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) $(LINK_FT_PRINTF) -o $@ $(ASM_OBJ)
+	@echo "Done linking ASM\n"
+
+$(COR_EXEC): $(TGT_DIR) $(LIBFT) $(FT_PRINTF) $(COR_OBJ) $(INC_SRC)
+	@echo "\nCOREWAR files compiled"
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) $(LINK_FT_PRINTF) -o $@ $(COR_OBJ) -std=c99 -lncurses
+	@echo "Done linking COREWAR!"
 
 clean:
 	@make clean -C $(LIB_DIR)
+	@make clean -C $(FT_PRINTF_DIR)
 	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@make fclean -C $(LIB_DIR)
+	@make fclean -C $(FT_PRINTF_DIR)
 	@rm -rf $(ASM_EXEC)
 	@rm -rf $(COR_EXEC)
 
