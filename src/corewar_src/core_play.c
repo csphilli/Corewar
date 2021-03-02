@@ -16,7 +16,7 @@ void	read_new_instruction(t_carriage *carriage, t_game *game)
 {
 	int		instruction;
 
-	instruction = game->memory[carriage->position];
+	instruction = game->memory[carriage->pc];
 	if (instruction >= 1 && instruction <= 16)
 	{
 		carriage->cur_instr = instruction;
@@ -25,25 +25,25 @@ void	read_new_instruction(t_carriage *carriage, t_game *game)
 	else
 	{
 		if (game->visual)
-			normal(0, carriage->position, game);
+			normal(0, carriage->pc, game);
 		carriage->cur_instr = -1;
-		carriage->position = move_pos(1, carriage->position);
+		carriage->pc = move_pos(1, carriage->pc);
 	}
 	if (game->visual)
 	{
 		if (instruction == 1)
-			live_col(carriage->position, game);
+			live_col(carriage->pc, game);
 		else
-			car_col(carriage->position, game);
+			car_col(carriage->pc, game);
 	}
 }
 
 int		handle_instruction(t_carriage *carr, t_game *game)
 {
 	if (game->visual)
-		normal(0, carr->position, game);
-	check_and_execute_args(carr->cur_instr, carr, carr->position, game);
-	carr->position = move_pos(carr->to_next, carr->position);
+		normal(0, carr->pc, game);
+	check_and_execute_args(carr->cur_instr, carr, carr->pc, game);
+	carr->pc = move_pos(carr->to_next, carr->pc);
 	carr->cur_instr = -1;
 	return (0);
 }
@@ -102,7 +102,6 @@ int		play(t_game *game)
 		if (game->cycles == game->dump_cycle)
 		{
 			dump_game(game);
-			system("leaks corewar");
 			exit(0);
 		}
 	}

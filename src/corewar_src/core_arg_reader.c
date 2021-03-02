@@ -15,24 +15,23 @@
 int	arg_error(int error)
 {
 	if (error == 1)
-		ft_putstr("-dump N too large\n");
+		ft_putstr_fd("-dump N too large\n", 2);
 	else if (error == 2)
-		ft_putstr("Error: -dump N not a valid number\n");
+		ft_putstr_fd("Error: -dump N not a valid number\n", 2);
 	else if (error == 3)
-		ft_putstr("Error: -n flag\n");
+		ft_putstr_fd("Error: -n flag\n", 2);
 	else if (error == 4)
-		ft_putstr("Error: player number taken\n");
+		ft_putstr_fd("Error: player number taken\n", 2);
 	else if (error == 5)
-		ft_putstr("\nError: -dump has no number\n");
+		ft_putstr_fd("\nError: -dump has no number\n", 2);
 	else if (error == 6)
 	{
-		ft_putstr("Error: max ");
-		ft_putnbr(MAX_PLAYERS);
-		ft_putstr(" players\n");
+		ft_putstr_fd("Error: max ", 2);
+		ft_putnbr_fd(MAX_PLAYERS, 2);
+		ft_putstr_fd(" players\n", 2);
 	}
 	else if (error == 7)
-		ft_putstr("Error: -dump and -p flags not to be used with -v\n");
-	system("leaks corewar");
+		ft_putstr_fd("Error: -dump and -p flags not to be used with -v\n", 2);
 	exit(0);
 }
 

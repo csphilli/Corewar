@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_xor.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
+/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	xor(t_arguments args, t_carriage *carriage, t_game *game)
 	int	reg;
 	int	pos;
 
-	pos = move_pos(2, carriage->position);
+	pos = move_pos(2, carriage->pc);
 	value1 = get_value(args.arg[0], pos, carriage, game);
 	pos = move_pos(arg_len(args.arg[0], 4), pos);
 	value2 = get_value(args.arg[1], pos, carriage, game);

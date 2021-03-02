@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_zjmp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
+/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	zjmp(t_carriage *carriage, t_game *game)
 	int	position;
 	int	value;
 
-	position = move_pos(1, carriage->position);
+	position = move_pos(1, carriage->pc);
 	value = get_two(position, game);
 	if (game->print)
 		ft_printf("P %4d | zjmp %d ", carriage->nr, value);

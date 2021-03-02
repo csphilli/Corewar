@@ -29,7 +29,7 @@ int	ind_value(int pos, t_carriage *carriage, t_game *game)
 	int	new_position;
 
 	jump = get_two(pos, game);
-	new_position = carriage->position + (jump % IDX_MOD);
+	new_position = carriage->pc + (jump % IDX_MOD);
 	new_position = move_pos(0, new_position);
 	value = get_four(new_position, game);
 	return (value);
@@ -42,29 +42,29 @@ int	ind_value_no_mod(int pos, t_carriage *carriage, t_game *game)
 	int	new_position;
 
 	jump = get_two(pos, game);
-	new_position = carriage->position + jump;
+	new_position = carriage->pc + jump;
 	new_position = move_pos(0, new_position);
 	value = get_four(new_position, game);
 	return (value);
 }
 
-int	get_value(int arg_type, int pos, t_carriage *carriage, t_game *game)
+int	get_value(int arg_type, int pos, t_carriage *car, t_game *game)
 {
 	int	instr;
 
 	if (arg_type == T_REG)
-		return (reg_value(pos, carriage, game));
+		return (reg_value(pos, car, game));
 	if (arg_type == T_IND)
 	{
-		instr = carriage->cur_instr;
+		instr = car->cur_instr;
 		if (instr == 2 || instr == 10 || instr == 11)
-			return (ind_value(pos, carriage, game));
+			return (ind_value(pos, car, game));
 		else
-			return (ind_value_no_mod(pos, carriage, game));
+			return (ind_value_no_mod(pos, car, game));
 	}
 	else
 	{
-		if (g_op_tab[carriage->cur_instr - 1].dir_bytes == 1)
+		if (g_op_tab[car->cur_instr - 1].dir_bytes == 1)
 			return (get_two(pos, game));
 		else
 			return (get_four(pos, game));

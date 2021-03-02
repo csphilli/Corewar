@@ -40,7 +40,7 @@ int		first_carriages(t_game *game)
 		newcarriage->cur_instr = 0;
 		newcarriage->last_live_cycle = game->cycles;
 		newcarriage->wait = 0;
-		newcarriage->position = game->playerlist[i - 1]->start;
+		newcarriage->pc = game->playerlist[i - 1]->start;
 		newcarriage->to_next = 0;
 		fill_registries(i, newcarriage);
 		newcarriage->col = i * 10;
@@ -54,7 +54,7 @@ int		first_carriages(t_game *game)
 	return (0);
 }
 
-int		add_child_carriage(int position, t_carriage *father, t_game *game)
+int		add_child_carriage(int position, t_carriage *old_car, t_game *game)
 {
 	int			a;
 	t_carriage	*newcarriage;
@@ -62,16 +62,16 @@ int		add_child_carriage(int position, t_carriage *father, t_game *game)
 
 	newcarriage = (t_carriage*)malloc(sizeof(t_carriage));
 	newcarriage->nr = game->carr_count + 1;
-	newcarriage->carry = father->carry;
-	newcarriage->last_live_cycle = father->last_live_cycle;
+	newcarriage->carry = old_car->carry;
+	newcarriage->last_live_cycle = old_car->last_live_cycle;
 	newcarriage->wait = 0;
-	newcarriage->position = position;
-	newcarriage->col = father->col;
+	newcarriage->pc = position;
+	newcarriage->col = old_car->col;
 	newcarriage->to_next = 0;
 	a = 0;
 	while (a < REG_NUMBER)
 	{
-		newcarriage->regs[a] = father->regs[a];
+		newcarriage->regs[a] = old_car->regs[a];
 		a++;
 	}
 	temp = game->carriages;

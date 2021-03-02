@@ -18,7 +18,7 @@ void	n_start_game(t_game *game)
 
 	initscr();
 	timeout(1);
-	n_init_colors(game);
+	n_init_colors();
 	n_draw_arena(game);
 	n_print_arena(game);
 	refresh();
@@ -31,7 +31,6 @@ void	n_start_game(t_game *game)
 		if (c == 'q')
 		{
 			endwin();
-			system("leaks corewar");
 			exit(0);
 		}
 	}
@@ -47,11 +46,7 @@ int		n_slow_case(t_game *game)
 	n_update_player_stats(game);
 	refresh();
 	c = getch();
-	if (n_keys(c, game) == 1)
-	{
-		endwin();
-		exit(0);
-	}
+	n_keys(c, game);
 	napms(game->speed);
 	return (0);
 }
@@ -65,11 +60,7 @@ int		n_fast_case(t_game *game)
 	n_update_player_stats(game);
 	refresh();
 	c = getch();
-	if (n_keys(c, game) == 1)
-	{
-		endwin();
-		exit(0);
-	}
+	n_keys(c, game);
 	if (game->speed == 0)
 		napms(2 + game->carrs_alive % 1000);
 	if (game->speed == -10)

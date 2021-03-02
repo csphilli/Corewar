@@ -16,22 +16,27 @@ int	player_error(char *arg, int error)
 {
 	if (error == 0)
 	{
-		ft_putstr("Error: can't read player \"");
-		ft_putstr(arg);
-		ft_putstr("\"\n");
+		ft_putstr_fd("Error: can't read player \"", 2);
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd("\"\n", 2);
 	}
+	else if (error == 6)
+		ft_putstr_fd("Error: a never ending battle\n", 2);
 	else
 	{
-		ft_putstr("Error: File ");
-		ft_putstr(arg);
+		ft_putstr_fd("Error: File ", 2);
+		ft_putstr_fd(arg, 2);
 		if (error == 1)
-			ft_putstr(" has an invalid header\n");
+			ft_putstr_fd(" has an invalid header\n", 2);
 		else if (error == 2)
-			ft_putstr(": name is too long");
+			ft_putstr_fd(": name is too long\n", 2);
 		else if (error == 3)
-			ft_putstr(": comment is too long");
+			ft_putstr_fd(": comment is too long\n", 2);
+		else if (error == 4)
+			ft_putstr_fd(" is too small to be a champion\n", 2);
+		else if (error == 5)
+			ft_putstr_fd(": code size different from what header says\n", 2);
 	}
-	system("leaks corewar");
 	exit(0);
 }
 

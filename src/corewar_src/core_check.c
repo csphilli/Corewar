@@ -15,7 +15,7 @@
 void	remove_car(t_carriage *last, t_carriage *temp, t_game *game)
 {
 	if (game->visual)
-		normal(1, temp->position, game);
+		normal(1, temp->pc, game);
 	if (last)
 		last->next = temp->next;
 	else
@@ -62,6 +62,8 @@ int		reset_player_lives(t_game *game)
 
 int		check(t_game *game)
 {
+	if (game->cycles >= 2147483000 - CYCLE_TO_DIE)
+		return (player_error(NULL, 6));
 	remove_dead_carriages(game);
 	if (game->lives >= NBR_LIVE)
 	{

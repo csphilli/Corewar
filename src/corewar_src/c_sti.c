@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_sti.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
+/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,17 @@ int	sti(t_arguments args, t_carriage *carriage, t_game *game)
 	int	memory_spot;
 	int	pos;
 
-	pos = move_pos(2, carriage->position);
+	pos = move_pos(2, carriage->pc);
 	reg = game->memory[pos];
-	pos = move_pos(3, carriage->position);
+	pos = move_pos(3, carriage->pc);
 	memory1 = get_value(args.arg[1], pos, carriage, game);
 	pos = move_pos(arg_len(args.arg[1], 2), pos);
 	memory2 = get_value(args.arg[2], pos, carriage, game);
-	memory_spot = carriage->position + ((memory1 + memory2) % IDX_MOD);
+	memory_spot = carriage->pc + ((memory1 + memory2) % IDX_MOD);
 	if (game->print)
 	{
-		ft_printf("P %4d | sti r%d %d %d\n", carriage->nr, reg, memory1, memory2);
+		ft_printf("P %4d | sti r%d %d %d\n",
+		carriage->nr, reg, memory1, memory2);
 		ft_printf("       | -> store to %d + %d = %d (with pc and mod %d)\n",
 		memory1, memory2, memory1 + memory2, memory_spot);
 	}

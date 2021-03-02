@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_add.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
+/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int	add(t_carriage *carriage, t_game *game)
 	int	reg3;
 	int	pos;
 
-	pos = move_pos(2, carriage->position);
+	pos = move_pos(2, carriage->pc);
 	reg1 = game->memory[pos];
-	pos = move_pos(3, carriage->position);
+	pos = move_pos(3, carriage->pc);
 	reg2 = game->memory[pos];
-	pos = move_pos(4, carriage->position);
+	pos = move_pos(4, carriage->pc);
 	reg3 = game->memory[pos];
 	value = carriage->regs[reg1 - 1] + carriage->regs[reg2 - 1];
 	carriage->regs[reg3 - 1] = value;

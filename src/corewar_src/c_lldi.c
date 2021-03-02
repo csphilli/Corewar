@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   c_lldi.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
+/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,23 @@
 int	lldi(t_arguments args, t_carriage *carriage, t_game *game)
 {
 	int	reg;
-	int	memory1;
-	int	memory2;
+	int	mem1;
+	int	mem2;
 	int	memory_spot;
 	int	pos;
 
-	pos = move_pos(2, carriage->position);
-	memory1 = get_value(args.arg[0], pos, carriage, game);
+	pos = move_pos(2, carriage->pc);
+	mem1 = get_value(args.arg[0], pos, carriage, game);
 	pos = move_pos(arg_len(args.arg[0], 2), pos);
-	memory2 = get_value(args.arg[1], pos, carriage, game);
+	mem2 = get_value(args.arg[1], pos, carriage, game);
 	pos = move_pos(arg_len(args.arg[1], 2), pos);
-	memory_spot = carriage->position + memory1 + memory2;
+	memory_spot = carriage->pc + mem1 + mem2;
 	reg = game->memory[pos];
 	if (game->print)
 	{
-		ft_printf("P %4d | lldi %d %d r%d\n", carriage->nr, memory1, memory2, reg);
+		ft_printf("P %4d | lldi %d %d r%d\n", carriage->nr, mem1, mem2, reg);
 		ft_printf("       | -> load from %d + %d = %d (with pc %d)\n",
-		memory1, memory2, memory1 + memory2, memory_spot);
+		mem1, mem2, mem1 + mem2, memory_spot);
 	}
 	memory_spot = get_four(move_pos(0, memory_spot), game);
 	carriage->regs[reg - 1] = memory_spot;
