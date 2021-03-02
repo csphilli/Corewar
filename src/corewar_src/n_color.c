@@ -37,7 +37,7 @@ void	n_init_color_pairs(void)
 	init_pair(22, COLOR_RED, COLOR_BLACK);
 }
 
-void	n_init_colors(t_game *game)
+void	n_init_colors(void)
 {
 	if (has_colors())
 	{
@@ -52,16 +52,16 @@ void	n_init_colors(t_game *game)
 		}
 		else
 		{
-			addstr("Cannot start colours\n");
-			game->visual = 0;
-			refresh();
+			endwin();
+			ft_putstr_fd("Cannot start colours\n", 2);
+			exit(0);
 		}
 	}
 	else
 	{
-		addstr("Not colour capable\n");
-		game->visual = 0;
-		refresh();
+		endwin();
+		ft_putstr_fd("Not colour capable\n", 2);
+		exit(0);
 	}
 }
 

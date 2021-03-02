@@ -44,7 +44,7 @@ int	comment(char *arg, unsigned char *buf, t_player *player)
 	return (0);
 }
 
-int	code(unsigned char *buf, size_t file_size, int player_nr, t_game *game)
+int	code(unsigned char *buf, size_t file_size, int pl_nr, t_game *game)
 {
 	size_t	i;
 	int		start;
@@ -52,17 +52,17 @@ int	code(unsigned char *buf, size_t file_size, int player_nr, t_game *game)
 
 	i = PROG_NAME_LENGTH + COMMENT_LENGTH + 16;
 	meazure = 0;
-	start = MEM_SIZE / game->players * (player_nr);
-	game->playerlist[player_nr]->start = start;
-	while (meazure < game->playerlist[player_nr]->size && i < file_size)
+	start = MEM_SIZE / game->players * (pl_nr);
+	game->playerlist[pl_nr]->start = start;
+	while (meazure < game->playerlist[pl_nr]->size && i < file_size)
 	{
 		game->memory[start] = buf[i];
-		game->cols[start] = player_nr + 1;
+		game->cols[start] = pl_nr + 1;
 		start++;
 		meazure++;
 		i++;
 	}
-	return (0);
+	return (meazure);
 }
 
 int	size(char *arg, unsigned char *buf, t_player *player)
@@ -75,13 +75,13 @@ int	size(char *arg, unsigned char *buf, t_player *player)
 		(buf[spot + 2] << 8) | (buf[spot + 3]);
 	if (value > CHAMP_MAX_SIZE)
 	{
-		ft_putstr("Error: File ");
-		ft_putstr(arg);
-		ft_putstr(" has too large a code (");
-		ft_putnbr(value);
-		ft_putstr(" bytes > ");
-		ft_putnbr(CHAMP_MAX_SIZE);
-		ft_putstr(" bytes)\n");
+		ft_putstr_fd("Error: File ", 2);
+		ft_putstr_fd(arg, 2);
+		ft_putstr_fd(" has too large a code (", 2);
+		ft_putnbr_fd(value, 2);
+		ft_putstr_fd(" bytes > ", 2);
+		ft_putnbr_fd(CHAMP_MAX_SIZE, 2);
+		ft_putstr_fd(" bytes)\n", 2);
 		exit(0);
 	}
 	else if (value < 0)
@@ -107,7 +107,11 @@ int	get_player(int player_nr, char *arg, t_game *game)
 	name(arg, &buf[4], game->playerlist[player_nr]);
 	comment(arg, &buf[PROG_NAME_LENGTH + 12], game->playerlist[player_nr]);
 	size(arg, buf, game->playerlist[player_nr]);
-	code(buf, file_size, player_nr, game);
+	if (code(buf, file_size, player_nr, game) < 1)
+		return (player_error(arg, 4));
+	if (code(buf, file_size, player_nr, game) !=
+		game->playerlist[player_nr]->size)
+		return (player_error(arg, 5));
 	game->playerlist[player_nr]->color = player_nr + 1;
 	game->playerlist[player_nr]->last_live = 0;
 	game->playerlist[player_nr]->lives = 0;

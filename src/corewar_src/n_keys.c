@@ -46,7 +46,6 @@ int		n_pause(t_game *game)
 		{
 			printw("\r                                \r");
 			n_end_game(game);
-			return (1);
 		}
 		if (c == 'a' || c == 'd')
 		{

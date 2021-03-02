@@ -85,6 +85,7 @@ void	n_winner_message(int row, int col, t_player *winner)
 		refresh();
 		napms(50);
 	}
+	printw("\"");
 }
 
 void	n_end_game(t_game *game)
@@ -105,7 +106,6 @@ void	n_end_game(t_game *game)
 	move(row += 0, col += 54);
 	printw("\"");
 	n_winner_message(row, col, winner);
-	printw("\"");
 	while (1)
 	{
 		c = getch();
@@ -113,4 +113,6 @@ void	n_end_game(t_game *game)
 		if (c == 'q')
 			break ;
 	}
+	endwin();
+	exit(0);
 }

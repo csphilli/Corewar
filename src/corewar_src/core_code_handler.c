@@ -79,7 +79,7 @@ int	is_valid_args(int code, t_arguments args, t_carriage *car, t_game *game)
 	int	jump;
 	int	pos;
 
-	pos = move_pos(1 + g_op_tab[code - 1].acb, car->position);
+	pos = move_pos(1 + g_op_tab[code - 1].acb, car->pc);
 	valid_code = 1;
 	car->to_next = 1 + g_op_tab[code - 1].acb;
 	i = 0;

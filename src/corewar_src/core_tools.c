@@ -59,7 +59,7 @@ int		move_pos(int steps, int pos)
 	return (pos);
 }
 
-void	write_to_memory(int value, int pos, t_carriage *carriage, t_game *game)
+void	write_to_memory(int value, int pos, t_carriage *car, t_game *game)
 {
 	unsigned char			res;
 	int						i;
@@ -71,7 +71,7 @@ void	write_to_memory(int value, int pos, t_carriage *carriage, t_game *game)
 		res = value >> i;
 		game->memory[pos] = res;
 		if (game->visual)
-			highlight(pos, carriage, game);
+			highlight(pos, car, game);
 		pos = move_pos(1, pos);
 		i -= 8;
 	}
