@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/02/28 21:49:31 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/02 12:46:23 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		main(int ac, char **av)
 	fd = 0;
 	if (ac == 2)
 	{
-		printf("FILE: %s\n", av[1]);
+		ft_printf("FILE: %s\n", av[1]);
 		m = ft_memalloc(sizeof(t_master));
 		m->filename = av[1];
 		check_for_filename(m->filename);
@@ -75,7 +75,7 @@ int		main(int ac, char **av)
 		label_calcs(m);
 		encode_asm(m);
 		write_to_file(m);
-		// printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
+		// ft_printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
 		// 	m->champ->champ_comment);
 		// display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
 
