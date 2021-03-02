@@ -6,7 +6,7 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/03/02 12:29:49 by csphilli         ###   ########.fr        #
+#    Updated: 2021/03/02 13:04:06 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,6 @@ all: $(ASM_EXEC) $(COR_EXEC)
 
 $(TGT_DIR): $(SUBMODS)
 	@mkdir -p $(TGT_DIR)
-
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
