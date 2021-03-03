@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   encoding.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:16:36 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/26 08:01:40 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/01 17:28:29 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	calc_encoded_size(t_master *m)
 
 /*
 **	champ calculations are done to place the champ size in the correct place
-**	it has 4 bytes to use and has to be left-justified (e.g. 00 00 00 16)
+**	it has 4 bytes to use and has to be right-justified (e.g. 00 00 00 16)
 **	if the champ size is 0x1F4 bytes in hex (500 in dec), champ offset is 1
 **	and as the remainder from champ nbr_size is not divisible by 2 it
 **	gets incresed by one
