@@ -1,7 +1,7 @@
 .DS_Store
 *.pdf
 tester
-corewar
+/corewar
 champs/examples/*.s
 champs/examples/*.cor
 champs/*.s
@@ -12,3 +12,5 @@ champs/*.cor
 asmtest
 *.zip
 /eval_tests
+obj
+/asm
