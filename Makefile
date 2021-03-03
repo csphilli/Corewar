@@ -6,7 +6,7 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/03/02 19:42:43 by csphilli         ###   ########.fr        #
+#    Updated: 2021/03/03 15:56:23 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -144,9 +144,8 @@ $(TGT_DIR):
 		git submodule update --init --recursive; \
 	fi	
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
-	@echo "#\c"
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_SRC)
+	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<	
 
 $(LIBFT):
 	@make -C $(LIB_DIR)
@@ -154,12 +153,12 @@ $(LIBFT):
 $(FT_PRINTF):
 	@make -C $(FT_PRINTF_DIR)
 
-$(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(FT_PRINTF) $(ASM_OBJ) $(INC_SRC)
+$(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(FT_PRINTF) $(ASM_OBJ)
 	@echo "\nASM files compiled"
 	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) $(LINK_FT_PRINTF) -o $@ $(ASM_OBJ)
 	@echo "Done linking ASM\n"
 
-$(COR_EXEC): $(TGT_DIR) $(LIBFT) $(FT_PRINTF) $(COR_OBJ) $(INC_SRC)
+$(COR_EXEC): $(TGT_DIR) $(LIBFT) $(FT_PRINTF) $(COR_OBJ)
 	@echo "\nCOREWAR files compiled"
 	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) $(LINK_FT_PRINTF) -o $@ $(COR_OBJ) -std=c99 -lncurses
 	@echo "Done linking COREWAR!"
