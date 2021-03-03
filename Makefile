@@ -6,7 +6,7 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/03/03 15:56:23 by csphilli         ###   ########.fr        #
+#    Updated: 2021/03/03 15:59:44 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,7 +145,8 @@ $(TGT_DIR):
 	fi	
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_SRC)
-	$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<	
+	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
+	@echo "#\c"
 
 $(LIBFT):
 	@make -C $(LIB_DIR)
