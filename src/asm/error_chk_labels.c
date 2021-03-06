@@ -6,11 +6,15 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:57:48 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/28 22:02:29 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:26:47 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	chk_single_plus just validates a single '+' in an argument.
+*/
 
 void	chk_single_plus(t_ins *ins, int arg)
 {
@@ -38,6 +42,10 @@ void	chk_single_plus(t_ins *ins, int arg)
 	}
 }
 
+/*
+**	Checks for erroneous and incorrect % placement
+*/
+
 void	chk_pcent(t_ins *ins, int arg)
 {
 	int		i;
@@ -58,6 +66,11 @@ void	chk_pcent(t_ins *ins, int arg)
 		cnt > 0))
 		ft_error_line("ERROR: Invalid '%' on line ", ins->line);
 }
+
+/*
+**	Checks for multiple +/- opertions. For example, 5+-5 will error
+**	Multiplication and division are not permitted
+*/
 
 void	chk_operands(t_ins *ins, int arg)
 {
@@ -87,7 +100,11 @@ void	chk_name_comment_exists(t_champ *champ)
 		ft_errorexit("ERROR: Missing champ comment!\n");
 }
 
-void	error_chk_labels(t_master *m)
+/*
+**	Parsing function to check multiple errors within instructions
+*/
+
+void	error_chk_instructions(t_master *m)
 {
 	t_node	*tmp;
 	t_ins	*ins;
@@ -95,6 +112,7 @@ void	error_chk_labels(t_master *m)
 
 	tmp = ((t_list*)&m->instrux)->head;
 	chk_name_comment_exists(m->champ);
+	label_dup_chk(m);
 	while (tmp)
 	{
 		i = 0;
