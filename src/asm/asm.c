@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/03/06 08:59:47 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:27:24 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		main(int ac, char **av)
 		if (((t_list*)&m->labels)->head)
 			leftover_labels(m);
 		handle_labels(m);
-		error_chk_labels(m);
+		error_chk_instructions(m);
 		label_calcs(m);
 		encode_asm(m);
 		write_to_file(m);
