@@ -6,13 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 13:29:34 by cphillip          #+#    #+#             */
-/*   Updated: 2021/03/02 12:46:23 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/06 08:59:47 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-// NOTE!!!! Is our output file extension correct? <----- READ!
 
 /*
 **	Initializes the master struct.
@@ -60,7 +58,7 @@ int		main(int ac, char **av)
 	fd = 0;
 	if (ac == 2)
 	{
-		ft_printf("FILE: %s\n", av[1]);
+		ft_printf("FILE: %s\n", av[1]); // using for testing
 		m = ft_memalloc(sizeof(t_master));
 		m->filename = av[1];
 		check_for_filename(m->filename);
@@ -75,13 +73,9 @@ int		main(int ac, char **av)
 		label_calcs(m);
 		encode_asm(m);
 		write_to_file(m);
-		// ft_printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
-		// 	m->champ->champ_comment);
-		// display_list(&m->instrux, (t_display)(print_instrux_list)); // not needed once asm complete.
-
+		debug(m);
 	}
 	else
 		ft_error("Error. Usage: ./asm [filename.s]\n");
-	// system("leaks asm"); // Leaks checker
 	return (0);
 }

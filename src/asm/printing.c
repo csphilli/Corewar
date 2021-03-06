@@ -6,13 +6,11 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 20:47:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/03/02 12:40:00 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/06 08:58:39 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-// ft_printf needs to be removed!
 
 void	print_arg_type(int id)
 {
@@ -46,7 +44,7 @@ void	print_instrux_list(t_ins *ins)
 	ft_printf("\tArgCnt: %d\n\tt_dir_size: %d\n\targ_type_code: %d\n", \
 		ins->arg_count, ins->t_dir_size, ins->arg_type_code);
 	ft_printf("\tLine: %d\n", ins->line);
-	ft_printf(GRN"\tARGUMENTS\n"RESET);
+	ft_printf(BMAG"\tARGUMENTS\n"RESET);
 	ft_printf("\t%-20s%-20s%-20s\n", "TYPE", "VALUE", "ORIG VALUE");
 	while (i < ins->arg_count)
 	{
@@ -55,4 +53,25 @@ void	print_instrux_list(t_ins *ins)
 		i++;
 	}
 	write(1, "\n", 1);
+}
+
+/*
+**	Basic debugger which will print out champ name and comment and all
+**	instructions with respective information.
+**	NOTE! The flag of this is manual so just change to 1 to enable. Didn't
+**	want to include flag parsing in this program simply for this.
+*/
+
+void	debug(t_master *m)
+{
+	int	debug_flag;
+
+	debug_flag = 0;
+	if (debug_flag == 1)
+	{
+		ft_printf("NAME: >%s<\nCOMMENT: >%s<\n", m->champ->champ_name,\
+			m->champ->champ_comment);
+		display_list(&m->instrux, (t_display)(print_instrux_list));
+		system("leaks asm");
+	}
 }
