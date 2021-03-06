@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:57:48 by csphilli          #+#    #+#             */
-/*   Updated: 2021/03/06 09:26:47 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:35:47 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ void	chk_name_comment_exists(t_champ *champ)
 }
 
 /*
-**	Parsing function to check multiple errors within instructions
+**	Parsing function to check multiple errors within instructions.
+**	All functions except label_dup_chk are above.
+**	label_dup_chk is in the duplicate_label_chk.c file.
 */
 
 void	error_chk_instructions(t_master *m)
