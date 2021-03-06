@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:38:23 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void	pre_split(char **line)
 	*line = new;
 }
 
+/*
+**	validates a T_REG argument
+*/
+
 int		valid_reg_def(char *line)
 {
 	int	i;
@@ -62,6 +66,10 @@ int		valid_reg_def(char *line)
 		return (1);
 	return (0);
 }
+
+/*
+**	validates a T_DIR argument
+*/
 
 int		valid_t_dir(char *line)
 {
@@ -89,6 +97,10 @@ int		valid_t_dir(char *line)
 	}
 	return (1);
 }
+
+/*
+**	validates a T_IND argument
+*/
 
 int		valid_t_ind(char *line)
 {
