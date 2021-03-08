@@ -54,6 +54,13 @@ int		first_carriages(t_game *game)
 	return (0);
 }
 
+int		check_limit(t_game *game)
+{
+	if (game->carr_count == 2147483647)
+		end_too_large(game);
+	return (0);
+}
+
 int		add_child_carriage(int position, t_carriage *old_car, t_game *game)
 {
 	int			a;
@@ -79,5 +86,6 @@ int		add_child_carriage(int position, t_carriage *old_car, t_game *game)
 	newcarriage->next = temp;
 	game->carr_count++;
 	game->carrs_alive++;
+	check_limit(game);
 	return (0);
 }

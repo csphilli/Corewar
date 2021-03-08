@@ -34,8 +34,10 @@ int	init_game(int argc, t_game *game)
 	game->waiters = NULL;
 	game->dump_cycle = -1;
 	game->print = 0;
+	game->live_print = 0;
+	game->aff = 0;
 	game->visual = 0;
-	game->speed = 0;
+	game->speed = 31;
 	return (0);
 }
 
@@ -47,6 +49,8 @@ int	print_usage(void)
 	ft_putstr("\n\t-dump N\t\t: Dump memory after N cycles and exit\n");
 	ft_putstr("\t-n N\t\t: Set the number of the next player\n");
 	ft_putstr("\t-p\t\t: Show operations\n");
+	ft_putstr("\t-a\t\t: Show aff output (hidden by default)\n");
+	ft_putstr("\t-l\t\t: Show live executions\n");
 	ft_putstr("\t-v\t\t: Visual mode\n");
 	exit(0);
 }
@@ -54,15 +58,15 @@ int	print_usage(void)
 int	announce_winner(t_game *game)
 {
 	if (game->print)
-		ft_printf("Player %d (%s) won\n", -game->last_alive,
+		printf("Player %d (%s) won\n", -game->last_alive,
 		game->playerlist[-(game->last_alive + 1)]->name);
 	else
 	{
-		ft_putstr("Player ");
-		ft_putnbr(-game->last_alive);
-		ft_putstr(" (");
-		ft_putstr(game->playerlist[-(game->last_alive + 1)]->name);
-		ft_putstr(") won\n");
+		ft_putstr_fd("Player ", 1);
+		ft_putnbr_fd(-game->last_alive, 1);
+		ft_putstr_fd(" (", 1);
+		ft_putstr_fd(game->playerlist[-(game->last_alive + 1)]->name, 1);
+		ft_putstr_fd(") won\n", 1);
 	}
 	return (0);
 }

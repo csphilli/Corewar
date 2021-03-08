@@ -12,7 +12,7 @@
 
 #include "../../includes/core.h"
 
-void	n_start_game(t_game *game)
+void		n_start_game(t_game *game)
 {
 	int c;
 
@@ -37,7 +37,7 @@ void	n_start_game(t_game *game)
 	printw("\r     \r");
 }
 
-int		n_slow_case(t_game *game)
+int			n_slow_case(t_game *game)
 {
 	int c;
 
@@ -51,7 +51,7 @@ int		n_slow_case(t_game *game)
 	return (0);
 }
 
-int		n_fast_case(t_game *game)
+int			n_fast_case(t_game *game)
 {
 	int c;
 
@@ -68,4 +68,42 @@ int		n_fast_case(t_game *game)
 	if (game->speed == -20)
 		napms(0);
 	return (0);
+}
+
+t_n_writer	n_print_box2(char *str, t_n_writer writer)
+{
+	if (str[writer.cur] == '\n')
+	{
+		printw(" / ");
+		writer.len += 2;
+	}
+	else
+		printw("%c", str[writer.cur]);
+	if (str[writer.cur] == '\t')
+		writer.len += 3;
+	writer.len++;
+	writer.cur++;
+	return (writer);
+}
+
+int			print_box(t_n_coor spot, int size, int speed, char *str)
+{
+	t_n_writer writer;
+
+	writer.cur = 0;
+	writer.len = 0;
+	writer.rows = 0;
+	while (str[writer.cur] != '\0')
+	{
+		writer = n_print_box2(str, writer);
+		if (writer.len >= size)
+		{
+			move(spot.row += 1, spot.col += 0);
+			writer.len = 0;
+			writer.rows++;
+		}
+		refresh();
+		napms(speed);
+	}
+	return (writer.rows);
 }

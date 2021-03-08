@@ -60,10 +60,15 @@ int		reset_player_lives(t_game *game)
 	return (0);
 }
 
+int		end_too_large(t_game *game)
+{
+	if (game->visual)
+		endwin();
+	return (arg_error(8));
+}
+
 int		check(t_game *game)
 {
-	if (game->cycles >= 2147483000 - CYCLE_TO_DIE)
-		return (player_error(NULL, 6));
 	remove_dead_carriages(game);
 	if (game->lives >= NBR_LIVE)
 	{
