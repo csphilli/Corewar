@@ -20,13 +20,26 @@
 # include <unistd.h>
 # include <ncurses.h>
 
-# define LIVE 0
-
+typedef struct s_n_writer	t_n_writer;
+typedef struct s_n_coor		t_n_coor;
 typedef struct s_game		t_game;
 typedef struct s_player		t_player;
 typedef struct s_waiter		t_waiter;
 typedef struct s_carriage	t_carriage;
 typedef struct s_arguments	t_arguments;
+
+struct		s_n_writer
+{
+	int		cur;
+	int		len;
+	int		rows;
+};
+
+struct		s_n_coor
+{
+	int		row;
+	int		col;
+};
 
 struct		s_arguments
 {
@@ -51,6 +64,8 @@ struct		s_game
 	int			cols[MEM_SIZE];
 	int			dump_cycle;
 	int			print;
+	int			aff;
+	int			live_print;
 	int			visual;
 	int			speed;
 	int			coor[MAX_PLAYERS];
@@ -105,10 +120,19 @@ int			main(int argc, char *argv[]);
 */
 
 int			arg_error(int error);
-int			get_dump(char *arg, t_game *game);
 int			check_n_flag_player(char **argv, int i, t_game *game);
 int			check_regular_player(char **argv, int i, t_game *game);
 int			read_arguments(char **argv, t_game *game);
+
+/*
+** core_flags.c
+*/
+int	get_dump_flag(char *arg, t_game *game);
+int	get_print_flag(int i, t_game *game);
+int	get_aff_flag(int i, t_game *game);
+int	get_live_print_flag(int i, t_game *game);
+int	get_visual_flag(int i, t_game *game);
+
 
 /*
 ** core_players.c
@@ -117,13 +141,14 @@ int			read_arguments(char **argv, t_game *game);
 int			name(char *arg, unsigned char *buf, t_player *player);
 int			comment(char *arg, unsigned char *buf, t_player *player);
 int			code(unsigned char *buf, size_t file_size, int pl_nr, t_game *game);
-int			size(char *arg, unsigned char *buf, t_player *player);
+int			size(unsigned char *buf, t_player *player);
 int			get_player(int player_nr, char *arg, t_game *game);
 
 /*
 ** core_players2.c
 */
 
+int			check_size(char *arg, int code_length, t_player *player);
 int			player_error(char *arg, int error);
 int			print_players(t_game *game);
 int			replace_regular_players(t_game *game);
@@ -165,6 +190,7 @@ int			check_and_execute_args(int code, t_carriage *car, int pos,\
 void		remove_car(t_carriage *last, t_carriage *temp, t_game *game);
 void		remove_dead_carriages(t_game *game);
 int			reset_player_lives(t_game *game);
+int			end_too_large(t_game *game);
 int			check(t_game *game);
 
 /*
@@ -248,13 +274,15 @@ void		n_update_live_bar(t_game *game);
 void		n_start_game(t_game *game);
 int			n_slow_case(t_game *game);
 int			n_fast_case(t_game *game);
+t_n_writer	n_print_box2(char *str, t_n_writer writer);
+int			print_box(t_n_coor spot, int size, int speed, char *str);
 
 /*
 ** n_end.c
 */
 
 void		n_game_over(int row, int col);
-void		n_winner(int row, int col, t_game *game);
+int			n_winner(int row, int col, t_game *game);
 void		n_winner_message(int row, int col, t_player *winner);
 void		n_end_game(t_game *game);
 

@@ -14,22 +14,13 @@
 
 int		n_print_player_name(int row, int col, t_player *player)
 {
-	int	a;
-	int	rows;
+	int			rows;
+	t_n_coor	spot;
 
-	rows = 1;
-	a = 0;
+	spot.row = row;
+	spot.col = col;
 	attrset(COLOR_PAIR(player->color));
-	while (player->name[a] != '\0')
-	{
-		printw("%c", player->name[a]);
-		a++;
-		if (a % 33 == 0)
-		{
-			move(row += 1, col += 0);
-			rows++;
-		}
-	}
+	rows = print_box(spot, 33, 0, player->name);
 	attroff(COLOR_PAIR(player->color));
 	return (rows);
 }
@@ -51,7 +42,7 @@ void	n_print_players(t_game *game)
 		player = game->playerlist[i];
 		printw("____PLAYER %d_____________________", i + 1);
 		move(row += 1, col += 0);
-		rows = n_print_player_name(row, col, player);
+		rows = n_print_player_name(row, col, player) + 1;
 		move(row += rows, col += 0);
 		game->coor[i] = row;
 		printw("Lives:               ");

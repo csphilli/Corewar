@@ -94,6 +94,7 @@ COR_DIR = corewar_src/
 
 COR_FILES =     core.c\
                 core_arg_reader.c\
+		core_flags.c\
                 core_players.c\
                 core_players2.c\
                 core_carriage.c\

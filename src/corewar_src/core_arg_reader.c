@@ -31,29 +31,10 @@ int	arg_error(int error)
 		ft_putstr_fd(" players\n", 2);
 	}
 	else if (error == 7)
-		ft_putstr_fd("Error: -dump and -p flags not to be used with -v\n", 2);
+		ft_putstr_fd("Error: -dump, -p, -a, -l flags not in use with -v\n", 2);
+	else if (error == 8)
+		ft_putstr_fd("Error: battle values getting too large\n", 2);
 	exit(0);
-}
-
-int	get_dump(char *arg, t_game *game)
-{
-	int		i;
-
-	if (game->visual == 1)
-		return (arg_error(7));
-	i = 0;
-	if (arg == NULL)
-		return (arg_error(5));
-	while (arg[i])
-	{
-		if (i == 9)
-			return (arg_error(1));
-		if (!(ft_isdigit(arg[i])))
-			return (arg_error(2));
-		i++;
-	}
-	game->dump_cycle = ft_atoi(arg);
-	return (2);
 }
 
 int	check_n_flag_player(char **argv, int i, t_game *game)
@@ -98,23 +79,19 @@ int	read_arguments(char **argv, t_game *game)
 	while (argv[i] != NULL)
 	{
 		if (ft_strcmp(argv[i], "-dump") == 0)
-			i += (get_dump(argv[i + 1], game));
+			i += (get_dump_flag(argv[i + 1], game));
 		else if (ft_strcmp(argv[i], "-p") == 0)
-		{
-			game->print = 1;
-			i++;
-		}
+			i = get_print_flag(i, game);
 		else if (ft_strcmp(argv[i], "-v") == 0)
-		{
-			game->visual = 1;
-			i++;
-		}
+			i = get_visual_flag(i, game);
+		else if (ft_strcmp(argv[i], "-a") == 0)
+			i = get_aff_flag(i, game);
+		else if (ft_strcmp(argv[i], "-l") == 0)
+			i = get_live_print_flag(i, game);
 		else if (ft_strcmp(argv[i], "-n") == 0)
 			i += (check_n_flag_player(argv, i, game));
 		else
 			i += (check_regular_player(argv, i, game));
-		if ((game->print == 1 || game->dump_cycle != -1) && game->visual)
-			return (arg_error(7));
 	}
 	return (0);
 }

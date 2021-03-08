@@ -93,6 +93,8 @@ int		play(t_game *game)
 	while (cycle(game) == 1)
 	{
 		game->cycles++;
+		if (game->cycles == 2147483647)
+			end_too_large(game);
 		game->cur_cycles++;
 		if (game->cur_cycles >= game->cycles_to_die)
 		{

@@ -22,6 +22,7 @@ int		aff(t_carriage *carriage, t_game *game)
 	reg = game->memory[pos] - 1;
 	value = carriage->regs[reg];
 	value %= 256;
-	ft_printf("P %4d | aff %d\n", carriage->nr, value);
+	if (game->aff)
+		ft_printf("P %4d | aff %d\n", carriage->nr, value);
 	return (0);
 }

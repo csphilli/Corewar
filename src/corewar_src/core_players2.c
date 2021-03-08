@@ -12,6 +12,19 @@
 
 #include "../../includes/core.h"
 
+int	check_size(char *arg, int code_length, t_player *player)
+{
+	if (code_length < 1)
+		return (player_error(arg, 4));
+	if (code_length != player->size)
+		return (player_error(arg, 5));
+	if (player->size > CHAMP_MAX_SIZE)
+		return (player_error(arg, 7));
+	if (player->size < 0)
+		return (player_error(arg, 1));
+	return (0);
+}
+
 int	player_error(char *arg, int error)
 {
 	if (error == 0)
@@ -20,8 +33,6 @@ int	player_error(char *arg, int error)
 		ft_putstr_fd(arg, 2);
 		ft_putstr_fd("\"\n", 2);
 	}
-	else if (error == 6)
-		ft_putstr_fd("Error: a never ending battle\n", 2);
 	else
 	{
 		ft_putstr_fd("Error: File ", 2);
@@ -36,6 +47,8 @@ int	player_error(char *arg, int error)
 			ft_putstr_fd(" is too small to be a champion\n", 2);
 		else if (error == 5)
 			ft_putstr_fd(": code size different from what header says\n", 2);
+		else if (error == 7)
+			ft_printf(" has too large code\n");
 	}
 	exit(0);
 }

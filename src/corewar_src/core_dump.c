@@ -20,7 +20,6 @@ int	dump_game(t_game *game)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		printf("0x%04x : ", i);
 		a = 0;
 		while (a < 32)
 		{

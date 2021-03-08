@@ -33,11 +33,15 @@ void	n_game_over(int row, int col)
 	attroff(A_BOLD);
 }
 
-void	n_winner(int row, int col, t_game *game)
+int		n_winner(int row, int col, t_game *game)
 {
 	t_player	*winner;
 	int			a;
+	t_n_coor	spot;
+	int			rows;
 
+	spot.row = row;
+	spot.col = col;
 	winner = game->playerlist[-(game->last_alive + 1)];
 	printw("WINNER: ");
 	refresh();
@@ -46,66 +50,31 @@ void	n_winner(int row, int col, t_game *game)
 	a = 0;
 	attrset(COLOR_PAIR(winner->color));
 	attron(A_BOLD);
-	while (winner->name[a] != '\0')
-	{
-		printw("%c", winner->name[a]);
-		a++;
-		refresh();
-		napms(50);
-		if (a % 60 == 0)
-			move(row += 1, col += 0);
-	}
+	rows = print_box(spot, 60, 20, winner->name);
+	refresh();
+	napms(1200);
 	attroff(COLOR_PAIR(winner->color));
 	attroff(A_BOLD);
-}
-
-void	n_winner_message(int row, int col, t_player *winner)
-{
-	int	a;
-	int	chars;
-
-	a = 0;
-	chars = 1;
-	while (winner->comment[a] != '\0')
-	{
-		if (winner->comment[a] == '\n')
-		{
-			printw(" / ");
-			chars += 2;
-		}
-		else
-			printw("%c", winner->comment[a]);
-		chars++;
-		if (chars % 95 == 0)
-		{
-			move(row += 1, col += 0);
-			chars = 0;
-		}
-		a++;
-		refresh();
-		napms(50);
-	}
-	printw("\"");
+	return (rows);
 }
 
 void	n_end_game(t_game *game)
 {
-	int			row;
-	int			col;
 	int			c;
 	t_player	*winner;
+	t_n_coor	spot;
+	int			rows;
 
 	winner = game->playerlist[-(game->last_alive + 1)];
-	row = 0;
-	col = 0;
-	move(row += 17, col += 51);
-	n_game_over(row, col);
-	move(row += 7, col += 3);
-	n_winner(row, col, game);
-	move(row += 4, col -= col);
-	move(row += 0, col += 54);
+	spot.row = 17;
+	spot.col = 51;
+	n_game_over(spot.row, spot.col);
+	move(spot.row += 7, spot.col += 3);
+	rows = n_winner(spot.row, spot.col, game) + 2;
+	move(spot.row += rows, spot.col += 0);
 	printw("\"");
-	n_winner_message(row, col, winner);
+	print_box(spot, 95, 50, winner->comment);
+	printw("\"");
 	while (1)
 	{
 		c = getch();
