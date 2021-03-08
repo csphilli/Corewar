@@ -6,7 +6,7 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/03/06 08:24:45 by csphilli         ###   ########.fr        #
+#    Updated: 2021/03/08 20:37:48 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,7 @@ ASM_FILES = 	ascii_to_hex.c\
 				arg_utils.c\
 				check_for_newline.c\
 				check_for_s.c\
-				error_chk_labels.c\
+				error_chk_instructions.c\
 				errors.c\
 				ft_pow.c\
 				get_args.c\
