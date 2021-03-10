@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/08 22:06:22 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void	pre_split(char **line)
 	*line = new;
 }
 
+/*
+**	validates a T_REG argument
+*/
+
 int		valid_reg_def(char *line)
 {
 	int	i;
@@ -63,6 +67,24 @@ int		valid_reg_def(char *line)
 	return (0);
 }
 
+/*
+**	validates a T_DIR argument
+*/
+
+int		check_continuance(char *line)
+{
+	char	*tmp;
+
+	tmp = line;
+	while (*tmp)
+	{
+		if (!ft_strchr(NON_LABEL_CHARS, ft_tolower(*tmp)))
+			return (0);
+		tmp++;
+	}
+	return (1);
+}
+
 int		valid_t_dir(char *line)
 {
 	if (*(line + 1) == '\0')
@@ -74,7 +96,8 @@ int		valid_t_dir(char *line)
 		while (*line)
 		{
 			if (!ft_strchr(LABEL_CHARS, *line))
-				return (0);
+				if (!check_continuance(line))
+					return (0);
 			line++;
 		}
 	}
@@ -82,13 +105,17 @@ int		valid_t_dir(char *line)
 	{
 		while (*line)
 		{
-			if (!ft_strchr(NON_LABEL_CHARS, *line))
+			if (!ft_strchr(NON_LABEL_CHARS, ft_tolower(*line)))
 				return (0);
 			line++;
 		}
 	}
 	return (1);
 }
+
+/*
+**	validates a T_IND argument
+*/
 
 int		valid_t_ind(char *line)
 {
@@ -98,7 +125,8 @@ int		valid_t_ind(char *line)
 		while (*line)
 		{
 			if (!ft_strchr(LABEL_CHARS, *line))
-				return (0);
+				if (!check_continuance(line))
+					return (0);
 			line++;
 		}
 	}
@@ -106,7 +134,7 @@ int		valid_t_ind(char *line)
 	{
 		while (*line)
 		{
-			if (!ft_strchr(NON_LABEL_CHARS, *line))
+			if (!ft_strchr(NON_LABEL_CHARS, ft_tolower(*line)))
 				return (0);
 			line++;
 		}

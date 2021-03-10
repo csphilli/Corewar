@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/03/03 13:23:15 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/03/06 09:27:02 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char				*downsize(char *line);
 char				*ft_charcat(char *dest, const char src);
 int					end_of_label(char *line);
 char				*extract_label(char *line);
-void				error_chk_labels(t_master *m);
+void				error_chk_instructions(t_master *m);
 void				error_arg_type(t_master *m, char *line);
 void				label_not_found(char *error_msg, t_ins *node,\
 					char *label);
@@ -116,6 +116,8 @@ void				check_for_newline(t_master *m);
 void				check_for_filename(char *filename);
 int					valid_t_dir(char *line);
 int					valid_t_ind(char *line);
+void				label_dup_chk(t_master *m);
+void				debug(t_master *m);
 
 /*
 **	ENCODING FUNCTIONS
