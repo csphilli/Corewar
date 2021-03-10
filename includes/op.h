@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:55:39 by cphillip          #+#    #+#             */
-/*   Updated: 2021/03/06 09:20:09 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/08 21:16:32 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define REG_CHAR			'r'
 # define SEPARATOR_CHAR     ','
 # define LABEL_CHARS        "abcdefghijklmnopqrstuvwxyz_0123456789"
-# define NON_LABEL_CHARS	"-+01234567890"
+# define NON_LABEL_CHARS	"-+abcdefx01234567890"
 # define NAME_CMD_STRING    ".name"
 # define NAME_CMD_LEN		5
 # define COMMENT_CMD_STRING ".comment"
