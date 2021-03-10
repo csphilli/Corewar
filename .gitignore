@@ -11,6 +11,6 @@ champs/*.cor
 *.dSYM
 asmtest
 *.zip
-/eval_tests
+/eval_tests/*
 obj
 /asm
