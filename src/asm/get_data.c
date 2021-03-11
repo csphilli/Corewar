@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/25 18:32:36 by cphillip          #+#    #+#             */
-/*   Updated: 2021/03/11 11:37:36 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/03/11 12:17:59 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,4 @@ void	get_data(t_master *m, int fd)
 			get_data_cont(m, tmp);
 		ft_strdel(&line);
 	}
-	check_for_newline(m);
 }

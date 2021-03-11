@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_chk_labels.c                                 :+:      :+:    :+:   */
+/*   error_chk_instructions.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 19:57:48 by csphilli          #+#    #+#             */
-/*   Updated: 2021/03/06 09:35:47 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/11 12:17:58 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	error_chk_instructions(t_master *m)
 	int		i;
 
 	tmp = ((t_list*)&m->instrux)->head;
+	check_for_newline(m);
 	chk_name_comment_exists(m->champ);
 	label_dup_chk(m);
 	while (tmp)
