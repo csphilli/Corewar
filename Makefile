@@ -6,12 +6,11 @@
 #    By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/06/25 09:12:39 by cphillip          #+#    #+#              #
-#    Updated: 2021/03/08 20:37:48 by csphilli         ###   ########.fr        #
+#    Updated: 2021/03/11 16:49:23 by csphilli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # targets
-# NAME = asm
 ASM_EXEC = asm
 COR_EXEC = corewar
 
@@ -36,7 +35,6 @@ LINK_FT_PRINTF = -L $(FT_PRINTF_DIR) -lft_printf
 OBJ_DIR = obj/
 TGT_DIR = $(OBJ_DIR)
 TGT_DIR += $(addprefix $(OBJ_DIR), $(ASM_DIR) $(COR_DIR))
-# TGT_DIR += $(addprefix $(OBJ_DIR), $(COR_DIR))
 
 # files
 SRC_DIR = src/
@@ -95,7 +93,7 @@ COR_DIR = corewar_src/
 
 COR_FILES =     core.c\
                 core_arg_reader.c\
-		core_flags.c\
+				core_flags.c\
                 core_players.c\
                 core_players2.c\
                 core_carriage.c\
@@ -141,10 +139,6 @@ all: $(ASM_EXEC) $(COR_EXEC)
 
 $(TGT_DIR):
 	@mkdir -p $(TGT_DIR)
-	@if git submodule status | egrep -q '^[-]' ; then \
-		echo "INFO: Initializing git submodules"; \
-		git submodule update --init --recursive; \
-	fi	
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INC_SRC)
 	@$(CC) $(CFLAGS) $(INCLUDES) -o $@ -c $<
