@@ -14,14 +14,12 @@
 
 int	check_size(char *arg, int code_length, t_player *player)
 {
-	if (code_length < 1)
-		return (player_error(arg, 4));
 	if (code_length != player->size)
 		return (player_error(arg, 5));
 	if (player->size > CHAMP_MAX_SIZE)
 		return (player_error(arg, 7));
-	if (player->size < 0)
-		return (player_error(arg, 1));
+	if (code_length < 1)
+		player->empty = 1;
 	return (0);
 }
 
@@ -78,7 +76,7 @@ int	print_players(t_game *game)
 	return (0);
 }
 
-int	replace_regular_players(t_game *game)
+int	compress_playerlist(t_game *game)
 {
 	int	i;
 	int	j;
@@ -120,6 +118,6 @@ int	arrange_players(t_game *game)
 		}
 		i++;
 	}
-	replace_regular_players(game);
+	compress_playerlist(game);
 	return (0);
 }

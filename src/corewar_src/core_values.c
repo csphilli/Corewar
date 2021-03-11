@@ -35,16 +35,16 @@ int	ind_value(int pos, t_carriage *carriage, t_game *game)
 	return (value);
 }
 
-int	ind_value_no_mod(int pos, t_carriage *carriage, t_game *game)
+int	ind_value_no_mod(int pos, t_carriage *car, t_game *game)
 {
 	int	value;
 	int	jump;
 	int	new_position;
 
 	jump = get_two(pos, game);
-	new_position = carriage->pc + jump;
+	new_position = car->pc + jump;
 	new_position = move_pos(0, new_position);
-	value = get_four(new_position, game);
+	value = get_two(new_position, game);
 	return (value);
 }
 
@@ -57,10 +57,10 @@ int	get_value(int arg_type, int pos, t_carriage *car, t_game *game)
 	if (arg_type == T_IND)
 	{
 		instr = car->cur_instr;
-		if (instr == 2 || instr == 10 || instr == 11)
-			return (ind_value(pos, car, game));
-		else
+		if (instr == 13)
 			return (ind_value_no_mod(pos, car, game));
+		else
+			return (ind_value(pos, car, game));
 	}
 	else
 	{

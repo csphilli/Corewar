@@ -62,11 +62,11 @@ int	announce_winner(t_game *game)
 		game->playerlist[-(game->last_alive + 1)]->name);
 	else
 	{
-		ft_putstr_fd("Player ", 1);
-		ft_putnbr_fd(-game->last_alive, 1);
-		ft_putstr_fd(" (", 1);
-		ft_putstr_fd(game->playerlist[-(game->last_alive + 1)]->name, 1);
-		ft_putstr_fd(") won\n", 1);
+		ft_putstr("Player ");
+		ft_putnbr(-game->last_alive);
+		ft_putstr(" (");
+		ft_putstr(game->playerlist[-(game->last_alive + 1)]->name);
+		ft_putstr(") won\n");
 	}
 	return (0);
 }
@@ -84,10 +84,9 @@ int	main(int argc, char *argv[])
 	read_arguments(argv, game);
 	arrange_players(game);
 	i = 0;
-	while (i < MAX_PLAYERS)
+	while (i < game->players)
 	{
-		if (game->playerlist[i] != NULL)
-			get_player(i, game->playerlist[i]->argu, game);
+		get_player(i, game->playerlist[i]->argu, game);
 		i++;
 	}
 	first_carriages(game);

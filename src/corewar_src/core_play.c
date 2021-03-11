@@ -48,12 +48,6 @@ int		handle_instruction(t_carriage *carr, t_game *game)
 	return (0);
 }
 
-/*
-**	Each carriage can validate a new instruction code and set it's wait,
-**	reduce the wait, validate and handle an instruction and jump to next
-**	instruction (or to next byte if false instruction)
-*/
-
 int		cycle(t_game *game)
 {
 	t_carriage	*carriage;
@@ -79,11 +73,6 @@ int		cycle(t_game *game)
 		n_fast_case(game);
 	return (1);
 }
-
-/*
-**	Loop the living carriages list until the checks have removed all carriages
-**	or reduced the cycle to die to zero. Handle dump flag
-*/
 
 int		play(t_game *game)
 {

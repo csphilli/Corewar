@@ -31,26 +31,22 @@ int		get_four(int position, t_game *game)
 
 int		get_two(int position, t_game *game)
 {
-	unsigned int			test1;
-	unsigned int			test2;
+	unsigned int			value1;
+	unsigned int			value2;
 	unsigned int			value;
-	int						neg;
+	int						shorty;
 	int						pos2;
 
 	pos2 = move_pos(1, position);
-	test1 = game->memory[position];
-	test2 = game->memory[pos2];
-	value = test1 << 8 | test2;
-	neg = (short)value;
-	return (neg);
+	value1 = game->memory[position];
+	value2 = game->memory[pos2];
+	value = value1 << 8 | value2;
+	shorty = (short)value;
+	return (shorty);
 }
 
 int		move_pos(int steps, int pos)
 {
-	if (pos >= MEM_SIZE)
-		pos %= MEM_SIZE;
-	while (pos < 0)
-		pos += MEM_SIZE;
 	pos += steps;
 	if (pos >= MEM_SIZE)
 		pos %= MEM_SIZE;

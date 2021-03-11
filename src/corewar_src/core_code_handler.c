@@ -98,22 +98,6 @@ int	is_valid_args(int code, t_arguments args, t_carriage *car, t_game *game)
 	return (valid_code);
 }
 
-/*
-**	If current instruction has a codingbyte, translate it to the types of
-**	the arguments to args.arg[3]
-**	-	01 -> 1 = reg, 10 -> dir = 2, 11 -> ind = 3
-**	-	if not a proper codingbyte, skip instruction & codingbyte and return
-**	If no codinbyte, args are 2, 1, 1 (first one is dir)
-**
-**	valid_args() checks:
-**	-	validity of reg arg if there is one
-**	-	if the args match current instructions possible args
-**	-	if codinbyte is wrong for the instruction, still get the distance to
-**		the next instruction
-**
-**	If everything was valid, execute instruction
-*/
-
 int	check_and_execute_args(int code, t_carriage *car, int pos, t_game *game)
 {
 	int			bytecode;
@@ -135,9 +119,6 @@ int	check_and_execute_args(int code, t_carriage *car, int pos, t_game *game)
 		args.arg[2] = 0;
 	}
 	if (is_valid_args(code, args, car, game) == 1)
-	{
 		execute_code(code, args, car, game);
-		return (1);
-	}
 	return (0);
 }

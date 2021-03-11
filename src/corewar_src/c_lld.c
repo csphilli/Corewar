@@ -13,8 +13,8 @@
 #include "../../includes/core.h"
 
 /*
-**      -       get a value form reg or ind (arg2)
-**      -       put to a registry (arg1)
+**      -       get a value form reg or ind (arg1)
+**      -       put to a registry (arg2)
 **      -       modify carry
 */
 

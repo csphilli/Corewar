@@ -66,8 +66,9 @@ void	n_end_game(t_game *game)
 	int			rows;
 
 	winner = game->playerlist[-(game->last_alive + 1)];
-	spot.row = 17;
-	spot.col = 51;
+	spot.row = 0;
+	spot.col = 0;
+	move(spot.row += 17, spot.col += 51);
 	n_game_over(spot.row, spot.col);
 	move(spot.row += 7, spot.col += 3);
 	rows = n_winner(spot.row, spot.col, game) + 2;
