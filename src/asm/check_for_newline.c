@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 12:50:12 by osalmine          #+#    #+#             */
-/*   Updated: 2021/03/03 13:22:48 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/03/11 12:21:06 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,27 @@ static void	str_append(char **lines, char *append)
 	ft_strdel(&tmp);
 }
 
-static void	end_check(char *lines)
+static void	end_check(char *lines, int last_ins)
 {
 	int		len;
+	int		nl_count;
 
-	len = ft_strlen(lines) - 1;
-	while (lines[len] != '\n')
+	len = 0;
+	nl_count = 0;
+	while (lines[len])
 	{
-		if (!ft_isspace(lines[len]))
-			ft_errorexit("Syntax error - unexpected end of input \
-(Perhaps you forgot to end with a newline ?)\n");
-		len--;
+		if (lines[len] == '\n')
+			nl_count++;
+		len++;
 	}
+	if (nl_count < last_ins)
+		ft_errorexit("Syntax error - unexpected end of input \
+(Perhaps you forgot to end with a newline ?)\n");
 }
 
 /*
 **	Read the file to check if the input file has a newline at
-**	end of it. The input file can have spaces and tabs after
-**	the final newline
+**	the end of the last instruction.
 */
 
 void		check_for_newline(t_master *m)
@@ -51,6 +54,7 @@ void		check_for_newline(t_master *m)
 	char	line[NL_CHECK_BUFF_SIZE + 1];
 	char	*lines;
 	int		ret;
+	t_node	*tmp;
 
 	fd = 0;
 	lines = NULL;
@@ -63,6 +67,9 @@ void		check_for_newline(t_master *m)
 	}
 	if (ret < 0 || !lines)
 		ft_errorexit("ERROR: Read error");
-	end_check(lines);
+	tmp = ((t_list*)&m->instrux)->head;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	end_check(lines, tmp ? ((t_ins*)tmp->data)->line : 0);
 	ft_strdel(&lines);
 }

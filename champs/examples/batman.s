@@ -1,8 +1,8 @@
-.name "s7yDFIsDRV0DgXxmzs5bq3TjsadJ4bqMVaKQqe4VbRxklFYlQqbEigwCcgunZfRNLxYPcVjL0Lf3ip1BK0uZKixhF8P8UXFuRhG4CeibIgZJRwEgxnDyJmtOJuDB3pL"
-.comment "ERx5PaPrIs"
+.name "a"
+.comment "b"
 
 sti r0, %:live, %1
 
 live:
 	live%0
-
+lab:

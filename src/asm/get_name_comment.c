@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_name_comment.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/29 18:24:45 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/28 21:43:43 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/10 16:15:53 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	trailing_quote(t_master *m, char **ret)
 	char		*tmp;
 
 	i = 0;
-	tmp = *ret;
+	tmp = ft_strdup(*ret);
 	while (tmp[i] != '\"')
 		i++;
 	if (!extraneous(&tmp[i]))
@@ -35,6 +35,7 @@ void	trailing_quote(t_master *m, char **ret)
 	else
 		ft_error_line("ERROR: Extraneous info after command \
 on line ", m->line_cnt);
+	ft_strdel(&tmp);
 }
 
 /*
