@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 17:29:14 by cphillip          #+#    #+#             */
-/*   Updated: 2021/03/06 09:27:02 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:22:35 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "../ft_printf/includes/ft_printf.h"
 # include "op.h"
 # include "asm_oplist.h"
-# define PROG_NAME_LENGTH	(128)
-# define COMMENT_LENGTH		(2048)
+# define PROG_NAME_LENGTH	128
+# define COMMENT_LENGTH		2048
 # define COREWAR_EXEC_MAGIC	0xea83f3
 
 # define NL_CHECK_BUFF_SIZE 1000

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cop.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:28:27 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,21 @@
 # define COP_H
 
 # define MAX_PLAYERS		4
-# define MEM_SIZE		(4*1024)
-# define IDX_MOD		(MEM_SIZE / 8)
-# define CHAMP_MAX_SIZE		(MEM_SIZE / 6)
+
+/*
+**	4 * 1024 = 4096
+*/
+# define MEM_SIZE			4096
+
+/*
+**	MEM_SIZE / 8 = 512
+*/
+# define IDX_MOD			512
+
+/*
+**	MEM_SIZE / 6 = 682
+*/
+# define CHAMP_MAX_SIZE		682
 
 # define REG_NUMBER		16
 
