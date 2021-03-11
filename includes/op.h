@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/09 15:55:39 by cphillip          #+#    #+#             */
-/*   Updated: 2021/03/08 21:16:32 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:30:46 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,22 @@
 # define IND_CODE           3
 # define MAX_ARGS_NUMBER    4
 # define MAX_PLAYERS        4
-# define MEM_SIZE           (4*1024)
-# define IDX_MOD            (MEM_SIZE / 8)
-# define CHAMP_MAX_SIZE     (MEM_SIZE / 6)
+
+/*
+**	4 * 1024 = 4096
+*/
+# define MEM_SIZE			4096
+
+/*
+**	MEM_SIZE / 8 = 512
+*/
+# define IDX_MOD			512
+
+/*
+**	MEM_SIZE / 6 = 682
+*/
+# define CHAMP_MAX_SIZE		682
+
 # define COMMENT_CHAR       '#'
 # define ALT_COMMENT_CHAR   ';'
 # define LABEL_CHAR         ':'

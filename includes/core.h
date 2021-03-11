@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
+/*   Updated: 2021/03/11 16:29:10 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,12 +127,11 @@ int			read_arguments(char **argv, t_game *game);
 /*
 ** core_flags.c
 */
-int	get_dump_flag(char *arg, t_game *game);
-int	get_print_flag(int i, t_game *game);
-int	get_aff_flag(int i, t_game *game);
-int	get_live_print_flag(int i, t_game *game);
-int	get_visual_flag(int i, t_game *game);
-
+int			get_dump_flag(char *arg, t_game *game);
+int			get_print_flag(int i, t_game *game);
+int			get_aff_flag(int i, t_game *game);
+int			get_live_print_flag(int i, t_game *game);
+int			get_visual_flag(int i, t_game *game);
 
 /*
 ** core_players.c
