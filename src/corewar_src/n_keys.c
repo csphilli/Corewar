@@ -41,7 +41,10 @@ int		n_pause(t_game *game)
 	{
 		c = getch();
 		if (c == ' ')
+		{
+			printw("\r                                \r");
 			break ;
+		}
 		else if (c == 'q')
 		{
 			printw("\r                                \r");

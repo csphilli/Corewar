@@ -78,6 +78,7 @@ struct		s_player
 	char		name[PROG_NAME_LENGTH + 1];
 	char		comment[COMMENT_LENGTH + 1];
 	int			size;
+	int			empty;
 	int			start;
 	int			color;
 	int			last_live;
@@ -127,18 +128,17 @@ int			read_arguments(char **argv, t_game *game);
 /*
 ** core_flags.c
 */
-int	get_dump_flag(char *arg, t_game *game);
-int	get_print_flag(int i, t_game *game);
-int	get_aff_flag(int i, t_game *game);
-int	get_live_print_flag(int i, t_game *game);
-int	get_visual_flag(int i, t_game *game);
-
+int			get_dump_flag(char *arg, t_game *game);
+int			get_print_flag(int i, t_game *game);
+int			get_aff_flag(int i, t_game *game);
+int			get_live_print_flag(int i, t_game *game);
+int			get_visual_flag(int i, t_game *game);
 
 /*
 ** core_players.c
 */
 
-int			name(char *arg, unsigned char *buf, t_player *player);
+int			name(char *arg, unsigned char *buf, int nr, t_player *player);
 int			comment(char *arg, unsigned char *buf, t_player *player);
 int			code(unsigned char *buf, size_t file_size, int pl_nr, t_game *game);
 int			size(unsigned char *buf, t_player *player);
@@ -151,7 +151,7 @@ int			get_player(int player_nr, char *arg, t_game *game);
 int			check_size(char *arg, int code_length, t_player *player);
 int			player_error(char *arg, int error);
 int			print_players(t_game *game);
-int			replace_regular_players(t_game *game);
+int			compress_playerlist(t_game *game);
 int			arrange_players(t_game *game);
 
 /*
@@ -218,7 +218,7 @@ int			arg_len(int arg_type, int dir_size);
 
 int			reg_value(int pos, t_carriage *carriage, t_game *game);
 int			ind_value(int pos, t_carriage *carriage, t_game *game);
-int			ind_value_no_mod(int pos, t_carriage *carriage, t_game *game);
+int			ind_value_no_mod(int pos, t_carriage *car, t_game *game);
 int			get_value(int arg_type, int pos, t_carriage *car, t_game *game);
 
 /*

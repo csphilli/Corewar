@@ -58,7 +58,7 @@ static const t_op	g_op_tab[16] =
 	{"xor", 3, {{T_REG, T_DIR, T_IND}, {T_REG, T_IND, T_DIR}, {T_REG, 5, 5}},
 		8, 6, 1, 0},
 	{"zjmp", 1, {{T_DIR, 5, 5}, {0, 0, 0}, {0, 0, 0}}, 9, 20, 0, 1},
-	{"ldi", 3, {{T_REG, T_DIR, T_IND}, {T_DIR, T_REG, 5}, {T_REG, 0, 0}},
+	{"ldi", 3, {{T_REG, T_DIR, T_IND}, {T_DIR, T_REG, 5}, {T_REG, 5, 5}},
 		10, 25, 1, 1},
 	{"sti", 3, {{T_REG, 5, 5 }, {T_REG, T_DIR, T_IND}, {T_DIR, T_REG, 5}},
 		11, 25, 1, 1},

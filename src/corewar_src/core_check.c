@@ -84,8 +84,6 @@ int		check(t_game *game)
 			game->checks = 0;
 		}
 	}
-	if (game->cycles_to_die <= 0)
-		game->cycles_to_die = 1;
 	game->lives = 0;
 	reset_player_lives(game);
 	return (0);
