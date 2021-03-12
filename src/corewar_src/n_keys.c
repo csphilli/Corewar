@@ -48,7 +48,7 @@ int		n_pause(t_game *game)
 		else if (c == 'q')
 		{
 			printw("\r                                \r");
-			n_end_game(game);
+			n_end_game(0, game);
 		}
 		if (c == 'a' || c == 'd')
 		{
@@ -67,7 +67,7 @@ int		n_keys(int c, t_game *game)
 	if (c == 'q')
 	{
 		endwin();
-		exit(0);
+		return (free_all_and_exit(game));
 	}
 	else if (c == ' ')
 		return (n_pause(game));

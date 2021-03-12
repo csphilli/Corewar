@@ -17,7 +17,6 @@ int	init_game(int argc, t_game *game)
 	int	i;
 
 	game->players = 0;
-	game->playerlist = (t_player**)malloc(2 * MAX_PLAYERS * sizeof(t_player));
 	i = 0;
 	while (i < MEM_SIZE)
 	{
@@ -90,7 +89,8 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	first_carriages(game);
-	print_players(game);
+	if (!game->visual)
+		print_players(game);
 	play(game);
-	return (0);
+	free_all_and_exit(game);
 }

@@ -12,7 +12,7 @@
 
 #include "../../includes/core.h"
 
-int	dump_game(t_game *game)
+void	dump_game_and_exit(t_game *game)
 {
 	int		i;
 	int		a;
@@ -23,11 +23,53 @@ int	dump_game(t_game *game)
 		a = 0;
 		while (a < 32)
 		{
-			printf("%02x ", game->memory[i]);
+			ft_printf("%02x ", game->memory[i]);
 			a++;
 			i++;
 		}
-		printf("\n");
+		ft_printf("\n");
 	}
-	return (0);
+	free_all_and_exit(game);
+}
+
+void	free_players(t_game *game)
+{
+	int	i;
+	int	max;
+
+	max = MAX_PLAYERS * 2;
+	i = 0;
+	while (i < max)
+	{
+		free(game->playerlist[i]);
+		game->playerlist[i] = NULL;
+		i++;
+	}
+}
+
+int		free_all_and_exit(t_game *game)
+{
+	t_carriage	*car;
+	t_carriage	*tmp_car;
+	t_waiter	*wait;
+	t_waiter	*tmp_wait;
+
+	car = game->carriages;
+	while (car)
+	{
+		tmp_car = car->next;
+		free(car);
+		car = NULL;
+		car = tmp_car;
+	}
+	wait = game->waiters;
+	while (wait)
+	{
+		tmp_wait = wait->next;
+		free(wait);
+		wait = NULL;
+		wait = tmp_wait;
+	}
+	free_players(game);
+	exit(0);
 }

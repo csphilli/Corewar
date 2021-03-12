@@ -91,13 +91,10 @@ int		play(t_game *game)
 			game->cur_cycles = 0;
 		}
 		if (game->cycles == game->dump_cycle)
-		{
-			dump_game(game);
-			exit(0);
-		}
+			dump_game_and_exit(game);
 	}
 	if (game->visual)
-		n_end_game(game);
+		n_end_game(1, game);
 	announce_winner(game);
 	return (0);
 }

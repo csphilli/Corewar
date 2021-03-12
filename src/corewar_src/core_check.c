@@ -64,7 +64,7 @@ int		end_too_large(t_game *game)
 {
 	if (game->visual)
 		endwin();
-	return (arg_error(8));
+	return (arg_error(8, game));
 }
 
 int		check(t_game *game)

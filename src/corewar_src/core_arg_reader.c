@@ -12,7 +12,7 @@
 
 #include "../../includes/core.h"
 
-int	arg_error(int error)
+int	arg_error(int error, t_game *game)
 {
 	if (error == 1)
 		ft_putstr_fd("-dump N too large\n", 2);
@@ -34,7 +34,9 @@ int	arg_error(int error)
 		ft_putstr_fd("Error: -dump, -p, -a, -l flags not in use with -v\n", 2);
 	else if (error == 8)
 		ft_putstr_fd("Error: battle values getting too large\n", 2);
-	exit(0);
+	else if (error == 9)
+		ft_putstr_fd("Error: -v in use with max 4 players\n", 2);
+	return (free_all_and_exit(game));
 }
 
 int	check_n_flag_player(char **argv, int i, t_game *game)
@@ -44,15 +46,15 @@ int	check_n_flag_player(char **argv, int i, t_game *game)
 	if (argv[i + 1] == NULL || argv[i + 1][1] != '\0' ||
 	(!(ft_isdigit(argv[i + 1][0]))) || ft_atoi(argv[i + 1]) > MAX_PLAYERS ||
 	ft_atoi(argv[i + 1]) == 0)
-		return (arg_error(3));
+		return (arg_error(3, game));
 	player_n = ft_atoi(argv[i + 1]);
 	if (game->playerlist[player_n - 1] != NULL)
-		return (arg_error(4));
+		return (arg_error(4, game));
 	game->playerlist[player_n - 1] = (t_player*)malloc(sizeof(t_player));
 	game->playerlist[player_n - 1]->argu = argv[i + 2];
 	game->players++;
 	if (game->players > MAX_PLAYERS)
-		return (arg_error(6));
+		return (arg_error(6, game));
 	return (3);
 }
 
@@ -67,7 +69,7 @@ int	check_regular_player(char **argv, int i, t_game *game)
 	game->playerlist[a]->argu = argv[i];
 	game->players++;
 	if (game->players > MAX_PLAYERS)
-		return (arg_error(6));
+		return (arg_error(6, game));
 	return (1);
 }
 
@@ -93,5 +95,7 @@ int	read_arguments(char **argv, t_game *game)
 		else
 			i += (check_regular_player(argv, i, game));
 	}
+	if (game->players > 4 && game->visual)
+		return (arg_error(9, game));
 	return (0);
 }
