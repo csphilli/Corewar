@@ -12,7 +12,7 @@
 
 #include "../../includes/core.h"
 
-void	n_game_over(int row, int col)
+void	n_game_over(int row, int col, int realend)
 {
 	int	i;
 
@@ -24,9 +24,17 @@ void	n_game_over(int row, int col)
 		if (i % 101 == 0)
 			move(row += 1, col += 0);
 	}
-	move(row -= 31, col += 42);
 	attron(A_BOLD);
-	printw("G A M E   O V E R !");
+	if (realend == 1)
+	{
+		move(row -= 31, col += 42);
+		printw("G A M E   O V E R !");
+	}
+	else
+	{
+		move(row -= 31, col += 32);
+		printw("Game interrupted. Current score:");
+	}
 	curs_set(0);
 	refresh();
 	napms(1200);
@@ -58,7 +66,7 @@ int		n_winner(int row, int col, t_game *game)
 	return (rows);
 }
 
-void	n_end_game(t_game *game)
+void	n_end_game(int realend, t_game *game)
 {
 	int			c;
 	t_player	*winner;
@@ -69,7 +77,7 @@ void	n_end_game(t_game *game)
 	spot.row = 0;
 	spot.col = 0;
 	move(spot.row += 17, spot.col += 51);
-	n_game_over(spot.row, spot.col);
+	n_game_over(spot.row, spot.col, realend);
 	move(spot.row += 7, spot.col += 3);
 	rows = n_winner(spot.row, spot.col, game) + 2;
 	move(spot.row += rows, spot.col += 0);
@@ -84,5 +92,5 @@ void	n_end_game(t_game *game)
 			break ;
 	}
 	endwin();
-	exit(0);
+	free_all_and_exit(game);
 }

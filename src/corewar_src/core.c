@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
+/*   Updated: 2021/03/12 14:32:17 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	init_game(int argc, t_game *game)
 	int	i;
 
 	game->players = 0;
-	game->playerlist = (t_player**)malloc(2 * MAX_PLAYERS * sizeof(t_player));
 	i = 0;
 	while (i < MEM_SIZE)
 	{
@@ -58,7 +57,7 @@ int	print_usage(void)
 int	announce_winner(t_game *game)
 {
 	if (game->print)
-		printf("Player %d (%s) won\n", -game->last_alive,
+		ft_printf("Player %d (%s) won\n", -game->last_alive,
 		game->playerlist[-(game->last_alive + 1)]->name);
 	else
 	{
@@ -90,7 +89,8 @@ int	main(int argc, char *argv[])
 		i++;
 	}
 	first_carriages(game);
-	print_players(game);
+	if (!game->visual)
+		print_players(game);
 	play(game);
-	return (0);
+	free_all_and_exit(game);
 }

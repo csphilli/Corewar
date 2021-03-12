@@ -48,7 +48,7 @@ struct		s_arguments
 struct		s_game
 {
 	int			players;
-	t_player	**playerlist;
+	t_player	*playerlist[MAX_PLAYERS * 2];
 	int			memory[MEM_SIZE];
 	int			last_alive;
 	int			lives;
@@ -119,7 +119,7 @@ int			main(int argc, char *argv[]);
 ** core_arg_reader.c
 */
 
-int			arg_error(int error);
+int			arg_error(int error, t_game *game);
 int			check_n_flag_player(char **argv, int i, t_game *game);
 int			check_regular_player(char **argv, int i, t_game *game);
 int			read_arguments(char **argv, t_game *game);
@@ -137,8 +137,9 @@ int			get_visual_flag(int i, t_game *game);
 ** core_players.c
 */
 
-int			name(char *arg, unsigned char *buf, int nr, t_player *player);
-int			comment(char *arg, unsigned char *buf, t_player *player);
+int			name(char *arg, unsigned char *buf, int nr, t_game *game);
+int			comment(char *arg, unsigned char *buf, t_player *player,
+			t_game *game);
 int			code(unsigned char *buf, size_t file_size, int pl_nr, t_game *game);
 int			size(unsigned char *buf, t_player *player);
 int			get_player(int player_nr, char *arg, t_game *game);
@@ -147,8 +148,9 @@ int			get_player(int player_nr, char *arg, t_game *game);
 ** core_players2.c
 */
 
-int			check_size(char *arg, int code_length, t_player *player);
-int			player_error(char *arg, int error);
+int			check_size(char *arg, int code_length, t_player *player,
+			t_game *game);
+int			player_error(char *arg, int error, t_game *game);
 int			print_players(t_game *game);
 int			compress_playerlist(t_game *game);
 int			arrange_players(t_game *game);
@@ -245,7 +247,9 @@ int			aff(t_carriage *carriage, t_game *game);
 ** core_dump.c
 */
 
-int			dump_game(t_game *game);
+void		dump_game_and_exit(t_game *game);
+void		free_players(t_game *game);
+int			free_all_and_exit(t_game *game);
 
 /*
 ** n_arena.c
@@ -280,10 +284,10 @@ int			print_box(t_n_coor spot, int size, int speed, char *str);
 ** n_end.c
 */
 
-void		n_game_over(int row, int col);
+void		n_game_over(int row, int col, int realend);
 int			n_winner(int row, int col, t_game *game);
 void		n_winner_message(int row, int col, t_player *winner);
-void		n_end_game(t_game *game);
+void		n_end_game(int realend, t_game *game);
 
 /*
 ** n_keys.c
@@ -307,7 +311,7 @@ void		delete_wait(int position, t_game *game);
 */
 
 void		n_init_color_pairs(void);
-void		n_init_colors(void);
+void		n_init_colors(t_game *game);
 int			set_color2(int i);
 int			set_color(int i);
 

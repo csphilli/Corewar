@@ -12,36 +12,36 @@
 
 #include "../../includes/core.h"
 
-int	name(char *arg, unsigned char *buf, int nr, t_player *player)
+int	name(char *arg, unsigned char *buf, int nr, t_game *game)
 {
 	int			i;
+	t_player	*player;
 
+	player = game->playerlist[nr - 1];
 	i = 0;
 	while ((int)buf[i] != 0)
 	{
 		player->name[i] = buf[i];
 		i++;
 		if (i > PROG_NAME_LENGTH)
-			return (player_error(arg, 2));
+			return (player_error(arg, 2, game));
 	}
 	player->name[i] = '\0';
 	if (i == 0)
 	{
-		player->name[0] = 'n';
-		player->name[1] = 'o';
-		player->name[2] = '_';
-		player->name[3] = 'n';
-		player->name[4] = 'a';
-		player->name[5] = 'm';
-		player->name[6] = 'e';
-		player->name[7] = '_';
-		player->name[8] = nr + '0';
-		player->name[9] = '\0';
+		player->name[0] = 'p';
+		player->name[1] = 'l';
+		player->name[2] = 'a';
+		player->name[3] = 'y';
+		player->name[4] = 'e';
+		player->name[5] = 'r';
+		player->name[6] = nr + '0';
+		player->name[7] = '\0';
 	}
 	return (0);
 }
 
-int	comment(char *arg, unsigned char *buf, t_player *player)
+int	comment(char *arg, unsigned char *buf, t_player *player, t_game *game)
 {
 	int			i;
 
@@ -51,7 +51,7 @@ int	comment(char *arg, unsigned char *buf, t_player *player)
 		player->comment[i] = buf[i];
 		i++;
 		if (i > COMMENT_LENGTH)
-			return (player_error(arg, 3));
+			return (player_error(arg, 3, game));
 	}
 	player->comment[i] = '\0';
 	if (i == 0)
@@ -107,18 +107,19 @@ int	get_player(int player_nr, char *arg, t_game *game)
 
 	fd = open(arg, O_RDWR);
 	if (fd == -1)
-		return (player_error(arg, 0));
+		return (player_error(arg, 0, game));
 	file_size = read(fd, buf, 4096);
 	magic = (buf[0] << 24) | (buf[1]) << 16 | (buf[2] << 8) | (buf[3]);
 	if (magic != COREWAR_EXEC_MAGIC)
-		return (player_error(arg, 1));
-	name(arg, &buf[4], player_nr + 1, game->playerlist[player_nr]);
+		return (player_error(arg, 1, game));
+	name(arg, &buf[4], player_nr + 1, game);
 	game->last_alive = -(player_nr + 1);
-	comment(arg, &buf[PROG_NAME_LENGTH + 12], game->playerlist[player_nr]);
+	comment(arg, &buf[PROG_NAME_LENGTH + 12],
+		game->playerlist[player_nr], game);
 	size(buf, game->playerlist[player_nr]);
 	game->playerlist[player_nr]->empty = 0;
 	code_length = code(buf, file_size, player_nr, game);
-	check_size(arg, code_length, game->playerlist[player_nr]);
+	check_size(arg, code_length, game->playerlist[player_nr], game);
 	game->playerlist[player_nr]->color = player_nr + 1;
 	game->playerlist[player_nr]->last_live = 0;
 	game->playerlist[player_nr]->lives = 0;

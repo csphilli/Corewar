@@ -12,18 +12,18 @@
 
 #include "../../includes/core.h"
 
-int	check_size(char *arg, int code_length, t_player *player)
+int	check_size(char *arg, int code_length, t_player *player, t_game *game)
 {
 	if (code_length != player->size)
-		return (player_error(arg, 5));
+		return (player_error(arg, 5, game));
 	if (player->size > CHAMP_MAX_SIZE)
-		return (player_error(arg, 7));
+		return (player_error(arg, 7, game));
 	if (code_length < 1)
 		player->empty = 1;
 	return (0);
 }
 
-int	player_error(char *arg, int error)
+int	player_error(char *arg, int error, t_game *game)
 {
 	if (error == 0)
 	{
@@ -48,7 +48,7 @@ int	player_error(char *arg, int error)
 		else if (error == 7)
 			ft_printf(" has too large code\n");
 	}
-	exit(0);
+	return (free_all_and_exit(game));
 }
 
 int	print_players(t_game *game)

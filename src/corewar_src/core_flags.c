@@ -17,16 +17,16 @@ int	get_dump_flag(char *arg, t_game *game)
 	int		i;
 
 	if (game->visual == 1)
-		return (arg_error(7));
+		return (arg_error(7, game));
 	i = 0;
 	if (arg == NULL)
-		return (arg_error(5));
+		return (arg_error(5, game));
 	while (arg[i])
 	{
 		if (i == 9)
-			return (arg_error(1));
+			return (arg_error(1, game));
 		if (!(ft_isdigit(arg[i])))
-			return (arg_error(2));
+			return (arg_error(2, game));
 		i++;
 	}
 	game->dump_cycle = ft_atoi(arg);
@@ -36,7 +36,7 @@ int	get_dump_flag(char *arg, t_game *game)
 int	get_print_flag(int i, t_game *game)
 {
 	if (game->visual)
-		return (arg_error(7));
+		return (arg_error(7, game));
 	game->print = 1;
 	return (i + 1);
 }
@@ -44,7 +44,7 @@ int	get_print_flag(int i, t_game *game)
 int	get_visual_flag(int i, t_game *game)
 {
 	if (game->print || game->dump_cycle != -1 || game->aff || game->live_print)
-		return (arg_error(7));
+		return (arg_error(7, game));
 	game->visual = 1;
 	return (i + 1);
 }
@@ -52,7 +52,7 @@ int	get_visual_flag(int i, t_game *game)
 int	get_aff_flag(int i, t_game *game)
 {
 	if (game->visual)
-		return (arg_error(7));
+		return (arg_error(7, game));
 	game->aff = 1;
 	return (i + 1);
 }
@@ -60,7 +60,7 @@ int	get_aff_flag(int i, t_game *game)
 int	get_live_print_flag(int i, t_game *game)
 {
 	if (game->visual)
-		return (arg_error(7));
+		return (arg_error(7, game));
 	game->live_print = 1;
 	return (i + 1);
 }

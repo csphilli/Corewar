@@ -18,7 +18,7 @@ void		n_start_game(t_game *game)
 
 	initscr();
 	timeout(1);
-	n_init_colors();
+	n_init_colors(game);
 	n_draw_arena(game);
 	n_print_arena(game);
 	refresh();
@@ -31,7 +31,7 @@ void		n_start_game(t_game *game)
 		if (c == 'q')
 		{
 			endwin();
-			exit(0);
+			free_all_and_exit(game);
 		}
 	}
 	printw("\r     \r");
