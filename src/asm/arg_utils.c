@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/06 10:10:06 by csphilli          #+#    #+#             */
-/*   Updated: 2021/03/08 22:06:22 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/13 19:06:54 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,14 @@ int		valid_reg_def(char *line)
 }
 
 /*
-**	validates a T_DIR argument
+**	This check assists with the T_DIR and T_IND checks.
+**	If you have a direct or ind char, the validation will
+**	first check whether or not the char is a valid LABEL_CHAR.
+**	When it hits an invalid char, it moves into check_continuance
+**	which tests if the following chars are also valid. The acceptable
+**	chars after are defined as +-abcdef0123456789. This acceptance
+**	allows for the calculation of hexidecimal after a valid
+**	T_DIR or T_IND.
 */
 
 int		check_continuance(char *line)
@@ -84,6 +91,11 @@ int		check_continuance(char *line)
 	}
 	return (1);
 }
+
+/*
+**	validates a T_DIR argument.
+**	check_continuance is above.
+*/
 
 int		valid_t_dir(char *line)
 {
@@ -115,6 +127,7 @@ int		valid_t_dir(char *line)
 
 /*
 **	validates a T_IND argument
+**	check_continuance is above.
 */
 
 int		valid_t_ind(char *line)
