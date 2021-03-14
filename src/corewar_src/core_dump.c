@@ -32,6 +32,13 @@ void	dump_game_and_exit(t_game *game)
 	free_all_and_exit(game);
 }
 
+int		end_too_large(t_game *game)
+{
+	if (game->visual)
+		endwin();
+	return (arg_error(8, game));
+}
+
 void	free_players(t_game *game)
 {
 	int	i;

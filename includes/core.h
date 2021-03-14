@@ -77,7 +77,6 @@ struct		s_player
 	char		name[PROG_NAME_LENGTH + 1];
 	char		comment[COMMENT_LENGTH + 1];
 	int			size;
-	int			empty;
 	int			start;
 	int			color;
 	int			last_live;
@@ -130,7 +129,7 @@ int			read_arguments(char **argv, t_game *game);
 int			get_dump_flag(char *arg, t_game *game);
 int			get_print_flag(int i, t_game *game);
 int			get_aff_flag(int i, t_game *game);
-int			get_live_print_flag(int i, t_game *game);
+int			get_no_live_print_flag(int i, t_game *game);
 int			get_visual_flag(int i, t_game *game);
 
 /*
@@ -191,7 +190,6 @@ int			check_and_execute_args(int code, t_carriage *car, int pos,\
 void		remove_car(t_carriage *last, t_carriage *temp, t_game *game);
 void		remove_dead_carriages(t_game *game);
 int			reset_player_lives(t_game *game);
-int			end_too_large(t_game *game);
 int			check(t_game *game);
 
 /*
@@ -248,6 +246,7 @@ int			aff(t_carriage *carriage, t_game *game);
 */
 
 void		dump_game_and_exit(t_game *game);
+int			end_too_large(t_game *game);
 void		free_players(t_game *game);
 int			free_all_and_exit(t_game *game);
 
@@ -285,7 +284,7 @@ int			print_box(t_n_coor spot, int size, int speed, char *str);
 */
 
 void		n_game_over(int row, int col, int realend);
-int			n_winner(int row, int col, t_game *game);
+int			n_winner(int realend, int row, int col, t_game *game);
 void		n_winner_message(int row, int col, t_player *winner);
 void		n_end_game(int realend, t_game *game);
 

@@ -48,6 +48,14 @@ int	ind_value_no_mod(int pos, t_carriage *car, t_game *game)
 	return (value);
 }
 
+/*
+**	-in cases of several possible arg type options, read the right type
+**	-reg reads from the specific registry
+**	-ir reads from the current arg on 2 or 4 bytes depending on the instr.
+**	-ind read from the curren arg added to carriage position,
+**		lld also applies IDX_MOD
+*/
+
 int	get_value(int arg_type, int pos, t_carriage *car, t_game *game)
 {
 	int	instr;

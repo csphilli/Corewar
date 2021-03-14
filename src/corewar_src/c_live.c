@@ -12,6 +12,15 @@
 
 #include "../../includes/core.h"
 
+/*
+**	-opcode 1
+**	-if the argument	(dir) is -(a player number), the specific player
+**		is set to be the current winner
+**	-carriage is kept alive if performs a live statement during cycles_to_die
+**	-keeping track of all lives performed during the cycles for the next check
+**	-l-flag outputs all player lives
+*/
+
 void	live_stat(int pl_nr, t_player *player)
 {
 	ft_putstr("A process shows that player ");

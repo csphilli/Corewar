@@ -97,6 +97,12 @@ int	size(unsigned char *buf, t_player *player)
 	return (0);
 }
 
+/*
+**	-get and validate all data from the players file,
+**		write the code to the memory
+**	-no name/comment is replaced with anonymous info
+*/
+
 int	get_player(int player_nr, char *arg, t_game *game)
 {
 	int						fd;
@@ -117,7 +123,6 @@ int	get_player(int player_nr, char *arg, t_game *game)
 	comment(arg, &buf[PROG_NAME_LENGTH + 12],
 		game->playerlist[player_nr], game);
 	size(buf, game->playerlist[player_nr]);
-	game->playerlist[player_nr]->empty = 0;
 	code_length = code(buf, file_size, player_nr, game);
 	check_size(arg, code_length, game->playerlist[player_nr], game);
 	game->playerlist[player_nr]->color = player_nr + 1;

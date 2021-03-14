@@ -18,8 +18,6 @@ int	check_size(char *arg, int code_length, t_player *player, t_game *game)
 		return (player_error(arg, 5, game));
 	if (player->size > CHAMP_MAX_SIZE)
 		return (player_error(arg, 7, game));
-	if (code_length < 1)
-		player->empty = 1;
 	return (0);
 }
 
@@ -76,6 +74,11 @@ int	print_players(t_game *game)
 	return (0);
 }
 
+/*
+**	move all players towards first position so that no empty spots are
+**	left between first and last player
+*/
+
 int	compress_playerlist(t_game *game)
 {
 	int	i;
@@ -100,6 +103,10 @@ int	compress_playerlist(t_game *game)
 	}
 	return (0);
 }
+
+/*
+**	move players with no chosen place to empty positions on playerlist
+*/
 
 int	arrange_players(t_game *game)
 {

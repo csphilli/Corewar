@@ -12,6 +12,10 @@
 
 #include "../../includes/core.h"
 
+/*
+**	-	read a value from 4 bytes in the memory
+*/
+
 int		get_four(int position, t_game *game)
 {
 	int	value;
@@ -29,6 +33,10 @@ int		get_four(int position, t_game *game)
 	return (value);
 }
 
+/*
+**	-	read a value from 2 bytes in the memory
+*/
+
 int		get_two(int position, t_game *game)
 {
 	unsigned int			value1;
@@ -45,6 +53,10 @@ int		get_two(int position, t_game *game)
 	return (shorty);
 }
 
+/*
+**	-	used whenever calcualting new positions to stay within the memory
+*/
+
 int		move_pos(int steps, int pos)
 {
 	pos += steps;
@@ -54,6 +66,11 @@ int		move_pos(int steps, int pos)
 		pos += MEM_SIZE;
 	return (pos);
 }
+
+/*
+**	-	write the value in hex on 4 bytes in the memory
+**	-	the bytes will be highlighted on the visual for next 50 rounds
+*/
 
 void	write_to_memory(int value, int pos, t_carriage *car, t_game *game)
 {
@@ -72,6 +89,11 @@ void	write_to_memory(int value, int pos, t_carriage *car, t_game *game)
 		i -= 8;
 	}
 }
+
+/*
+**	in cases of several possible arg type options,
+**	check the type and get the right size
+*/
 
 int		arg_len(int arg_type, int dir_size)
 {

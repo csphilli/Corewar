@@ -12,6 +12,12 @@
 
 #include "../../includes/core.h"
 
+/*
+**	-opcode 7
+**	-stores the result of arg1 (reg/ind/dir) | arg2 (reg/ind/dir) in reg arg3
+**	-modifies the carrry
+*/
+
 int	or(t_arguments args, t_carriage *carriage, t_game *game)
 {
 	int	value1;

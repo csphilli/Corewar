@@ -13,9 +13,10 @@
 #include "../../includes/core.h"
 
 /*
-**	-	get a value form reg or ind (arg1)
-**	-	put to a registry (arg2)
-**	-	modify carry
+**	-opcode 2
+**	-get a value form reg or ind (arg1)
+**	-put to a registry (arg2)
+**	-modify carry
 */
 
 int	ld(t_arguments args, t_carriage *carriage, t_game *game)

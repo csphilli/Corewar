@@ -13,12 +13,13 @@
 #include "../../includes/core.h"
 
 /*
-**      -       take a value (arg1/ reg | ind | dir)
-**      -       take another value (arg2/ reg | dir)
-**      -       add them to get a memory spot
-**      -       get a value from the memory spot an
-**              put it in a registry (arg3)
-**      -       modify carry
+**	-opcode 14
+**	-take a value (arg1/ reg | ind | dir)
+**	-take another value (arg2/ reg | dir)
+**	-add them to get a memory spot
+**	-get a value from the memory spot an
+**		put it in a registry (arg3)
+**	-modify carry
 */
 
 int	lldi(t_arguments args, t_carriage *carriage, t_game *game)

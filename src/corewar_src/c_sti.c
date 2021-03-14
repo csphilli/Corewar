@@ -13,10 +13,11 @@
 #include "../../includes/core.h"
 
 /*
-**	-	take a value (arg2/ reg | ind | dir)
-**	-	take another value (arg3/ reg | dir)
-**	-	add these to get a memory spot
-**	-	get a value from a registry (arg1) and write it to the memory
+**	-opcode 11
+**	-take a value (arg2/ reg | ind | dir)
+**	-take another value (arg3/ reg | dir)
+**	-add these to get a memory spot
+**	-get a value from a registry (arg1) and write it to the memory
 */
 
 int	sti(t_arguments args, t_carriage *carriage, t_game *game)

@@ -43,8 +43,9 @@ int	get_print_flag(int i, t_game *game)
 
 int	get_visual_flag(int i, t_game *game)
 {
-	if (game->print || game->dump_cycle != -1 || game->aff || game->live_print)
+	if (game->print || game->dump_cycle != -1 || game->aff)
 		return (arg_error(7, game));
+	game->live_print = 0;
 	game->visual = 1;
 	return (i + 1);
 }
@@ -57,10 +58,8 @@ int	get_aff_flag(int i, t_game *game)
 	return (i + 1);
 }
 
-int	get_live_print_flag(int i, t_game *game)
+int	get_no_live_print_flag(int i, t_game *game)
 {
-	if (game->visual)
-		return (arg_error(7, game));
-	game->live_print = 1;
+	game->live_print = 0;
 	return (i + 1);
 }

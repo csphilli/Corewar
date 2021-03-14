@@ -12,6 +12,15 @@
 
 #include "../../includes/core.h"
 
+/*
+**	-opcode 12
+**	-with the arg (dir) value, calculates a new spot where to create a new
+**		carriage
+**	-new carriage will have the same carry, last live_cycle,
+**		registry contents
+**		(and color), as the original one
+*/
+
 int		c_fork(t_carriage *carriage, t_game *game)
 {
 	int	position;
