@@ -58,6 +58,11 @@ int	bin1(int i)
 	return (bins[i]);
 }
 
+/*
+**	-	go through the instructions current args type options and
+**		look for a match for the arg type sugggested by the bytecode
+*/
+
 int	wrong_arg_type(int instruction, int index, int argument)
 {
 	int	a;
@@ -71,6 +76,17 @@ int	wrong_arg_type(int instruction, int index, int argument)
 	}
 	return (1);
 }
+
+/*
+**	for as many args as the specific instruction is supposed to have,
+**	-	if the bytecode says that current arg is reg, check that
+**		the current value is a valid registry number
+**	-	if the bytecode says that current arg is different from
+**		the options that the instructions has for current arg
+**		or a reg number was wrong, the code is unvalid
+**	-	valid or not, add the bytecodes args length to the length
+**		of the carriages next step
+*/
 
 int	is_valid_args(int code, t_arguments args, t_carriage *car, t_game *game)
 {
@@ -86,7 +102,7 @@ int	is_valid_args(int code, t_arguments args, t_carriage *car, t_game *game)
 	while (i < g_op_tab[code - 1].args)
 	{
 		if (args.arg[i] == 1 && (!(game->memory[pos] >= 1
-		&& game->memory[pos] <= 16)))
+		&& game->memory[pos] <= REG_NUMBER)))
 			valid_code = 0;
 		jump = arg_len(args.arg[i], g_op_tab[code - 1].dir_bytes);
 		pos = move_pos(jump, pos);
@@ -97,6 +113,19 @@ int	is_valid_args(int code, t_arguments args, t_carriage *car, t_game *game)
 	}
 	return (valid_code);
 }
+
+/*
+**	get the args that the bytecode is suggesting:
+**	-	/16	gives the index for the first half of the bytecode,
+**		for example [01 10] 10 00
+**	-	%16	gives the index for the rest
+**	-	bin1 contains the first the first two digits of the binary:
+**		[01] 10 10 00 for arg 1, and 01 10 [10] 00 for arg3
+**		bin2 contains the last two digits: 01 [10] 10 00 for arg2
+**	-	10 = 2 = dir, 11 = 3 = ind, 01 = 1 = reg, 00 = 0 = none
+**	-	(int)bytecode 0x68 = 104, / 16 = 6 --> arg 1 = bin1[6] = 1 (reg)
+**	-	instructions with no bytecode have only 1 dir arg
+*/
 
 int	check_and_execute_args(int code, t_carriage *car, int pos, t_game *game)
 {

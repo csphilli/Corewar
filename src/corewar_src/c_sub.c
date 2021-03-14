@@ -12,6 +12,12 @@
 
 #include "../../includes/core.h"
 
+/*
+**	-opcode 5
+**	-stores the  result of (reg arg1 content - reg arg2 content) in reg arg3
+**	-modifies the carry
+*/
+
 int	sub(t_carriage *carriage, t_game *game)
 {
 	int	value;

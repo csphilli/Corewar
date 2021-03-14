@@ -31,7 +31,7 @@ int	arg_error(int error, t_game *game)
 		ft_putstr_fd(" players\n", 2);
 	}
 	else if (error == 7)
-		ft_putstr_fd("Error: -dump, -p, -a, -l flags not in use with -v\n", 2);
+		ft_putstr_fd("Error: -dump, -p, -a flags not in use with -v\n", 2);
 	else if (error == 8)
 		ft_putstr_fd("Error: battle values getting too large\n", 2);
 	else if (error == 9)
@@ -73,6 +73,12 @@ int	check_regular_player(char **argv, int i, t_game *game)
 	return (1);
 }
 
+/*
+**	-collect and validate flags
+**	-n-flag players with chosen position are put their places on playerlist
+**	-other players are put on the end side of the list to wait for placing
+*/
+
 int	read_arguments(char **argv, t_game *game)
 {
 	int	i;
@@ -89,7 +95,7 @@ int	read_arguments(char **argv, t_game *game)
 		else if (ft_strcmp(argv[i], "-a") == 0)
 			i = get_aff_flag(i, game);
 		else if (ft_strcmp(argv[i], "-l") == 0)
-			i = get_live_print_flag(i, game);
+			i = get_no_live_print_flag(i, game);
 		else if (ft_strcmp(argv[i], "-n") == 0)
 			i += (check_n_flag_player(argv, i, game));
 		else

@@ -13,9 +13,11 @@
 #include "../../includes/core.h"
 
 /*
-**      -       get a value form reg or ind (arg1)
-**      -       put to a registry (arg2)
-**      -       modify carry
+**	-opcode 13
+**	-get a value form reg or ind (arg1)
+**	-unlike ld, does not use IDX_MOD when getting ind value
+**	-put to a registry (arg2)
+**	-modify carry
 */
 
 int	lld(t_arguments args, t_carriage *carriage, t_game *game)

@@ -12,6 +12,11 @@
 
 #include "../../includes/core.h"
 
+/*
+**	-opcode 9
+**	-if the carry is 1, carriage jump to a new address given by the arg (dir)
+*/
+
 int	zjmp(t_carriage *carriage, t_game *game)
 {
 	int	position;

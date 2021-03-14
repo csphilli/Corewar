@@ -41,7 +41,7 @@ void	n_game_over(int row, int col, int realend)
 	attroff(A_BOLD);
 }
 
-int		n_winner(int row, int col, t_game *game)
+int		n_winner(int realend, int row, int col, t_game *game)
 {
 	t_player	*winner;
 	int			a;
@@ -51,7 +51,10 @@ int		n_winner(int row, int col, t_game *game)
 	spot.row = row;
 	spot.col = col;
 	winner = game->playerlist[-(game->last_alive + 1)];
-	printw("WINNER: ");
+	if (realend == 1)
+		printw("WINNER: ");
+	else
+		printw("LEADER: ");
 	refresh();
 	napms(800);
 	printw("Player %d, ", -(game->last_alive));
@@ -79,7 +82,7 @@ void	n_end_game(int realend, t_game *game)
 	move(spot.row += 17, spot.col += 51);
 	n_game_over(spot.row, spot.col, realend);
 	move(spot.row += 7, spot.col += 3);
-	rows = n_winner(spot.row, spot.col, game) + 2;
+	rows = n_winner(realend, spot.row, spot.col, game) + 2;
 	move(spot.row += rows, spot.col += 0);
 	printw("\"");
 	print_box(spot, 95, 50, winner->comment);

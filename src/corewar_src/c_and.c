@@ -12,6 +12,12 @@
 
 #include "../../includes/core.h"
 
+/*
+**	-opcode 6
+**	-stores the result of arg1 (reg/ind/dir) & arg2 (reg/ind/dir) in reg arg3
+**	-modifies the carry
+*/
+
 int	and(t_arguments args, t_carriage *carriage, t_game *game)
 {
 	int	value1;

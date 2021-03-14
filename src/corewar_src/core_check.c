@@ -25,6 +25,12 @@ void	remove_car(t_carriage *last, t_carriage *temp, t_game *game)
 	game->carrs_alive -= 1;
 }
 
+/*
+**	-if a carriage has not performed a live statement during the last
+**		cycles_to_die, it will be removed
+**	-if cycles_to_die is zero or less, all carriages are removed (->game ends)
+*/
+
 void	remove_dead_carriages(t_game *game)
 {
 	t_carriage	*last;
@@ -60,12 +66,11 @@ int		reset_player_lives(t_game *game)
 	return (0);
 }
 
-int		end_too_large(t_game *game)
-{
-	if (game->visual)
-		endwin();
-	return (arg_error(8, game));
-}
+/*
+**	-reduce cycles_to_die if amount of all lives during the last cycles_to_die
+**		is NBR_LIVES or more or if it has been less for MAX_CHECKS checks
+**	-individual player lives per round are counted for the visual mode
+*/
 
 int		check(t_game *game)
 {

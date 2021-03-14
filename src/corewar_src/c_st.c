@@ -13,9 +13,10 @@
 #include "../../includes/core.h"
 
 /*
-**	-	take value from reg (arg1)
-**	-	put it to a registry (arg2/reg)
-**	-	OR write it to memory (arg2/ind)
+**	-opcode 3
+**	-take value from reg (arg1)
+**	-put it to a registry (arg2/reg)
+**	-OR write it to memory (arg2/ind)
 */
 
 int	st(t_arguments args, t_carriage *carriage, t_game *game)

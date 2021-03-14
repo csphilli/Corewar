@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: laskolin <laskolin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 08:41:17 by laskolin          #+#    #+#             */
-/*   Updated: 2021/03/12 14:32:17 by osalmine         ###   ########.fr       */
+/*   Updated: 2020/07/16 16:49:28 by laskolin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	init_game(int argc, t_game *game)
 	game->waiters = NULL;
 	game->dump_cycle = -1;
 	game->print = 0;
-	game->live_print = 0;
+	game->live_print = 1;
 	game->aff = 0;
 	game->visual = 0;
 	game->speed = 31;
@@ -42,15 +42,16 @@ int	init_game(int argc, t_game *game)
 
 int	print_usage(void)
 {
-	ft_putstr("Usage: ./corewar [-dump N] [[-n N] champion1.cor] ...\n");
+	ft_putstr("\nUsage: ./corewar champion.cor\n\n");
 	ft_putstr("\tmax players\t: ");
 	ft_putnbr(MAX_PLAYERS);
-	ft_putstr("\n\t-dump N\t\t: Dump memory after N cycles and exit\n");
-	ft_putstr("\t-n N\t\t: Set the number of the next player\n");
+	ft_putstr("\n\n\tflags:\n\t");
+	ft_putstr("-dump [number]\t: Dump memory after number cycles and exit\n");
+	ft_putstr("\t-n [number]\t: Set the number of the next player\n");
 	ft_putstr("\t-p\t\t: Show operations\n");
 	ft_putstr("\t-a\t\t: Show aff output (hidden by default)\n");
-	ft_putstr("\t-l\t\t: Show live executions\n");
-	ft_putstr("\t-v\t\t: Visual mode\n");
+	ft_putstr("\t-l\t\t: Hide live executions (displayed by default)\n");
+	ft_putstr("\t-v\t\t: Visual mode\n\n");
 	exit(0);
 }
 
@@ -69,6 +70,14 @@ int	announce_winner(t_game *game)
 	}
 	return (0);
 }
+
+/*
+**	-	validate args, gather flags and players in read_arguments
+**	-	rearrange players in case n-flags were used to choose player positions
+**	-	read each players file and write them to memory in get_player loop
+**	-	set carriages
+**	-	introduce players and start game
+*/
 
 int	main(int argc, char *argv[])
 {
