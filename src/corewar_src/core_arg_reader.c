@@ -31,7 +31,7 @@ int	arg_error(int error, t_game *game)
 		ft_putstr_fd(" players\n", 2);
 	}
 	else if (error == 7)
-		ft_putstr_fd("Error: -dump, -p, -a, -flags not in use with -v\n", 2);
+		ft_putstr_fd("Error: -dump, -p, -a, flags not in use with -v\n", 2);
 	else if (error == 8)
 		ft_putstr_fd("Error: battle values getting too large\n", 2);
 	else if (error == 9)
