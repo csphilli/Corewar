@@ -6,11 +6,16 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:16:36 by osalmine          #+#    #+#             */
-/*   Updated: 2021/03/01 17:28:29 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/03/15 00:06:04 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	Loops through the instructions list to sum up the required space for
+**	the champ's code.
+*/
 
 static int	calc_champ_size(t_master *m)
 {
@@ -30,6 +35,7 @@ static int	calc_champ_size(t_master *m)
 }
 
 /*
+**	Calculates the space needed to allocate.
 **	the + 16 =
 **	magic header (4) + 2 * null (= 2 * 4) + champion exec code size (4)
 */
@@ -44,12 +50,13 @@ static int	calc_encoded_size(t_master *m)
 }
 
 /*
-**	champ calculations are done to place the champ size in the correct place
-**	it has 4 bytes to use and has to be right-justified (e.g. 00 00 00 16)
-**	if the champ size is 0x1F4 bytes in hex (500 in dec), champ offset is 1
+**	Writes the magic, name, comment and code size to memory.
+**	Champ calculations are done to place the champ size in the correct place.
+**	It has 4 bytes to use and has to be right-justified (e.g. 00 00 00 16).
+**	If the champ size is 0x1F4 bytes in hex, champ offset is 1
 **	and as the remainder from champ nbr_size is not divisible by 2 it
 **	gets incresed by one
-**	(meaning that the champ needs +1 bytes to display: 01 F4)
+**	(meaning that the champ needs +1 bytes to display: 00 00 01 F4)
 */
 
 static void	encode_header(t_master *m)
@@ -80,8 +87,7 @@ static void	encode_header(t_master *m)
 }
 
 /*
-**	Main encoding function. Writing to file happens in main.c
-**	remove the comment to see the final encoded memory
+**	Main encoding function. Writing to file happens in write_to_file.c
 */
 
 void		encode_asm(t_master *m)

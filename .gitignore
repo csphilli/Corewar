@@ -14,3 +14,4 @@ asmtest
 /eval_tests/*
 obj
 /asm
+*.a
