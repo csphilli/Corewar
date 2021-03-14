@@ -31,11 +31,13 @@ int	arg_error(int error, t_game *game)
 		ft_putstr_fd(" players\n", 2);
 	}
 	else if (error == 7)
-		ft_putstr_fd("Error: -dump, -p, -a flags not in use with -v\n", 2);
+		ft_putstr_fd("Error: -dump, -p, -a, -flags not in use with -v\n", 2);
 	else if (error == 8)
 		ft_putstr_fd("Error: battle values getting too large\n", 2);
 	else if (error == 9)
 		ft_putstr_fd("Error: -v in use with max 4 players\n", 2);
+	else if (error == 10)
+		ft_putstr_fd("Error: no players found\n", 2);
 	return (free_all_and_exit(game));
 }
 
@@ -103,5 +105,7 @@ int	read_arguments(char **argv, t_game *game)
 	}
 	if (game->players > 4 && game->visual)
 		return (arg_error(9, game));
+	if (game->players == 0)
+		return (arg_error(10, game));
 	return (0);
 }
