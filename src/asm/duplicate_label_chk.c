@@ -6,11 +6,15 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/06 08:23:25 by csphilli          #+#    #+#             */
-/*   Updated: 2021/03/06 08:28:57 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/13 19:11:29 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+**	error message for duplicate label
+*/
 
 void	duplicate_label_error(char *label_name)
 {
@@ -19,6 +23,11 @@ void	duplicate_label_error(char *label_name)
 	ft_putstr_fd("' found in code.\n", 2);
 	exit(0);
 }
+
+/*
+**	Scans an instruction and counts all label names that
+**	matches *name
+*/
 
 int		scan_instruction_labels(t_node *head, char *name)
 {
@@ -33,6 +42,10 @@ int		scan_instruction_labels(t_node *head, char *name)
 	}
 	return (cnt);
 }
+
+/*
+**	Scans through the entire assembly code
+*/
 
 int		scan_entire_instruction_set(t_master *m, char *name)
 {
@@ -50,6 +63,12 @@ int		scan_entire_instruction_set(t_master *m, char *name)
 	}
 	return (cnt);
 }
+
+/*
+**	Duplicate label check. Each label is sent through a scanner
+**	which will count the number of instances the label was found.
+**	If count > 1, a duplicate was found.
+*/
 
 void	label_dup_chk(t_master *m)
 {

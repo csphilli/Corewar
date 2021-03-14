@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   printing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/01 20:47:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/03/11 12:18:12 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/03/13 20:32:31 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	print_arg_type(int id)
 	else if (id == T_LAB)
 		ft_printf("\t%-20s", "T_LAB");
 	else
-		ft_printf(BRED"\t%-20s"RESET, "T_IND");
+		ft_printf("\t%-20s", "T_IND");
 }
 
 void	print_ins_labels(t_labels *labels)
