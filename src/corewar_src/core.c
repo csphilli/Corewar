@@ -42,7 +42,7 @@ int	init_game(int argc, t_game *game)
 
 int	print_usage(void)
 {
-	ft_putstr("\nUsage: ./corewar champion.cor\n\n");
+	ft_putstr("\nUsage: ./corewar [champion.cor]\n\n");
 	ft_putstr("\tmax players\t: ");
 	ft_putnbr(MAX_PLAYERS);
 	ft_putstr("\n\n\tflags:\n\t");
