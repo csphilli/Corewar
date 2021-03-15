@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:39:12 by csphilli          #+#    #+#             */
-/*   Updated: 2021/03/15 10:56:23 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/15 11:17:29 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 void			opcode_error(t_master *m, char *opname)
 {
 	if (ft_strlen(opname) == 0)
-		ft_putstr_fd("ERROR: Missing opcode on line ", 2);
+		ft_putstr_fd("ERROR: Missing opcode instruction on line ", 2);
 	else
 	{
 		ft_putstr_fd("ERROR: Invalid opcode \'", 2);
@@ -46,7 +46,7 @@ t_asm_oplist	get_opcode(t_master *m, char *line)
 	len = 0;
 	while (ft_strchr(OPNAME_CHAR, line[len]))
 		len++;
-	str = strndup(line, sizeof(char) * len);
+	str = ft_strndup(line, sizeof(char) * len);
 	while (i < OP_COUNT)
 	{
 		if (ft_strequ(str, g_oplist[i].opname))
