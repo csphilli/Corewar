@@ -95,5 +95,5 @@ void	n_end_game(int realend, t_game *game)
 			break ;
 	}
 	endwin();
-	free_all_and_exit(game);
+	free_all_and_exit(0, game);
 }

@@ -30,7 +30,7 @@ void	dump_game_and_exit(t_game *game)
 		}
 		ft_printf("\n");
 	}
-	free_all_and_exit(game);
+	free_all_and_exit(0, game);
 }
 
 int		end_too_large(t_game *game)
@@ -55,7 +55,7 @@ void	free_players(t_game *game)
 	}
 }
 
-int		free_all_and_exit(t_game *game)
+int		free_all_and_exit(int state, t_game *game)
 {
 	t_carriage	*car;
 	t_carriage	*tmp_car;
@@ -79,5 +79,5 @@ int		free_all_and_exit(t_game *game)
 		wait = tmp_wait;
 	}
 	free_players(game);
-	exit(0);
+	exit(state);
 }

@@ -31,7 +31,7 @@ void		n_start_game(t_game *game)
 		if (c == 'q')
 		{
 			endwin();
-			free_all_and_exit(game);
+			free_all_and_exit(0, game);
 		}
 	}
 	printw("\r     \r");
