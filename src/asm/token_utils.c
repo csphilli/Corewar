@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:39:12 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/15 10:51:27 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,15 @@
 */
 
 void			opcode_error(t_master *m, char *opname)
-{
-	ft_putstr_fd("ERROR: Invalid opcode \'", 2);
-	ft_putstr_fd(opname, 2);
-	ft_putstr_fd("\' found on line ", 2);
+{	
+	if (ft_strlen(opname) == 0)
+		ft_putstr_fd("ERROR: Missing opcode on line ", 2);
+	else
+	{
+		ft_putstr_fd("ERROR: Invalid opcode \'", 2);
+		ft_putstr_fd(opname, 2);
+		ft_putstr_fd("\' on line ", 2);
+	}
 	ft_putnbr_fd(m->line_cnt, 2);
 	ft_putstr_fd(".\n", 2);
 	exit(1);
