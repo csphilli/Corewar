@@ -157,7 +157,7 @@ $(ASM_EXEC): $(TGT_DIR) $(LIBFT) $(FT_PRINTF) $(ASM_OBJ)
 
 $(COR_EXEC): $(TGT_DIR) $(LIBFT) $(FT_PRINTF) $(COR_OBJ)
 	@echo "\nCOREWAR files compiled"
-	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) $(LINK_FT_PRINTF) -o $@ $(COR_OBJ) -std=c99 -lncurses
+	@$(CC) $(CFLAGS) $(INCLUDES) $(LINK_LIBFT) $(LINK_FT_PRINTF) -o $@ $(COR_OBJ) -lncurses
 	@echo "Done linking COREWAR!"
 
 clean:
