@@ -21,6 +21,7 @@ void	dump_game_and_exit(t_game *game)
 	while (i < MEM_SIZE)
 	{
 		a = 0;
+		ft_printf("0x%04x : ", i);
 		while (a < 32)
 		{
 			ft_printf("%02x ", game->memory[i]);

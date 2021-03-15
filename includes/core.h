@@ -73,7 +73,6 @@ struct		s_game
 struct		s_player
 {
 	char		*argu;
-	int			nr;
 	char		name[PROG_NAME_LENGTH + 1];
 	char		comment[COMMENT_LENGTH + 1];
 	int			size;

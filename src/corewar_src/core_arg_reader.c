@@ -19,7 +19,7 @@ int	arg_error(int error, t_game *game)
 	else if (error == 2)
 		ft_putstr_fd("Error: -dump N not a valid number\n", 2);
 	else if (error == 3)
-		ft_putstr_fd("Error: -n flag\n", 2);
+		ft_putstr_fd("Error: -n flag missing player or valid number\n", 2);
 	else if (error == 4)
 		ft_putstr_fd("Error: player number taken\n", 2);
 	else if (error == 5)
@@ -45,7 +45,7 @@ int	check_n_flag_player(char **argv, int i, t_game *game)
 {
 	int		player_n;
 
-	if (argv[i + 1] == NULL || argv[i + 1][1] != '\0' ||
+	if (argv[i + 1] == NULL || argv[i + 1][1] != '\0' || argv[i + 2] == NULL ||
 	(!(ft_isdigit(argv[i + 1][0]))) || ft_atoi(argv[i + 1]) > MAX_PLAYERS ||
 	ft_atoi(argv[i + 1]) == 0)
 		return (arg_error(3, game));
