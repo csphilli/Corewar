@@ -1,7 +1,9 @@
 .name "LeRoy Jenkins"
 .comment "Time's up! Let's do this!! LEROOOOOOOOOOY JENKIIIIIIINS!!!!"
 
-
+test1: fork %:war_cry
+between: st r2, -53
+test2: live%:test1
 war_cry:
 	live %8765309
 	st r2,-9
