@@ -39,7 +39,7 @@ aggro_eggs:
 	fork %:howling_terror
 	ld %0, r15
 	ld %1, r14
-	fork %: more_dots
+	fork %:more_dots
 	st r1, 11
 	st r2, 21
 	fork %:flee

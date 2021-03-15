@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 16:55:10 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/15 09:43:59 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	tokenizing_cont(t_master *m, t_ins *ins, \
 **	type_parse is in the type_parse.c file.
 **	add_labels is above.
 **	tokenizing_cont is above.
+**	get_opcode is in token_utils.c
 */
 
 void	tokenizing(t_master *m, char *line)
