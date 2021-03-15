@@ -54,14 +54,14 @@ void	n_init_colors(t_game *game)
 		{
 			endwin();
 			ft_putstr_fd("Cannot start colours\n", 2);
-			free_all_and_exit(game);
+			free_all_and_exit(1, game);
 		}
 	}
 	else
 	{
 		endwin();
 		ft_putstr_fd("Not colour capable\n", 2);
-		free_all_and_exit(game);
+		free_all_and_exit(1, game);
 	}
 }
 

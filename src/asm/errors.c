@@ -15,7 +15,7 @@
 void	ft_error_line(char *error_msg, int line)
 {
 	write(2, error_msg, ft_strlen(error_msg));
-	ft_putnbr(line);
+	ft_putnbr_fd(line, 2);
 	write(2, ".\n", 2);
 	exit(1);
 }

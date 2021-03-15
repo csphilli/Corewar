@@ -17,7 +17,7 @@ int	check_size(char *arg, int code_length, t_player *player, t_game *game)
 	if (code_length != player->size)
 		return (player_error(arg, 5, game));
 	if (player->size > CHAMP_MAX_SIZE)
-		return (player_error(arg, 7, game));
+		return (player_error(arg, 6, game));
 	return (0);
 }
 
@@ -43,10 +43,10 @@ int	player_error(char *arg, int error, t_game *game)
 			ft_putstr_fd(" is too small to be a champion\n", 2);
 		else if (error == 5)
 			ft_putstr_fd(": code size different from what header says\n", 2);
-		else if (error == 7)
+		else if (error == 6)
 			ft_printf(" has too large code\n");
 	}
-	return (free_all_and_exit(game));
+	return (free_all_and_exit(1, game));
 }
 
 int	print_players(t_game *game)

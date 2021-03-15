@@ -67,7 +67,7 @@ int		n_keys(int c, t_game *game)
 	if (c == 'q')
 	{
 		endwin();
-		return (free_all_and_exit(game));
+		return (free_all_and_exit(0, game));
 	}
 	else if (c == ' ')
 		return (n_pause(game));

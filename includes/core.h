@@ -94,7 +94,6 @@ struct		s_carriage
 	long int	regs[REG_NUMBER];
 	int			col;
 	t_carriage	*next;
-	int			cur_arg;
 };
 
 struct		s_waiter
@@ -247,7 +246,7 @@ int			aff(t_carriage *carriage, t_game *game);
 void		dump_game_and_exit(t_game *game);
 int			end_too_large(t_game *game);
 void		free_players(t_game *game);
-int			free_all_and_exit(t_game *game);
+int			free_all_and_exit(int state, t_game *game);
 
 /*
 ** n_arena.c

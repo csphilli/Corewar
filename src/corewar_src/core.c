@@ -101,5 +101,5 @@ int	main(int argc, char *argv[])
 	if (!game->visual)
 		print_players(game);
 	play(game);
-	free_all_and_exit(game);
+	free_all_and_exit(0, game);
 }

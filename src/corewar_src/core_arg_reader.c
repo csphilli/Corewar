@@ -38,7 +38,7 @@ int	arg_error(int error, t_game *game)
 		ft_putstr_fd("Error: -v in use with max 4 players\n", 2);
 	else if (error == 10)
 		ft_putstr_fd("Error: no players found\n", 2);
-	return (free_all_and_exit(game));
+	return (free_all_and_exit(1, game));
 }
 
 int	check_n_flag_player(char **argv, int i, t_game *game)
