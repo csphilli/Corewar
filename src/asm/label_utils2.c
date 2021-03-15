@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 13:58:00 by csphilli          #+#    #+#             */
-/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/15 11:07:14 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_charcat(char *dest, const char src)
 	size_t		dest_l;
 
 	i = 0;
-	dest_l = strlen(dest);
+	dest_l = ft_strlen(dest);
 	dest[dest_l + i] = src;
 	dest[dest_l + i + 1] = '\0';
 	return ((char *)dest);
