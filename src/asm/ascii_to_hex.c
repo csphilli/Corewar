@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ascii_to_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 22:39:32 by osalmine          #+#    #+#             */
-/*   Updated: 2021/03/02 12:02:35 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/15 00:09:34 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ uint32_t		dec_to_hex(int nb)
 
 /*
 **	Converts a string to a hexadecimal array
-**	zork -> [7a, 6f, 72, 6b] where the hex is the char's ascii value
+**	"zork" -> [7a, 6f, 72, 6b] where the hex is the char's ascii value
 */
 
 uint8_t			*ascii_to_hex(char *str)

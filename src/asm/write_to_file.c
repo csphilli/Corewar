@@ -6,7 +6,7 @@
 /*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/13 18:28:07 by osalmine          #+#    #+#             */
-/*   Updated: 2021/03/11 11:56:16 by osalmine         ###   ########.fr       */
+/*   Updated: 2021/03/15 00:08:05 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ static char	*convert_to_bytecode(t_master *m)
 	write_to_bytecode(bytecode, m);
 	return (bytecode);
 }
+
+/*
+**	Swaps the file exrension and write the encoded code to a file.
+*/
 
 void		write_to_file(t_master *m)
 {

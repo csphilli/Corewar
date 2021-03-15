@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   split_hex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 21:52:25 by osalmine          #+#    #+#             */
-/*   Updated: 2021/02/26 08:00:33 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/15 00:07:17 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 /*
+**	Spilts a hexadecimal number into bytes.
 **	nb_len is divided by 2 as e.g. 0xea83f3 is 6 numbers
 **	but is split to ea 83 f3
-**	the weird looking stuff in the loop just grabs the first number but as
+**	The weird looking stuff in the loop just grabs the first number but as
 **	they are in reverse order (would be ae 38 3f otherwise),
 **	gets it stored in a variable, gets the second nb to split,
 **	shifts the split to make room for the first number and combines the two
