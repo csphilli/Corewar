@@ -6,7 +6,7 @@
 /*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/31 20:39:12 by csphilli          #+#    #+#             */
-/*   Updated: 2021/03/15 10:51:27 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/15 10:56:23 by csphilli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 
 void			opcode_error(t_master *m, char *opname)
-{	
+{
 	if (ft_strlen(opname) == 0)
 		ft_putstr_fd("ERROR: Missing opcode on line ", 2);
 	else
