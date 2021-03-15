@@ -56,10 +56,10 @@ int		main(int ac, char **av)
 	int			fd;
 
 	fd = 0;
-	if (ac > 1)
+	if (ac == 2)
 	{
 		m = ft_memalloc(sizeof(t_master));
-		m->filename = av[ac - 1];
+		m->filename = av[1];
 		check_for_filename(m->filename);
 		if ((fd = open(m->filename, fd, O_RDONLY)) < 0)
 			ft_errorexit("ERROR: Cannot read from input file.\n");
