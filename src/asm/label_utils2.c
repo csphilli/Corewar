@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   label_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: csphilli <csphilli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: osalmine <osalmine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 13:58:00 by csphilli          #+#    #+#             */
-/*   Updated: 2021/03/15 11:07:14 by csphilli         ###   ########.fr       */
+/*   Updated: 2021/03/24 12:12:03 by osalmine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ char	*extract_label(char *line)
 	char	*str;
 
 	i = 0;
-	while (!ft_strchr(LABEL_CHARS, *line))
+	while (*line && !ft_strchr(LABEL_CHARS, *line))
 		line++;
-	while (ft_strchr(LABEL_CHARS, line[i]))
+	while (line[i] && ft_strchr(LABEL_CHARS, line[i]))
 		i++;
 	str = ft_strndup(line, i);
 	return (str);
