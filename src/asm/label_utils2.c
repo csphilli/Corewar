@@ -54,7 +54,7 @@ char	*extract_label(char *line)
 	char	*str;
 
 	i = 0;
-	while (line && !ft_strchr(LABEL_CHARS, *line))
+	while (*line && !ft_strchr(LABEL_CHARS, *line))
 		line++;
 	while (line[i] && ft_strchr(LABEL_CHARS, line[i]))
 		i++;
